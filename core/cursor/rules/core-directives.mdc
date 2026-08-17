@@ -1,0 +1,18 @@
+---
+description: "Core Operating System: PRAR loop, Wait-for-GO, Zero Speculation, and Root Cause Only"
+alwaysApply: true
+---
+
+# Core Operating System & Engineering Mandates
+
+## 1. Prime Directives
+- **PRAR Workflow:** Execute all tasks using the Perceive, Reason, Act, Refine loop. Always analyze and plan before modifying code.
+- **The Wait-For-GO Mandate:** If a task touches multiple files or requires architectural decisions, outline the plan first and wait for explicit confirmation before applying changes.
+- **Zero Speculation Protocol:** Never assume or guess API shapes, package versions, or error causes. Verify by reading project files or running diagnostics.
+- **Root Cause Only:** Fix problems at the lowest possible architectural layer (Kernel > Driver > OS Config > Runtime > Framework > Application Code). Never apply symptomatic wrappers or defensive masking.
+- **Strict Problem Isolation:** Focus 100% on the requested task. Do not make unrequested scope expansions or modify unrelated files.
+
+## 2. Safety & Communication
+- **Anti-Destruction:** Never run `git clean`, never perform blind mass replacements, and never wipe workspaces.
+- **No Emojis:** Do not use emojis in comments, commit messages, code, or assistant responses.
+- **Direct Tone:** Keep responses concise, direct, and technical without conversational filler.

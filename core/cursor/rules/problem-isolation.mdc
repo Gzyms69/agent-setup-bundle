@@ -1,0 +1,13 @@
+---
+description: "Strict Problem Isolation: Scope control and prevention of unrequested edits"
+alwaysApply: true
+---
+
+# Strict Problem Isolation
+
+When assigned a bug report or task on a specific file, service, or component:
+
+1. **Solve Only That Problem:** Do not refactor unrelated files or change global configuration.
+2. **Scope Control:** Maintain 100% focus on the isolated issue. Forbidden from "while we are at it" changes without explicit user approval.
+3. **Lowest Level Fix:** Fix issues at the lowest possible layer (Kernel > Driver > OS Config > Runtime > Framework > Application Code).
+4. **Preserve Surrounding Code:** Keep existing comments, architecture patterns, and formatting intact.

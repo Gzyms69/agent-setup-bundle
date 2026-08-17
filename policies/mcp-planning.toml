@@ -1,0 +1,9 @@
+# Policy allowing all MCP tools to be used in Plan Mode
+# This policy enables the agent to utilize MCP servers during the planning phase.
+
+[[rule]]
+toolName = "*"
+mcpName = "*"
+decision = "allow"
+priority = 100
+modes = ["plan"]

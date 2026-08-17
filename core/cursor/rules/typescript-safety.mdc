@@ -1,0 +1,18 @@
+---
+description: "TypeScript Safety Gate: Enforces compiler verification after any .ts/.tsx edits"
+globs: ["**/*.ts", "**/*.tsx"]
+alwaysApply: false
+---
+
+# Critical TypeScript Safety Gate
+
+After editing or creating any `.ts` or `.tsx` files:
+
+1. **Compiler Verification:** Run `npx tsc --noEmit` to verify type integrity.
+2. **Logic Preservation:** You are strictly forbidden from deleting business logic or dummying out types to make compiler errors "go away".
+3. **Allowed Fixes:**
+   - Extend or correct interfaces and type definitions.
+   - Fix module imports and exports.
+   - Add valid type assertions or narrowing.
+   - Use `@ts-expect-error` with an explanatory comment only if an external library type definition is definitively broken.
+4. **Repair Limit:** Maximum 2 autonomous repair iterations. If errors persist, halt and report the exact compiler output to the user.

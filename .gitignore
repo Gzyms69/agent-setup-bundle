@@ -1,0 +1,23 @@
+# Operating System Artifacts
+.DS_Store
+Thumbs.db
+
+# Environment & Secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Build and Archives
+*.tar.gz
+*.zip
+*.log
+
+# Node & Python caches
+node_modules/
+__pycache__/
+*.pyc
+.venv/
+dist/
+build/

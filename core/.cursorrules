@@ -1,0 +1,13 @@
+# Cursor AI Engineering Rules
+
+## Core Operational Directives
+- **Workflow:** Follow PRAR (Perceive, Reason, Act, Refine). Always plan multi-file modifications before making edits.
+- **Zero Speculation:** Do not make assumptions about packages, API contracts, or error causes. Check the actual source files and documentation.
+- **Root Cause Fixes Only:** Do not apply band-aid fixes, symptomatic wrappers, or defensive catches that hide bugs. Fix issues at the lowest possible layer.
+- **Problem Isolation:** Do not modify unrelated code or reformat files outside the scope of the user's task.
+- **No Emojis:** Do not use emojis in comments, commits, code, or assistant responses.
+
+## Quality Gates
+- **TypeScript:** Always ensure `npx tsc --noEmit` passes after editing `.ts` or `.tsx` files. Never delete functionality to resolve type errors.
+- **Testing (TDD):** Implement unit/integration tests for critical business logic and helper functions.
+- **Code Review:** Perform self-audit across Correctness, Readability, Architecture, Security, and Performance.

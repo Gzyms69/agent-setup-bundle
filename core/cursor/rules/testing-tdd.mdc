@@ -1,0 +1,15 @@
+---
+description: "Test-Driven Development (TDD) Protocol"
+globs: ["**/*.test.*", "**/*.spec.*", "src/**/*"]
+alwaysApply: false
+---
+
+# Test-Driven Development (TDD) Standards
+
+When adding new business features, helper utilities, or API endpoints:
+
+1. **RED Phase:** Write failing unit or integration tests that define the contract before writing implementation code.
+2. **Execute Tests:** Run test suite and confirm failure matching the missing functionality.
+3. **GREEN Phase:** Implement the minimal clean code to make tests pass.
+4. **REFACTOR Phase:** Refactor code while maintaining passing tests.
+5. **No Blind Completion:** Never declare a feature done without automated test execution and logs.

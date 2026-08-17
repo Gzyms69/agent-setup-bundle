@@ -1,0 +1,52 @@
+{
+  "mcpServers": {
+    "github": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-github"
+      ],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "YOUR_GITHUB_PAT_HERE"
+      }
+    },
+    "chrome-devtools": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "chrome-devtools-mcp@latest"
+      ]
+    },
+    "puppeteer": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-puppeteer"
+      ]
+    },
+    "lighthouse-mcp": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "lighthouse-mcp"
+      ]
+    },
+    "pagespeed": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "pagespeed-insights-mcp"
+      ],
+      "env": {
+        "GOOGLE_API_KEY": "YOUR_GOOGLE_API_KEY_HERE"
+      }
+    },
+    "vercel": {
+      "command": "npx",
+      "args": [
+        "mcp-remote",
+        "https://mcp.vercel.com"
+      ]
+    }
+  }
+}

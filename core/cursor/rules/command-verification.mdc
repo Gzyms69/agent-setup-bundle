@@ -1,0 +1,17 @@
+---
+description: "Command Outcome Verification: Read-only secondary checks after mutating commands"
+alwaysApply: true
+---
+
+# Command Outcome Verification
+
+Never assume a command succeeded based solely on exit code.
+
+For any command with side effects:
+1. **Define Outcome:** State expected file, directory, or service state before execution.
+2. **Execute:** Run the command.
+3. **Verify:** Run a secondary read-only check to confirm changes took effect:
+   - After directory creation: `ls` or directory existence check.
+   - After package installation: inspect `package.json` or lockfile.
+   - After git commit: `git log -1` to confirm.
+   - After configuration edit: view file contents to confirm changes.
