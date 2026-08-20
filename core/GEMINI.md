@@ -67,6 +67,10 @@ When encountering these situations, I MUST read and follow the corresponding ski
 | Memory recall, historical context | mempalace-recall |
 | SEO audits, metadata, web optimization | seo-optimization-and-audit |
 | Web performance, Core Web Vitals, speed audits | skill-web-performance |
+| Low-level systems, C/C++, Rust, pointers, bitwise, endianness | skill-low-level-programming + c-cpp-systems |
+| WebAssembly compilation, Emscripten runtime, HEAP memory | wasm-emscripten |
+| Retro console emulation, hardware coprocessors, N64, ROM formats | retro-emulation-engineering + skill-emulator-wasm |
+| Reverse engineering legacy / undocumented codebases | spec-miner |
 
 ## 4. MemPalace Memory Protocol
 

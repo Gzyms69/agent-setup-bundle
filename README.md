@@ -1,6 +1,6 @@
 # Multi-Platform Agentic AI Environment & Skill Suite
 
-> Production-ready, cross-platform configuration framework, system rules (Prime Directives), 24 modular skills (`agentskills.io` standard), and MCP configurations for **Antigravity / Gemini CLI**, **Claude Code**, and **Modern Cursor IDE (.mdc)**.
+> Production-ready, cross-platform configuration framework, system rules (Prime Directives), 31 modular skills (`agentskills.io` standard), and MCP configurations for **Antigravity / Gemini CLI**, **Claude Code**, and **Modern Cursor IDE (.mdc)**.
 
 ---
 
@@ -32,7 +32,7 @@ Modern AI coding agents often suffer from common failure modes:
 * **`mempalace-discovery.md`** — Mandatory MemPalace knowledge retrieval before unconstrained disk searches.
 * **`mcp-master-playbook.md`** — Complete 11-server MCP execution matrix, boundaries, and synergies.
 
-### 2. 25 Production-Grade Skills (`~/.agents/skills/`)
+### 2. 31 Production-Grade Skills (`~/.agents/skills/`)
 All skills adhere to the open `agentskills.io` standard with progressive disclosure:
 
 | Skill | Description & Trigger |
@@ -62,6 +62,12 @@ All skills adhere to the open `agentskills.io` standard with progressive disclos
 | **`skill-research`** | Rigorous technical and academic multi-source research. |
 | **`skill-resume-tailor`** | ATS-optimized resume, CV, and cover letter tailoring. |
 | **`skill-web-architecture`** | Full-stack web architectural standards and API contracts. |
+| **`wasm-emscripten`** | WebAssembly compilation via Emscripten, compilation flags, `ccall`/`cwrap` FFI bindings, virtual filesystems (FS/IDBFS), and direct HEAP memory views. |
+| **`c-cpp-systems`** | Low-level C/C++ memory safety, struct packing (`#pragma pack`), manual RAII, bitwise arithmetic, and sanitizers (`ASan`/`UBSan`/`Valgrind`). |
+| **`retro-emulation-engineering`** | Retro console emulator architecture, hardware simulation (CPU/RSP/RDP), frame timing, audio dynamic resampling, and ROM format validation. |
+| **`skill-emulator-wasm`** | WebAssembly retro emulation engineering, Emscripten bridge lifecycle, WebGL rendering, Web Audio sync, and cartridge save persistence. |
+| **`skill-low-level-programming`** | Low-level systems programming, Assembly, byte manipulation, memory layout, pointers, and endianness handling (.z64/.v64/.n64). |
+| **`spec-miner`** | Reverse-engineering specialist that extracts specifications, dataflows, and architecture maps from existing or legacy codebases. |
 
 ---
 
