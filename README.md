@@ -18,7 +18,7 @@ Modern AI coding agents often suffer from common failure modes:
 
 ## Key Features
 
-### 1. 10 Operational Core Rules (`~/.agents/rules/`)
+### 1. 12 Operational Core Rules (`~/.agents/rules/`)
 * **`modular-architecture.md`** — Anti-Monolith constraint (max ~150-200 lines), Clean/Hexagonal architecture, strict layer direction, typed boundary contracts.
 * **`zero-speculation.md`** — Total ban on guessing versions, APIs, or system states without live verification.
 * **`systemic-excellence.md`** — Anti-workaround protocol, single source of truth (SSOT), and DRY enforcement.
@@ -29,25 +29,28 @@ Modern AI coding agents often suffer from common failure modes:
 * **`env-integrity.md`** — Environment sanity checks before modifying project files.
 * **`error-triage.md`** — Diagnostic priority order (Docs -> Web -> Code).
 * **`full-log-reporting.md`** — Ban on truncated or paraphrased error reporting.
+* **`mempalace-discovery.md`** — Mandatory MemPalace knowledge retrieval before unconstrained disk searches.
+* **`mcp-master-playbook.md`** — Complete 11-server MCP execution matrix, boundaries, and synergies.
 
-### 2. 24 Production-Grade Skills (`~/.agents/skills/`)
+### 2. 25 Production-Grade Skills (`~/.agents/skills/`)
 All skills adhere to the open `agentskills.io` standard with progressive disclosure:
 
 | Skill | Description & Trigger |
 |---|---|
+| **`skill-web-performance`** | Universal web performance engineering, Core Web Vitals (LCP/INP/CLS), Lighthouse 100/100, and MCP audit loop. |
 | **`skill-monorepo-architect`** | Polyglot monorepo management (`uv` Python workspaces + `pnpm`/Turborepo), shared-core pattern. |
 | **`skill-plugin-architecture`** | Microkernel architecture, `BasePlugin`, dynamic discovery, and fault isolation. |
 | **`skill-osint-engineering`** | Threat intelligence gathering, Pydantic entity graphs, pivoting, and OPSEC protocols. |
-| **`skill-stealth-scraping`** | Anti-bot evasion (Cloudflare/DataDome), TLS fingerprint spoofing, headless browser automation. |
+| **`skill-stealth-scraping`** | Anti-bot evasion (Cloudflare/DataDome), Firecrawl/Puppeteer MCP Level 0 tier, TLS fingerprint spoofing. |
 | **`spec-driven-development`** | Gated SDLC (Specify -> Plan -> Tasks -> Implement). |
-| **`skill-backend-architect`** | Contract-first API design, database schemas, Pydantic/Zod boundaries. |
+| **`skill-backend-architect`** | Contract-first API design, database schemas, Postgres/SQLite MCP verification. |
 | **`skill-frontend-architect`** | Clean UI/UX architecture, state separation, accessibility, and performance. |
 | **`skill-qa-engineer`** | Test-Driven Development (TDD Red-Green), TypeScript compilation safety gates. |
 | **`doubt-driven-development`** | Fresh-context adversarial reviews to challenge false confidence. |
 | **`skill-codebase-onboarding`** | Cartography and progressive disclosure for unfamiliar repositories. |
-| **`skill-code-review`** | 5-axis systematic code review (correctness, readability, architecture, security, performance). |
+| **`skill-code-review`** | 5-axis systematic code review (correctness, readability, architecture, security, performance, AST-Grep). |
 | **`skill-system-diagnostics`** | Kernel, OS, hardware, and driver diagnostics. |
-| **`skill-devops-cloud`** | Docker containers, CI/CD pipelines, and cloud infrastructure. |
+| **`skill-devops-cloud`** | Docker containers & Docker MCP inspection, CI/CD pipelines, and cloud infrastructure. |
 | **`skill-data-science`** | Data ingestion pipelines, exploratory data analysis, and validation. |
 | **`skill-data-analysis`** | Statistical analysis, hypothesis testing, and anomaly detection. |
 | **`skill-ai-ml`** | LLM model integrations, embeddings, vector databases, and agent workflows. |

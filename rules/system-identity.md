@@ -1,25 +1,38 @@
-# System Identity Baseline Template
+# System Identity -- gzyms workstation
 
-This file establishes a machine-readable hardware and OS baseline for the AI coding agent to prevent hardware hallucination and ensure accurate compiler/tooling flags.
+## Hardware
+- Motherboard: Gigabyte Z790 AORUS ELITE AX (BIOS FL, 2025-06-19)
+- CPU: Intel Core i5-14600KF (14C/20T, Raptor Lake Refresh, up to 5.30 GHz)
+- GPU: AMD Radeon RX 9060 XT (RDNA 4, Navi 44, 16GB VRAM, amdgpu/Mesa)
+- RAM: 32 GB DDR5
+- System disk: Goodram PX600 1TB NVMe PCIe Gen4 x4 (/dev/nvme0n1)
 
-## Hardware Baseline (Example / Template)
-- CPU: Fill with `lscpu` or `cat /proc/cpuinfo` (e.g. x86_64 / ARM64, Cores/Threads)
-- GPU: Fill with `lspci | grep -i vga` or `nvidia-smi`
-- RAM: Fill with `free -h` (e.g. 16GB, 32GB, 64GB)
-- System Disk: Primary NVMe/SSD mount point
+## OS
+- Ubuntu 24.04.4 LTS (Noble Numbat)
+- Kernel: Linux 6.17.x (x86_64) -- verify current version with `uname -r`
+- Display server: Wayland (GNOME)
+- GPU driver: amdgpu (Mesa radeonsi, gfx1200)
 
-## OS & Kernel
-- OS: Fill with `cat /etc/os-release` (e.g. Ubuntu 24.04 LTS / Debian / Fedora / macOS)
-- Kernel: `uname -r`
-- Display Server: Wayland / X11
+## External storage
+- Polion USSD 512GB (USB SSD)
+- Toshiba MQ01ABD100 1TB HDD (Ugreen enclosure)
+- SanDisk 3.2 Gen1 256GB (pendrive)
+- KIOXIA TransMemory 256GB (pendrive)
 
-## Workspace Layout
-- `~/Dev Projects/` -- Primary development workspace
-- `~/.agents/` -- Unified agent rules & skills (`rules/`, `skills/`)
-- `~/.gemini/` -- Antigravity & Gemini CLI configuration
-- `~/.claude/` -- Claude Code configuration & subagents
-- `~/.cursor/` -- Cursor IDE rules and MCP configuration
+## Disk partitions (baseline -- verify with lsblk)
+- /dev/nvme0n1p1: EFI System Partition (~1GB)
+- /dev/nvme0n1p2: Linux filesystem (~930GB, ext4, /)
 
-## Important
-- Hardware, drivers, and package versions change over time.
-- Always run live diagnostic commands (`uname -a`, `free -h`, `lspci`) before making architectural assumptions.
+## Workspace layout
+- ~/Dev Projects/ -- all development projects
+- ~/.agents/ -- AGY CLI workspace config (skills/, rules/)
+- ~/.gemini/ -- shared Gemini/AGY config directory (GEMINI.md lives here)
+- ~/.gemini/antigravity-cli/ -- AGY CLI app data (settings, brain, MCP config)
+- ~/.gemini/config/ -- global config (plugins/, MCP servers)
+
+## IMPORTANT
+- Driver versions, kernel versions, and package versions CHANGE.
+  Always verify current versions with live diagnostic commands.
+- This file provides BASELINE identity to prevent hallucination,
+  NOT a substitute for live diagnostic commands.
+- When in doubt: run the command, don't guess from this file.

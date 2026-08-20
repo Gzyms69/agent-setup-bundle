@@ -26,13 +26,16 @@ A strong DevOps culture starts with reproducible local environments and ends wit
 *   **Port Mapping Conventions:** Standardize local ports (e.g., 3000 for frontend, 8000 for API, 5432 for PostgreSQL).
 *   **Hot-Reload:** Ensure `npm run dev` (Vite) and `uvicorn --reload` (FastAPI) are used within containers for instant feedback by using volume mounts for source code.
 
-## 2. Docker Best Practices
+## 2. Docker Best Practices & MCP Tooling
 *   **Multi-Stage Builds:** Always use multi-stage builds to create minimal final images (e.g., build in a Node image, serve with Alpine/Nginx).
 *   **.dockerignore:** Exclude `node_modules`, `.git`, `.env`, and test artifacts to minimize build context.
 *   **Health Checks:** Embed `HEALTHCHECK` instructions in Dockerfiles to allow orchestrators to restart unhealthy containers.
 *   **Security Scanning:** Integrate `trivy` or `grype` in CI to scan images for CVEs before pushing to registries.
 *   **Layer Caching:** Order Dockerfile commands from least frequently changed (OS dependencies) to most frequently changed (source code).
 *   **Non-Root Users:** Create and switch to a dedicated non-root user (e.g., `USER appuser`) before the `CMD` instruction.
+*   **Docker MCP Operations (`docker` server):**
+    *   Use `docker` MCP tools (`list_containers`, `get_logs`, `inspect_container`) for deterministic container status checks and live log inspections.
+    *   Avoid spawning hanging background bash commands like `docker compose logs -f` or `docker attach` that block the agent execution loop.
 
 ## 3. Google Cloud Architecture (Cloud Run)
 *   **Deployment Target:** Deploy Frontend and Backend as independent, stateless Cloud Run services.

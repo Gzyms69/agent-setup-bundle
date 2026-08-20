@@ -66,6 +66,7 @@ When encountering these situations, I MUST read and follow the corresponding ski
 | Unfamiliar repo/project or onboarding | skill-codebase-onboarding |
 | Memory recall, historical context | mempalace-recall |
 | SEO audits, metadata, web optimization | seo-optimization-and-audit |
+| Web performance, Core Web Vitals, speed audits | skill-web-performance |
 
 ## 4. MemPalace Memory Protocol
 

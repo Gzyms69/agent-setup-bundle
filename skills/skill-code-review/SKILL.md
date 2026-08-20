@@ -43,6 +43,7 @@ When reviewing code, systematically evaluate the changes against these five axes
 - **Single Source of Truth (SSOT)**: Does this code duplicate logic, schemas, endpoints, or utilities that already exist elsewhere in the repo?
 - **DRY Adherence (Anti-Wheel-Reinvention)**: Are existing shared services, endpoints, and helpers reused rather than re-implemented?
 - **In-Place Refactoring**: If an existing component/endpoint was inadequate, was it refactored in-place rather than bypassed with a parallel duplicate?
+- **AST-Grep Structural Analysis (`ast-grep` MCP)**: Use `ast-grep` to search for anti-patterns across syntax trees (e.g. unhandled promises, missing React hook dependencies, unclosed connections, hardcoded credentials).
 - **Component Boundaries**: Are responsibilities clearly separated?
 - **Coupling & Cohesion**: Are related things grouped together? Are unrelated things decoupled?
 - **Design Pattern Adherence**: Does the code use established patterns correctly?

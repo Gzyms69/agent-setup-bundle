@@ -17,11 +17,17 @@ This skill provides architectural patterns and best practices for building scala
 | **Python** | Rapid dev, AI/ML, Data Science | FastAPI | **SQLAlchemy** (with Pydantic) |
 | **Go** | Raw performance, microservices | Standard lib, Gin, Echo | Standard lib / sqlx |
 
-### Database Strategy (GCP)
-*   **PostgreSQL (via Cloud SQL):** Default choice for structured, transactional, ACID-compliant data.
-*   **Firestore:** Best for rapid prototyping, real-time sync workloads, and flexible document hierarchies.
+### Database Strategy (GCP & Local)
+*   **PostgreSQL (via Cloud SQL or Local Docker):** Default choice for structured, transactional, ACID-compliant data.
+*   **Firestore / SQLite:** Best for rapid prototyping, real-time sync workloads, and local embedded databases (e.g. Chroma / MemPalace).
 *   **BigQuery:** Exclusively for analytical workloads, heavy aggregation, and data warehousing (not transactional).
 *   **Bigtable:** Used for massive-scale, high-throughput, flat NoSQL storage.
+
+### Database Verification via MCP (`postgres`, `sqlite`)
+Before writing or executing manual database migrations, use the `postgres` and `sqlite` MCP servers:
+*   **Schema Introspection:** Directly inspect table structures, primary keys, foreign key constraints, and indices via MCP query tools rather than raw shell commands.
+*   **Migration Dry-Runs:** Validate that migration scripts execute cleanly and leave the database in an ACID-consistent state.
+*   **Data Integrity Auditing:** Run non-destructive verification queries before and after data transformation tasks.
 
 ---
 

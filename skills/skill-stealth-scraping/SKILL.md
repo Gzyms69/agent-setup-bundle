@@ -15,6 +15,13 @@ Always choose the least detectable and most efficient extraction vector:
 
 ```
 ┌────────────────────────────────────────────────────────────────────────┐
+│ Level 0: Agentic MCP Web Scrapers (Firecrawl MCP & Puppeteer MCP)      │
+│ - Firecrawl MCP for LLM-ready clean Markdown and automated bypass      │
+│ - Puppeteer MCP for direct DOM exploration and interactive sessions     │
+└───────────────────────────────────┬────────────────────────────────────┘
+                                    │ If complex auth or native API
+                                    ▼
+┌────────────────────────────────────────────────────────────────────────┐
 │ Level 1: Reverse Engineering Private/Internal JSON APIs (Fastest, Best)│
 │ - Inspect mobile app / Web SPA network requests                        │
 │ - Replay HTTP requests with exact headers, cookies & TLS tokens        │

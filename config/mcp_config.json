@@ -24,29 +24,50 @@
         "chrome-devtools-mcp@latest"
       ]
     },
-    "pagespeed": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "pagespeed-insights-mcp"
-      ],
-      "env": {
-        "GOOGLE_API_KEY": "YOUR_GOOGLE_API_KEY_HERE",
-        "NODE_ENV": "production"
-      }
-    },
     "lighthouse-mcp": {
       "command": "npx",
       "args": [
         "-y",
-        "lighthouse-mcp"
+        "@danielsogl/lighthouse-mcp@latest"
       ]
     },
-    "vercel": {
+    "postgres": {
       "command": "npx",
       "args": [
-        "mcp-remote",
-        "https://mcp.vercel.com"
+        "-y",
+        "@modelcontextprotocol/server-postgres",
+        "postgresql://user:password@localhost:5432/dbname"
+      ]
+    },
+    "sqlite": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-sqlite"
+      ]
+    },
+    "docker": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-docker"
+      ]
+    },
+    "firecrawl": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "firecrawl-mcp"
+      ],
+      "env": {
+        "FIRECRAWL_API_KEY": "YOUR_FIRECRAWL_API_KEY_OPTIONAL"
+      }
+    },
+    "ast-grep": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@ast-grep/mcp"
       ]
     }
   }
