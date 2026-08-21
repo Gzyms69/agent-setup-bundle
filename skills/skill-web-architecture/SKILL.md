@@ -16,7 +16,8 @@ Web architecture decisions shape the foundation of a robust, scalable, and acces
 - Accessibility compliance checks
 
 # When NOT to Use
-- Pure visual/CSS tweaks (use `skill-frontend-architect` if available)
+- Pure visual art direction, typography pairings, and aesthetics (use `skill-creative-design`)
+- Motion animation engineering, Subgrid/Bento implementation, or UI component suites (use `skill-design-engineering` / `skill-frontend-architect`)
 - Pure backend business logic (use `skill-backend-architect` if available)
 
 # Component Architecture
@@ -31,10 +32,11 @@ Adhere to these principles when designing UI components:
 
 # Accessibility Standards
 
-WCAG 2.1 AA compliance is NON-NEGOTIABLE. Ensure the following:
+WCAG 2.1 / 2.2 AA compliance is NON-NEGOTIABLE. Ensure the following:
 - **Full Keyboard Navigation**: Every interactive element must be reachable and usable via keyboard alone.
+- **Target Size**: Minimum interactive target area (24x24px minimum, 44x44px recommended).
 - **Screen-Reader ARIA**: Use appropriate ARIA roles and labels for non-native interactive elements.
-- **Color Contrast**: Maintain a contrast ratio of at least 4.5:1 for normal text and 3:1 for large text.
+- **Color Contrast**: Maintain a contrast ratio of at least 4.5:1 for normal text and 3:1 for large text (or APCA equivalent).
 - **Focus Management**: Provide clearly visible focus indicators. Manage focus appropriately during state changes (e.g., modals).
 - **Semantic HTML**: Avoid "div soup". Use semantic tags like `<nav>`, `<main>`, `<article>`, `<button>`.
 - **Skip Navigation Links**: Provide mechanisms to bypass repetitive content blocks.

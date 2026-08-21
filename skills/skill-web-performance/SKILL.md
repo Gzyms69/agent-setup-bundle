@@ -141,8 +141,10 @@ Target score: **0.000**. Layout shifts damage user trust and search rankings.
 3. **Eliminate Barrel File Bloat:**
    - Avoid `import { Button } from '@/components'` if it pulls 50 unused components into the bundle.
    - Use direct subpath imports or ensure build bundler supports Turbopack/Tree-shaking with `"sideEffects": false`.
-4. **LazyMotion Architecture:**
-   - In Framer Motion projects, replace heavyweight `motion.*` imports with `<LazyMotion features={domAnimation}>` and lightweight `m.*` primitives, saving 50KB+ gzip.
+4. **Motion (motion.dev) & LazyMotion Architecture:**
+   - In React animation projects, replace legacy heavyweight `framer-motion` imports with `motion/react`.
+   - Wrap interactive trees in `<LazyMotion features={domAnimation} strict>` and use lightweight `<m.div>` primitives, saving ~50KB+ gzip bundle size.
+   - For vanilla JS animations or ultra-lightweight micro-interactions, use `motion/mini` (~2.3KB native WAAPI engine).
 
 ---
 
@@ -158,21 +160,24 @@ Target score: **0.000**. Layout shifts damage user trust and search rankings.
 ```
 
 2. **Off-Main-Thread WAAPI Animations:**
-   - Continuous ambient animations (marquees, background pulse, glow rings) must run on the browser **Compositor Thread** using CSS `@keyframes` or native **Web Animations API (WAAPI)**.
-   - Never use JavaScript `requestAnimationFrame` loops for static background decorations.
+   - Continuous ambient animations (marquees, background pulse, glow rings) and Motion transitions must run on the browser **Compositor Thread** using CSS `@keyframes` or native **Web Animations API (WAAPI)** via Motion.
+   - Never use JavaScript `requestAnimationFrame` loops for static background decorations or layout properties (`top`, `left`, `width`, `height`). Animate exclusively `transform` (`x`, `y`, `scale`, `rotate`) and `opacity`.
 3. **GPU Layer Promotion & DPR Capping:**
    - Promote animating elements with `transform: translateZ(0)` or `will-change: transform`.
    - On canvas/WebGL scenes with heavy backdrop filters, cap `renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5))` to protect mobile GPUs.
 
 ---
 
-### Pillar 7: Caching, Assets & Network Hygiene
-1. **Immutable Asset Caching:**
+### Pillar 7: Caching, Assets, Fonts & Network Hygiene
+1. **Font Loading & Subsetting (Fontjoy Optimization):**
+   - Use `next/font/google` or self-hosted WOFF2 with `font-display: swap` and explicit `subsets: ['latin']`.
+   - Preload primary headline and body variable fonts; defer decorative display or code fonts.
+2. **Immutable Asset Caching:**
    - Static assets (`/_next/static/*`, `/assets/*`) with content hashes must have headers:
      `Cache-Control: public, max-age=31536000, immutable`.
-2. **Video Streaming Optimization:**
+3. **Video Streaming Optimization:**
    - Video previews must set `preload="metadata"` or `preload="none"`. Never use `preload="auto"` across lists of cards or templates.
-3. **Modern Image Formats:**
+4. **Modern Image Formats:**
    - Generate AVIF and WebP variants with quality 75-80 (indistinguishable from original, 50-70% file size reduction).
 
 ---

@@ -55,13 +55,13 @@ echo ">>> Rozpoczynam instalacje srodowiska Agenta AI..."
 echo "======================================================================"
 
 # 0. Instalacja bazy wspolnej (Skills & Rules w ~/.agents/)
-echo "[+] Kopiowanie wspoldzielonych regul (12) i skilli (31) do ~/.agents/..."
+echo "[+] Kopiowanie wspoldzielonych regul (12) i skilli (33) do ~/.agents/..."
 mkdir -p "${TARGET_AGENTS_DIR}/rules"
 mkdir -p "${TARGET_AGENTS_DIR}/skills"
 
 cp -r "${SCRIPT_DIR}/rules/"* "${TARGET_AGENTS_DIR}/rules/"
 cp -r "${SCRIPT_DIR}/skills/"* "${TARGET_AGENTS_DIR}/skills/"
-echo "    -> Zainstalowano 12 regul i 31 skilli w ~/.agents/"
+echo "    -> Zainstalowano 12 regul i 33 skilli w ~/.agents/"
 
 # 1. Tworzenie konfiguracji dla Gemini CLI / Antigravity
 if [ "$INSTALL_GEMINI" = true ]; then
@@ -106,7 +106,7 @@ fi
 echo "======================================================================"
 echo ">>> SUKCES: Srodowisko agenta zostalo w pelni zainstalowane!"
 echo ">>> Zainstalowane komponenty:"
-echo "    - Shared Suite: ~/.agents/ (12 reguł, 31 skilli)"
+echo "    - Shared Suite: ~/.agents/ (12 reguł, 33 skille)"
 if [ "$INSTALL_GEMINI" = true ]; then
     echo "    - Antigravity / Gemini CLI: ~/.gemini/ (GEMINI.md, settings.json, policies)"
 fi

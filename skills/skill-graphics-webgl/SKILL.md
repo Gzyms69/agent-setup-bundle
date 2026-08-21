@@ -18,11 +18,13 @@ This skill provides expert patterns for high-performance visual rendering on the
 *   **Compositor Efficiency:** Animations must avoid layout-triggering properties (`top`, `margin`, `width`). Use exclusively `transform` and `opacity`.
 
 ## 3. 2D Graphics & Data Viz
-*   **Charts:** Use **SVG + D3.js** for resolution-independent, accessible data transformation.
+*   **Modern Charts:** Use **BKLit UI** (`@bklit/*` on shadcn/ui) for composable, CSS-variable-themed dashboard charts and telemetry widgets.
+*   **Custom Data Viz:** Use **SVG + D3.js** for custom resolution-independent mathematical transformations.
 *   **Dynamic Scenes:** Use **HTML Canvas API** for high-object-count scenes.
 *   **Games:** Use **PixiJS** for WebGL-accelerated 2D sprites and particle effects.
 
-## 4. Animation Hygiene
-*   **Source of Truth:** Never mix CSS transitions (`transition: all`) with JS physics engines (Framer Motion).
-*   **SVG Containers:** Never animate SVG primitives directly. Wrap moving parts in `<motion.g>` to prevent transform conflicts.
+## 4. Animation & 3D Sync Hygiene
+*   **Source of Truth:** Never mix CSS transitions (`transition: all`) with JS physics engines (Motion).
+*   **MotionValues Sync:** Bridge UI pointer events to WebGL/Three.js render loops by subscribing to `MotionValues` (`useMotionValue`, `useSpring`) rather than triggering React component re-renders.
+*   **SVG Containers:** Never animate SVG primitives directly. Wrap moving parts in `<motion.g>` or `<motion.path pathLength={...} />` to prevent transform conflicts.
 *   **Origin Locking:** Explicitly set `transformOrigin` in pixels for SVG scale/rotate animations to ensure cross-browser consistency.

@@ -1,6 +1,6 @@
 # Multi-Platform Agentic AI Environment & Skill Suite
 
-> Production-ready, cross-platform configuration framework, system rules (Prime Directives), 31 modular skills (`agentskills.io` standard), and MCP configurations for **Antigravity / Gemini CLI**, **Claude Code**, and **Modern Cursor IDE (.mdc)**.
+> Production-ready, cross-platform configuration framework, system rules (Prime Directives), 33 modular skills (`agentskills.io` standard), and MCP configurations for **Antigravity / Gemini CLI**, **Claude Code**, and **Modern Cursor IDE (.mdc)**.
 
 ---
 
@@ -32,11 +32,14 @@ Modern AI coding agents often suffer from common failure modes:
 * **`mempalace-discovery.md`** — Mandatory MemPalace knowledge retrieval before unconstrained disk searches.
 * **`mcp-master-playbook.md`** — Complete 11-server MCP execution matrix, boundaries, and synergies.
 
-### 2. 31 Production-Grade Skills (`~/.agents/skills/`)
+### 2. 33 Production-Grade Skills (`~/.agents/skills/`)
 All skills adhere to the open `agentskills.io` standard with progressive disclosure:
 
 | Skill | Description & Trigger |
 |---|---|
+| **`skill-creative-design`** | Master Art Direction, Visual Philosophy, Aesthetics, Grid Systems, Fontjoy Typography Math, OKLCH Color Physics, and Spatial Composition. |
+| **`skill-design-engineering`** | Master Creative Frontend Engineering, Design Implementation, Motion Animation Engine (motion.dev), CSS Subgrid, Container Queries, 21st.dev Component Ecosystem, and 60/120fps Interaction Craftsmanship. |
+| **`skill-frontend-architect`** | Master Frontend Architecture, Next.js 15+ App Router, React Server Components (RSC), Client Island Boundaries, State Orchestration (Zustand, React Query), and WCAG 2.1/2.2 AA Accessibility. |
 | **`skill-web-performance`** | Universal web performance engineering, Core Web Vitals (LCP/INP/CLS), Lighthouse 100/100, and MCP audit loop. |
 | **`skill-monorepo-architect`** | Polyglot monorepo management (`uv` Python workspaces + `pnpm`/Turborepo), shared-core pattern. |
 | **`skill-plugin-architecture`** | Microkernel architecture, `BasePlugin`, dynamic discovery, and fault isolation. |
@@ -44,7 +47,6 @@ All skills adhere to the open `agentskills.io` standard with progressive disclos
 | **`skill-stealth-scraping`** | Anti-bot evasion (Cloudflare/DataDome), Firecrawl/Puppeteer MCP Level 0 tier, TLS fingerprint spoofing. |
 | **`spec-driven-development`** | Gated SDLC (Specify -> Plan -> Tasks -> Implement). |
 | **`skill-backend-architect`** | Contract-first API design, database schemas, Postgres/SQLite MCP verification. |
-| **`skill-frontend-architect`** | Clean UI/UX architecture, state separation, accessibility, and performance. |
 | **`skill-qa-engineer`** | Test-Driven Development (TDD Red-Green), TypeScript compilation safety gates. |
 | **`doubt-driven-development`** | Fresh-context adversarial reviews to challenge false confidence. |
 | **`skill-codebase-onboarding`** | Cartography and progressive disclosure for unfamiliar repositories. |

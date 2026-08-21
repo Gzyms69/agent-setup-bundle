@@ -42,6 +42,9 @@ When encountering these situations, I MUST read and follow the corresponding ski
 
 | Trigger | Skill |
 |---------|-------|
+| Visual art direction, aesthetics, typography, font pairing, OKLCH colors, spatial layout design | skill-creative-design |
+| Creative frontend engineering, Motion animation (motion.dev), Subgrid, Container Queries, 21st.dev components | skill-design-engineering |
+| Frontend/UI application architecture, Next.js 15+ App Router, RSC boundaries, state, WCAG AA | skill-frontend-architect |
 | Hardware/OS/driver/kernel debugging | skill-system-diagnostics |
 | New project > 15 min or > 3 files | spec-driven-development |
 | Monorepo setup, multi-package architecture | skill-monorepo-architect |
@@ -49,7 +52,6 @@ When encountering these situations, I MUST read and follow the corresponding ski
 | OSINT, entity mapping, intelligence gathering | skill-osint-engineering |
 | Anti-bot scraping, stealth web automation | skill-stealth-scraping |
 | Modifying .ts/.tsx files | skill-qa-engineer (TSC gate) |
-| Frontend/UI implementation | skill-frontend-architect |
 | Backend architecture, API contracts, DB schema | skill-backend-architect |
 | Writing copy, marketing text | marketing-copywriting + avoid-ai-writing |
 | Analyzing statistical/scientific data | skill-data-analysis |
