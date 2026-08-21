@@ -1,6 +1,6 @@
 ---
 name: skill-graphics-webgl
-description: Specialized guidance for 2D/3D graphics, Three.js, and WebGL performance optimization. Use when Gemini CLI needs to build immersive scenes, optimize rendering pipelines, or handle complex SVG/Canvas animations.
+description: 2D/3D graphics, Three.js, WebGL shader optimization, and Canvas rendering. MUST ACTIVATE when building 3D interactive scenes, writing GLSL shaders, animating Canvas elements, or optimizing graphics rendering pipelines.
 ---
 
 # Graphics & WebGL Optimization Skill

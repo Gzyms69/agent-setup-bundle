@@ -1,9 +1,6 @@
 ---
 name: skill-system-diagnostics
-description: >
-  Hardware/OS/driver/kernel diagnostics, log analysis, and root cause debugging.
-  Use when the user reports system-level issues, hardware failures, driver problems,
-  kernel panics, performance degradation, or when any debugging requires log analysis.
+description: Hardware/OS/driver/kernel diagnostics, log analysis, and root-cause system debugging. MUST ACTIVATE when diagnosing system-level failures, hardware issues, driver incompatibilities, kernel logs (dmesg/journalctl), or memory/CPU bottlenecks.
 ---
 
 # System Diagnostics & Root Cause Analysis

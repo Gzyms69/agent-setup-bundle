@@ -1,6 +1,6 @@
 ---
 name: skill-research
-description: Skill for rigorous technical and academic research. Enforces multi-source verification and systematic paper analysis.
+description: Rigorous academic and technical research with multi-source verification and deep paper analysis. MUST ACTIVATE when researching technical literature, arXiv papers, RFCs, official specifications, or performing systematic multi-source fact checking.
 ---
 
 # Overview

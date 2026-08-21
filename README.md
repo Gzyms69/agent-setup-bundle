@@ -1,6 +1,6 @@
 # Multi-Platform Agentic AI Environment & Skill Suite
 
-> Production-ready, cross-platform configuration framework, system rules (Prime Directives), 33 modular skills (`agentskills.io` standard), and MCP configurations for **Antigravity / Gemini CLI**, **Claude Code**, and **Modern Cursor IDE (.mdc)**.
+> Production-ready, cross-platform configuration framework, system rules (Prime Directives), 33 modular skills (`agentskills.io` standard), `AGENTS.md` open template, and MCP configurations for **Antigravity / Gemini CLI**, **Claude Code**, and **Modern Cursor IDE (.mdc)**.
 
 ---
 
@@ -8,17 +8,18 @@
 
 Modern AI coding agents often suffer from common failure modes:
 1. **Simulation & Mocking Traps:** Writing fake stubs or untested boilerplate without running tests.
-2. **Context Window Flooding:** Inefficiently dumping thousands of prompt lines instead of on-demand skill discovery.
+2. **Context Window Flooding & Skill Misses:** Blindly grepping code without running repository cartography or skipping planning gates.
 3. **Monolithic Spaghetti Code:** Creating giant files without clean architecture or boundary isolation.
 4. **Hardware & Version Hallucinations:** Speculating about hardware capabilities or package versions without live verification.
 
-**`agent-setup-bundle`** solves this by establishing a unified, multi-platform engineering operating system across your favorite AI coding assistants.
+**`agent-setup-bundle`** solves this by establishing a unified, multi-platform engineering operating system and a **4-Phase Pre-Flight Skill Gate** across your AI coding assistants.
 
 ---
 
 ## Key Features
 
-### 1. 12 Operational Core Rules (`~/.agents/rules/`)
+### 1. 13 Operational Core Rules (`~/.agents/rules/`)
+* **`skill-orchestration.md`** — **MANDATORY PRE-FLIGHT SKILL GATE:** 4-Phase sequential resolution (Phase 0: Cartography -> Phase 1: Planning -> Phase 2: Domain -> Phase 3: QA).
 * **`modular-architecture.md`** — Anti-Monolith constraint (max ~150-200 lines), Clean/Hexagonal architecture, strict layer direction, typed boundary contracts.
 * **`zero-speculation.md`** — Total ban on guessing versions, APIs, or system states without live verification.
 * **`systemic-excellence.md`** — Anti-workaround protocol, single source of truth (SSOT), and DRY enforcement.
@@ -33,43 +34,21 @@ Modern AI coding agents often suffer from common failure modes:
 * **`mcp-master-playbook.md`** — Complete 11-server MCP execution matrix, boundaries, and synergies.
 
 ### 2. 33 Production-Grade Skills (`~/.agents/skills/`)
-All skills adhere to the open `agentskills.io` standard with progressive disclosure:
+All skills adhere to the open `agentskills.io` standard with progressive disclosure and crisp trigger invariants:
 
-| Skill | Description & Trigger |
+| Phase / Category | Skills |
 |---|---|
-| **`skill-creative-design`** | Master Art Direction, Visual Philosophy, Aesthetics, Grid Systems, Fontjoy Typography Math, OKLCH Color Physics, and Spatial Composition. |
-| **`skill-design-engineering`** | Master Creative Frontend Engineering, Design Implementation, Motion Animation Engine (motion.dev), CSS Subgrid, Container Queries, 21st.dev Component Ecosystem, and 60/120fps Interaction Craftsmanship. |
-| **`skill-frontend-architect`** | Master Frontend Architecture, Next.js 15+ App Router, React Server Components (RSC), Client Island Boundaries, State Orchestration (Zustand, React Query), and WCAG 2.1/2.2 AA Accessibility. |
-| **`skill-web-performance`** | Universal web performance engineering, Core Web Vitals (LCP/INP/CLS), Lighthouse 100/100, and MCP audit loop. |
-| **`skill-monorepo-architect`** | Polyglot monorepo management (`uv` Python workspaces + `pnpm`/Turborepo), shared-core pattern. |
-| **`skill-plugin-architecture`** | Microkernel architecture, `BasePlugin`, dynamic discovery, and fault isolation. |
-| **`skill-osint-engineering`** | Threat intelligence gathering, Pydantic entity graphs, pivoting, and OPSEC protocols. |
-| **`skill-stealth-scraping`** | Anti-bot evasion (Cloudflare/DataDome), Firecrawl/Puppeteer MCP Level 0 tier, TLS fingerprint spoofing. |
-| **`spec-driven-development`** | Gated SDLC (Specify -> Plan -> Tasks -> Implement). |
-| **`skill-backend-architect`** | Contract-first API design, database schemas, Postgres/SQLite MCP verification. |
-| **`skill-qa-engineer`** | Test-Driven Development (TDD Red-Green), TypeScript compilation safety gates. |
-| **`doubt-driven-development`** | Fresh-context adversarial reviews to challenge false confidence. |
-| **`skill-codebase-onboarding`** | Cartography and progressive disclosure for unfamiliar repositories. |
-| **`skill-code-review`** | 5-axis systematic code review (correctness, readability, architecture, security, performance, AST-Grep). |
-| **`skill-system-diagnostics`** | Kernel, OS, hardware, and driver diagnostics. |
-| **`skill-devops-cloud`** | Docker containers & Docker MCP inspection, CI/CD pipelines, and cloud infrastructure. |
-| **`skill-data-science`** | Data ingestion pipelines, exploratory data analysis, and validation. |
-| **`skill-data-analysis`** | Statistical analysis, hypothesis testing, and anomaly detection. |
-| **`skill-ai-ml`** | LLM model integrations, embeddings, vector databases, and agent workflows. |
-| **`skill-graph-analytics`** | Graph databases (Neo4j), topology analysis, and Graph Data Science. |
-| **`skill-graphics-webgl`** | 2D/3D WebGL scenes, Three.js, and Canvas animations. |
-| **`marketing-copywriting`** | Conversion-focused technical copywriting. |
-| **`avoid-ai-writing`** | Detection and removal of AI writing clichés and robotic patterns. |
-| **`seo-optimization-and-audit`** | Web metadata, Core Web Vitals, and search ranking optimization. |
-| **`skill-research`** | Rigorous technical and academic multi-source research. |
-| **`skill-resume-tailor`** | ATS-optimized resume, CV, and cover letter tailoring. |
-| **`skill-web-architecture`** | Full-stack web architectural standards and API contracts. |
-| **`wasm-emscripten`** | WebAssembly compilation via Emscripten, compilation flags, `ccall`/`cwrap` FFI bindings, virtual filesystems (FS/IDBFS), and direct HEAP memory views. |
-| **`c-cpp-systems`** | Low-level C/C++ memory safety, struct packing (`#pragma pack`), manual RAII, bitwise arithmetic, and sanitizers (`ASan`/`UBSan`/`Valgrind`). |
-| **`retro-emulation-engineering`** | Retro console emulator architecture, hardware simulation (CPU/RSP/RDP), frame timing, audio dynamic resampling, and ROM format validation. |
-| **`skill-emulator-wasm`** | WebAssembly retro emulation engineering, Emscripten bridge lifecycle, WebGL rendering, Web Audio sync, and cartridge save persistence. |
-| **`skill-low-level-programming`** | Low-level systems programming, Assembly, byte manipulation, memory layout, pointers, and endianness handling (.z64/.v64/.n64). |
-| **`spec-miner`** | Reverse-engineering specialist that extracts specifications, dataflows, and architecture maps from existing or legacy codebases. |
+| **Phase 0: Cartography & Discovery** | `skill-codebase-onboarding`, `spec-miner` |
+| **Phase 1: Planning & Architecture** | `spec-driven-development`, `skill-monorepo-architect`, `skill-plugin-architecture`, `skill-web-architecture` |
+| **Phase 2: Frontend & Design** | `skill-frontend-architect`, `skill-design-engineering`, `skill-creative-design`, `skill-graphics-webgl` |
+| **Phase 2: Backend & Systems** | `skill-backend-architect`, `c-cpp-systems`, `skill-low-level-programming`, `wasm-emscripten`, `retro-emulation-engineering`, `skill-emulator-wasm` |
+| **Phase 2: AI, Data & Graphs** | `skill-ai-ml`, `skill-data-science`, `skill-data-analysis`, `skill-graph-analytics` |
+| **Phase 2: Specialized Workflows** | `skill-stealth-scraping`, `skill-osint-engineering`, `skill-resume-tailor`, `marketing-copywriting`, `avoid-ai-writing`, `seo-optimization-and-audit`, `skill-web-performance`, `skill-system-diagnostics`, `skill-devops-cloud`, `skill-research` |
+| **Phase 3: QA & Verification** | `skill-qa-engineer` (TDD, TSC check), `skill-code-review` (5-axis audit), `doubt-driven-development` |
+
+### 3. Open Standards & Tooling
+* **`templates/AGENTS.md`** — Standard Agentic AI Foundation (AAIF) repository context specification template.
+* **`scripts/validate_suite.py`** — Automated YAML frontmatter, character limit, and cross-platform integrity test suite.
 
 ---
 
@@ -86,9 +65,15 @@ cd agent-setup-bundle
 ### Installation Options:
 ```bash
 ./install.sh --all       # Configure all platforms (default)
+./install.sh --symlink   # Install with live symlinks for live development (dev mode)
 ./install.sh --gemini    # Configure Antigravity / Gemini CLI only
 ./install.sh --claude    # Configure Claude Code only
 ./install.sh --cursor    # Configure Cursor IDE only
+```
+
+### Run Quality Gate Validation:
+```bash
+python3 scripts/validate_suite.py
 ```
 
 ---

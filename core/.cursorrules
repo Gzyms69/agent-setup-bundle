@@ -1,7 +1,11 @@
 # Cursor AI Engineering Rules
 
 ## Core Operational Directives
-- **Workflow:** Follow PRAR (Perceive, Reason, Act, Refine). Always plan multi-file modifications before making edits.
+- **Workflow & Pre-Flight Skill Gate:** Follow PRAR (Perceive, Reason, Act, Refine). In the Perceive & Reason phase, apply the 4-Phase Pre-Flight Skill Gate:
+  1. Phase 0 (Cartography): Map unfamiliar workspace structure with `skill-codebase-onboarding` before reading code files.
+  2. Phase 1 (Planning): Create formal plans with `spec-driven-development` for tasks >15 min or >3 files.
+  3. Phase 2 (Domain): Apply targeted domain skills.
+  4. Phase 3 (QA): Enforce TDD and TypeScript check (`npx tsc --noEmit`).
 - **Zero Speculation:** Do not make assumptions about packages, API contracts, or error causes. Check the actual source files and documentation.
 - **Root Cause Fixes Only:** Do not apply band-aid fixes, symptomatic wrappers, or defensive catches that hide bugs. Fix issues at the lowest possible layer.
 - **Problem Isolation:** Do not modify unrelated code or reformat files outside the scope of the user's task.

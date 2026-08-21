@@ -1,6 +1,6 @@
 ---
 name: spec-driven-development
-description: Creates technical specifications before coding. Use when starting a new project, feature, or significant change, and no specification exists yet. Use when requirements are unclear, ambiguous, or when a change touches multiple modules.
+description: MANDATORY PLANNING GATE for complex features, multi-file refactors, and architectural changes. Creates technical specifications, implementation plans, and verification matrices before coding. MUST ACTIVATE when invoked with /plan, when a task is estimated >15 minutes, touches >3 files, or introduces new APIs/schemas.
 ---
 
 # Spec-Driven Development

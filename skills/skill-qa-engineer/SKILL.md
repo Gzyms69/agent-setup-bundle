@@ -1,6 +1,6 @@
 ---
 name: skill-qa-engineer
-description: Quality assurance, testing strategy, Test-Driven Development (TDD), browser testing, and dependency management. Use when writing tests, debugging, enforcing code style, running audits, or managing package configurations.
+description: MANDATORY PHASE 3 QA GATE for test execution, Test-Driven Development (TDD Red-Green), TypeScript compilation checks (npx tsc --noEmit), and dependency management. MUST ACTIVATE when writing tests, modifying code, implementing new features, or fixing bugs.
 ---
 
 # Quality Assurance & Testing Skill

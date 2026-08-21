@@ -1,6 +1,6 @@
 ---
 name: skill-web-architecture
-description: Architectural guidelines and standards for web development, covering frontend component design and backend API contracts.
+description: Full-stack web architectural standards, module boundaries, and API contract design. MUST ACTIVATE when designing full-stack web application structure, choosing stack boundaries, or structuring API interactions between client and server.
 ---
 
 # Overview

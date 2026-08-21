@@ -1,6 +1,6 @@
 ---
 name: skill-devops-cloud
-description: Comprehensive DevOps and cloud infrastructure guidance (Google Cloud). Use when Gemini CLI needs to manage local dev environments, Docker containers, CI/CD pipelines, or production-ready cloud infrastructure.
+description: DevOps, Docker container orchestration, CI/CD pipelines, and cloud infrastructure management. MUST ACTIVATE when working with Docker containers, Docker Compose, GitHub Actions/GitLab CI, Kubernetes, Google Cloud/AWS/OCI, or local deployment environments.
 ---
 
 # DevOps & Cloud Infrastructure Skill

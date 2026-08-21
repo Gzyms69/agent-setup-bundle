@@ -1,6 +1,6 @@
 ---
 name: skill-codebase-onboarding
-description: Systematic repository exploration, architecture cartography, and fast onboarding for unfamiliar codebases, tools, and libraries. Use when opening a new or unfamiliar repo/project for the first time, mapping directory structures, identifying runtime entrypoints, discovering operational test/build commands, or generating REPO_MAP documentation and MemPalace drawers without context overflow.
+description: MANDATORY FIRST STEP for ANY repository exploration, inspection, debugging, or feature work. Systematic repository exploration, architecture cartography, entrypoint discovery, and operational command extraction. MUST ACTIVATE before exploring, searching, reading, debugging, or adding features to ANY repository or codebase unless a complete REPO_MAP is already established in context. DO NOT skip to grep or file reading without this skill.
 ---
 
 # Codebase Onboarding & Repository Cartography Skill

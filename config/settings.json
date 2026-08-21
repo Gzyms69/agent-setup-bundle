@@ -60,7 +60,7 @@
       "command": "npx",
       "args": [
         "-y",
-        "lighthouse-mcp"
+        "@danielsogl/lighthouse-mcp@latest"
       ]
     },
     "pagespeed": {

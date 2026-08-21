@@ -1,6 +1,6 @@
 ---
 name: skill-graph-analytics
-description: Expert guidance for Graph Databases (Neo4j), topology analysis, and Graph Data Science (GDS). Use when Gemini CLI needs to manage Neo4j instances, perform pathfinding/similarity analysis, or handle large-scale knowledge graph ingestion.
+description: Graph databases (Neo4j), Cypher queries, topology analysis, and Graph Data Science (GDS). MUST ACTIVATE when managing Neo4j instances, modeling knowledge graphs, executing graph algorithms (PageRank, centrality, similarity), or performing network analysis.
 ---
 
 # Graph Analytics & Topology Skill

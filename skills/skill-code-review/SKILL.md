@@ -1,6 +1,6 @@
 ---
 name: skill-code-review
-description: Systematic 5-axis code review framework for ensuring code quality, security, and performance.
+description: MANDATORY PHASE 3 AUDIT GATE. Systematic 5-axis code review framework (Correctness, Readability, Architecture, Security, Performance) and AST-Grep pattern auditing. MUST ACTIVATE before committing code, creating PRs, or completing significant code modifications.
 ---
 
 # Overview

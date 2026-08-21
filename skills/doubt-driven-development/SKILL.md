@@ -1,6 +1,6 @@
 ---
 name: doubt-driven-development
-description: Subjects decisions and code changes to a fresh-context adversarial review. Use when correctness matters more than speed, when stakes are high (security-sensitive logic, irreversible operations), or before claiming a non-obvious fact is correct.
+description: ADVERSARIAL VERIFICATION GATE. Subjects architectural decisions, migrations, and code changes to a fresh-context adversarial review to challenge false confidence. MUST ACTIVATE when correctness matters more than speed, when stakes are high (security, irreversible ops, core refactors), or before asserting non-obvious technical facts.
 ---
 
 # Doubt-Driven Development

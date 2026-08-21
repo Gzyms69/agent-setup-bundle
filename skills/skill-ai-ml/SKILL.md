@@ -1,6 +1,6 @@
 ---
 name: skill-ai-ml
-description: Guidance for AI/ML development, model integration, and agentic frameworks. Use when Gemini CLI needs to work with LLMs (Ollama, Vertex AI, Gemini), integrate vector search (Redis, ChromaDB), or build agentic systems.
+description: AI/ML integrations, LLM models, embeddings, vector databases (Redis, ChromaDB), and agentic workflows. MUST ACTIVATE when integrating LLMs (Gemini, OpenAI, Anthropic, Ollama), implementing RAG pipelines, managing vector embeddings, or designing agent toolsets.
 ---
 
 # AI & Machine Learning Skill

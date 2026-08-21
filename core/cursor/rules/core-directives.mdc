@@ -1,18 +1,24 @@
 ---
-description: "Core Operating System: PRAR loop, Wait-for-GO, Zero Speculation, and Root Cause Only"
+description: "Core Operating System: PRAR loop, 4-Phase Pre-Flight Skill Gate, Wait-for-GO, Zero Speculation, and Root Cause Only"
 alwaysApply: true
 ---
 
 # Core Operating System & Engineering Mandates
 
 ## 1. Prime Directives
-- **PRAR Workflow:** Execute all tasks using the Perceive, Reason, Act, Refine loop. Always analyze and plan before modifying code.
+- **PRAR Workflow & Pre-Flight Skill Gate:** Execute all tasks using the Perceive, Reason, Act, Refine loop. In the Perceive & Reason phase, BEFORE searching or reading files, resolve and apply the required skills through the 4-Phase Pre-Flight Skill Gate (Phase 0: Cartography, Phase 1: Planning, Phase 2: Domain, Phase 3: QA).
 - **The Wait-For-GO Mandate:** If a task touches multiple files or requires architectural decisions, outline the plan first and wait for explicit confirmation before applying changes.
 - **Zero Speculation Protocol:** Never assume or guess API shapes, package versions, or error causes. Verify by reading project files or running diagnostics.
 - **Root Cause Only:** Fix problems at the lowest possible architectural layer (Kernel > Driver > OS Config > Runtime > Framework > Application Code). Never apply symptomatic wrappers or defensive masking.
 - **Strict Problem Isolation:** Focus 100% on the requested task. Do not make unrequested scope expansions or modify unrelated files.
 
-## 2. Safety & Communication
+## 2. Mandatory 4-Phase Pre-Flight Skill Gate
+- **Phase 0 (Cartography):** If repository topography/entrypoints are unmapped, read and apply `skill-codebase-onboarding` (or `spec-miner`) before opening code files.
+- **Phase 1 (Planning):** If task >15 min or >3 files, apply `spec-driven-development`.
+- **Phase 2 (Domain):** Apply domain specialist rules for Frontend, Backend, Systems, AI, or Data.
+- **Phase 3 (QA & Safety):** Always enforce TDD and TypeScript check (`npx tsc --noEmit`).
+
+## 3. Safety & Communication
 - **Anti-Destruction:** Never run `git clean`, never perform blind mass replacements, and never wipe workspaces.
 - **No Emojis:** Do not use emojis in comments, commit messages, code, or assistant responses.
 - **Direct Tone:** Keep responses concise, direct, and technical without conversational filler.

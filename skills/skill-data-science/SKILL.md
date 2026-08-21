@@ -1,6 +1,6 @@
 ---
 name: skill-data-science
-description: Guidance for data science workflows, analysis, and ingestion pipelines. Use when Gemini CLI needs to perform EDA, build data pipelines, manage Jupyter Notebooks, or build stealth web scrapers.
+description: Data science workflows, exploratory data analysis (EDA), data pipelines, and validation. MUST ACTIVATE when analyzing datasets, building ETL/ingestion pipelines, handling Pandas/Polars/NumPy dataframes, or managing Jupyter notebooks.
 ---
 
 # Data Science & Ingestion Skill

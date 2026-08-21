@@ -1,6 +1,6 @@
 ---
 name: spec-miner
-description: Reverse-engineering specialist that extracts specifications, dataflows, and architecture maps from existing or legacy codebases without documentation. Use when onboarding to unfamiliar codebases, analyzing legacy systems, or mapping undocumented dependencies.
+description: PHASE 0 REVERSE-ENGINEERING GATE for legacy, undocumented, or poorly structured codebases. Extracts data flows, implicit contracts, and hidden dependencies. MUST ACTIVATE when reverse engineering existing undocumented code or onboarding to legacy repositories.
 license: MIT
 metadata:
   triggers: reverse engineer, legacy code, code analysis, undocumented, understand codebase, existing system, code archaeology

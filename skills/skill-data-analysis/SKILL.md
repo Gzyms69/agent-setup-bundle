@@ -1,6 +1,6 @@
 ---
 name: skill-data-analysis
-description: Skill for analyzing datasets, evaluating statistical claims, and detecting bias.
+description: Statistical analysis, hypothesis testing, anomaly detection, and dataset evaluation. MUST ACTIVATE when analyzing datasets, calculating statistical metrics, running regressions, evaluating scientific data, or detecting statistical anomalies.
 ---
 
 # Overview
