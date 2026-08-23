@@ -2,7 +2,7 @@
 
 ---
 
-## 🤖 Option 1: 1-Prompt Autonomous Installation (For AI Agents with Terminal Access)
+##  Option 1: 1-Prompt Autonomous Installation (For AI Agents with Terminal Access)
 
 Wklej ten prompt swojemu agentowi (Claude Code, OpenAI Codex, Cursor Composer, Gemini CLI, Cline, Roo Code, OpenCode):
 
@@ -18,7 +18,7 @@ Clone https://github.com/Gzyms69/agent-setup-bundle.git and install the full AI 
 
 ---
 
-## 🌐 Option 2: Web & Chat System Prompt Adoption (ChatGPT / Claude Web / Gemini Web)
+##  Option 2: Web & Chat System Prompt Adoption (ChatGPT / Claude Web / Gemini Web)
 
 Wklej poniższy blok tekstu do nowego czatu z ChatGPT, Claude Web, Gemini Web lub do konfiguracji Custom Instructions:
 

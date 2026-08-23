@@ -5,7 +5,7 @@ This document establishes the machine-readable repository blueprint and autonomo
 
 ---
 
-## 🤖 Autonomous AI Agent Installation Protocol
+##  Autonomous AI Agent Installation Protocol
 
 If your user asked you to **"install this repository"**, **"set up my environment"**, or gave you the link to this repo, execute the following autonomous protocol immediately:
 

@@ -84,9 +84,9 @@ When delivering copywriting recommendations, output in this structure:
     *   *Option B (Formula type):* [copy text] - [rationale]
 3.  **Copy Annotations:** For each text block, explain the conversion copywriting principles applied.
 4.  **Confidence Tagging:**
-    *   🟢 *Strong recommendation* (best practices, high conversion probability).
-    *   🟡 *Test this* (worth testing in A/B variants).
-    *   🔴 *Needs proof* (requires testimonials or metrics to validate the claim).
+    *    *Strong recommendation* (best practices, high conversion probability).
+    *    *Test this* (worth testing in A/B variants).
+    *    *Needs proof* (requires testimonials or metrics to validate the claim).
 
 ---
 

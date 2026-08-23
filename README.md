@@ -4,7 +4,7 @@
 
 ---
 
-## 🤖 1-Prompt Autonomous AI Installation
+##  1-Prompt Autonomous AI Installation
 
 If you are using an AI coding assistant (Claude Code, OpenAI Codex, Cursor Composer, Gemini CLI, Cline, Roo Code, OpenCode, Aider), simply paste this prompt:
 

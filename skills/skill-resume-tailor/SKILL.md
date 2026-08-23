@@ -26,10 +26,10 @@ $$\textbf{Accomplished [X], as measured by [Y], by doing [Z]}$$
 *   **[Z] Technical Method:** The exact technical implementation, algorithm, architecture, framework, or tooling used.
 
 ```
-❌ Bad (Generic Duty):
+ Bad (Generic Duty):
 "Worked on spatial data processing and improved memory performance in Python."
 
-✅ Good (Google XYZ):
+ Good (Google XYZ):
 "Eliminated Cartesian OOM crashes and reduced memory footprint by 60% across 9,550 transactions by vectorizing spatial coordinates in C-GEOS and replacing groupby with .transform('sum')."
 ```
 
