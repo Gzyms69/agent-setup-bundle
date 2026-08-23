@@ -26,7 +26,11 @@ Never read entire repositories blindly. Treat the context window as a finite tok
 ### Phase 1: Project Identity & Machine Rules (Metadata Scan)
 Before reading source code, identify what the project is and what machine-readable rules already exist.
 
-1. **Check for AI/Agent Instruction Files (First Priority):**
+0. **Check MemPalace Palace Memories (MANDATORY FIRST STEP):**
+   * Call `mempalace_search` with the project name / directory leaf to recall previously mapped architectures, ADRs, test commands, and past solutions.
+   * Query `mempalace_kg_query` to inspect entity graphs and domain models before touching the disk.
+
+1. **Check for AI/Agent Instruction Files (Second Priority):**
    * `AGENTS.md` (universal Agentic AI Foundation standard)
    * `CLAUDE.md` / `.claude/CLAUDE.md`
    * `.cursor/rules/*.mdc` or `.cursorrules`

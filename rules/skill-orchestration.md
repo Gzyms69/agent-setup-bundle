@@ -34,11 +34,12 @@ The agent is **STRICTLY FORBIDDEN** from guessing architectural patterns or blin
                                                           └─────────────────────────┘
 ```
 
-### Phase 0: Workspace Cartography Gate (MANDATORY FIRST STEP)
+### Phase 0: Workspace Cartography & MemPalace Gate (MANDATORY FIRST STEP)
 * **Trigger Condition:** Interacting with, searching, reading, debugging, or adding features to ANY repository/workspace where architecture, stack, entrypoints, and commands have not been mapped in the current conversation.
 * **Mandatory Action:**
-  1. Call `view_file` on `skill-codebase-onboarding/SKILL.md` (or `spec-miner/SKILL.md` for legacy/undocumented systems).
-  2. Execute Phase 1 (Metadata/Rules scan) and Phase 2 (Topography scan) of onboarding BEFORE reading individual source files.
+  1. Query MemPalace first (`mempalace_search` / `mempalace_kg_query`) per `mempalace-discovery.md` to load existing project context, prior decisions, and architecture models.
+  2. Call `view_file` on `skill-codebase-onboarding/SKILL.md` (or `spec-miner/SKILL.md` for legacy/undocumented systems).
+  3. Execute Phase 1 (Metadata/Rules scan) and Phase 2 (Topography scan) of onboarding BEFORE reading individual source files.
 * **Exemption:** The repository has already been systematically mapped earlier in the active conversation transcript.
 
 ### Phase 1: Planning & Architecture Gate
