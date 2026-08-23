@@ -83,6 +83,8 @@ if [ "$INSTALL_CODEX" = true ]; then
     echo "[+] Konfiguracja srodowiska OpenAI Codex (~/.codex/)..."
     mkdir -p "${TARGET_CODEX_DIR}/skills"
 
+    # Codex native global instructions
+    cp "${SCRIPT_DIR}/core/CODEX.md" "${TARGET_CODEX_DIR}/AGENTS.md"
     cp "${SCRIPT_DIR}/core/CODEX.md" "${TARGET_CODEX_DIR}/instructions.md"
     cp "${SCRIPT_DIR}/core/CODEX.md" "${TARGET_CODEX_DIR}/CODEX.md"
     
@@ -91,12 +93,12 @@ if [ "$INSTALL_CODEX" = true ]; then
         echo "    -> Utworzono ~/.codex/config.toml (szablon z konfiguracja MCP)"
     fi
 
-    # Utworzenie powiazania ze skillami
+    # Utworzenie powiazania ze skillami dla Codexa
     if [ ! -L "${TARGET_CODEX_DIR}/skills/custom" ] && [ ! -d "${TARGET_CODEX_DIR}/skills/custom" ]; then
         ln -s "${TARGET_AGENTS_DIR}/skills" "${TARGET_CODEX_DIR}/skills/custom"
         echo "    -> Podpieto skille ~/.agents/skills -> ~/.codex/skills/custom"
     fi
-    echo "    -> Zainstalowano CODEX.md oraz instructions.md w ~/.codex/"
+    echo "    -> Zainstalowano AGENTS.md, CODEX.md oraz instructions.md w ~/.codex/"
 fi
 
 # 2. Tworzenie konfiguracji dla Gemini CLI / Antigravity
@@ -124,6 +126,18 @@ if [ "$INSTALL_CLAUDE" = true ]; then
     mkdir -p "${TARGET_CLAUDE_DIR}/agents"
     cp "${SCRIPT_DIR}/core/CLAUDE.md" "${TARGET_CLAUDE_DIR}/CLAUDE.md"
     cp -r "${SCRIPT_DIR}/core/claude/agents/"* "${TARGET_CLAUDE_DIR}/agents/"
+    
+    # Podpiecie skilli dla Claude Code
+    if [ ! -L "${TARGET_CLAUDE_DIR}/skills" ] && [ ! -d "${TARGET_CLAUDE_DIR}/skills" ]; then
+        ln -s "${TARGET_AGENTS_DIR}/skills" "${TARGET_CLAUDE_DIR}/skills"
+        echo "    -> Podpieto skille ~/.agents/skills -> ~/.claude/skills"
+    fi
+
+    # Szablon MCP dla Claude Code
+    if [ ! -f "${TARGET_CLAUDE_DIR}/mcp.json" ]; then
+        cp "${SCRIPT_DIR}/config/mcp_config.json" "${TARGET_CLAUDE_DIR}/mcp.json"
+        echo "    -> Utworzono ~/.claude/mcp.json (szablon MCP)"
+    fi
     echo "    -> Zainstalowano CLAUDE.md oraz subagentow w ~/.claude/agents/"
 fi
 
@@ -144,13 +158,13 @@ echo ">>> SUKCES: Srodowisko agenta zostalo w pelni zainstalowane!"
 echo ">>> Zainstalowane komponenty:"
 echo "    - Shared Suite: ~/.agents/ (13 regul, 33 skille, szablony AGENTS.md)"
 if [ "$INSTALL_CODEX" = true ]; then
-    echo "    - OpenAI Codex: ~/.codex/ (instructions.md, CODEX.md, config.toml, skills link)"
+    echo "    - OpenAI Codex: ~/.codex/ (AGENTS.md, instructions.md, config.toml, skills custom link)"
 fi
 if [ "$INSTALL_GEMINI" = true ]; then
     echo "    - Antigravity / Gemini CLI: ~/.gemini/ (GEMINI.md, settings.json, policies)"
 fi
 if [ "$INSTALL_CLAUDE" = true ]; then
-    echo "    - Claude Code: ~/.claude/ (CLAUDE.md, .claude/agents/)"
+    echo "    - Claude Code: ~/.claude/ (CLAUDE.md, .claude/agents/, skills link, mcp.json)"
 fi
 if [ "$INSTALL_CURSOR" = true ]; then
     echo "    - Cursor IDE: ~/.cursor/ (rules/*.mdc, mcp.json)"

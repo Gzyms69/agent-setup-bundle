@@ -5,8 +5,9 @@ Automated Quality Gate & Validator for agent-setup-bundle
 Verifies:
 1. YAML frontmatter in all skills/ (name matches folder, description <= 1024 chars, valid YAML).
 2. Rule counts and integrity in rules/.
-3. Structural consistency across GEMINI.md, CLAUDE.md, and .cursorrules.
-4. JSON syntax in config/ files.
+3. Structural consistency across CODEX.md, GEMINI.md, CLAUDE.md, and .cursorrules.
+4. JSON/TOML syntax in config/ files.
+5. Templates presence (AGENTS.md).
 """
 
 import os
@@ -94,7 +95,7 @@ def check_rules():
     return rule_count
 
 def check_configs():
-    print("[-] Validating config JSON files in", CONFIG_DIR)
+    print("[-] Validating config files in", CONFIG_DIR)
     for cfg in CONFIG_DIR.glob("*.json"):
         try:
             with open(cfg, "r", encoding="utf-8") as f:
@@ -102,6 +103,12 @@ def check_configs():
             print(f"    -> {cfg.name} valid JSON.")
         except Exception as e:
             errors.append(f"Config '{cfg.name}' invalid JSON: {e}")
+    
+    codex_toml = CONFIG_DIR / "codex_config.toml"
+    if not codex_toml.is_file():
+        errors.append("config/codex_config.toml missing!")
+    else:
+        print("    -> config/codex_config.toml present.")
 
 def check_templates():
     print("[-] Validating templates in", TEMPLATES_DIR)
@@ -112,11 +119,22 @@ def check_templates():
         print("    -> templates/AGENTS.md present.")
 
 def check_core():
-    print("[-] Validating core prompts in", CORE_DIR)
+    print("[-] Validating core prompts across 4 platforms in", CORE_DIR)
     gemini_md = CORE_DIR / "GEMINI.md"
     claude_md = CORE_DIR / "CLAUDE.md"
+    codex_md = CORE_DIR / "CODEX.md"
     cursor_rules = CORE_DIR / ".cursorrules"
     
+    # 1. Codex
+    if not codex_md.is_file():
+        errors.append("core/CODEX.md missing!")
+    else:
+        content = codex_md.read_text(encoding="utf-8")
+        if "Pre-Flight Skill Gate" not in content:
+            errors.append("core/CODEX.md missing Pre-Flight Skill Gate definition!")
+        print("    -> core/CODEX.md valid.")
+
+    # 2. Gemini
     if not gemini_md.is_file():
         errors.append("core/GEMINI.md missing!")
     else:
@@ -125,16 +143,22 @@ def check_core():
             errors.append("core/GEMINI.md missing Pre-Flight Skill Gate definition!")
         if "Gzymson" not in content:
             errors.append("core/GEMINI.md missing Gzymson mandate!")
+        print("    -> core/GEMINI.md valid.")
 
+    # 3. Claude
     if not claude_md.is_file():
         errors.append("core/CLAUDE.md missing!")
     else:
         content = claude_md.read_text(encoding="utf-8")
         if "Pre-Flight Skill Gate" not in content:
             errors.append("core/CLAUDE.md missing Pre-Flight Skill Gate definition!")
+        print("    -> core/CLAUDE.md valid.")
 
+    # 4. Cursor
     if not cursor_rules.is_file():
         errors.append("core/.cursorrules missing!")
+    else:
+        print("    -> core/.cursorrules present.")
 
 def main():
     print("======================================================================")
@@ -159,7 +183,7 @@ def main():
             print(f"  [X] {e}")
         sys.exit(1)
     else:
-        print(f">>> SUCCESS: All checks passed! ({r_count} rules, {s_count} skills)")
+        print(f">>> SUCCESS: All checks passed! ({r_count} rules, {s_count} skills, 4 platforms)")
         print("======================================================================")
         sys.exit(0)
 
