@@ -1,6 +1,24 @@
 # Multi-Platform Agentic AI Engineering Operating System & Skill Suite
 
-> Production-ready, cross-platform configuration framework, system rules (Prime Directives), 33 modular skills (`agentskills.io` standard), repository blueprints (`AGENTS.md`), and Model Context Protocol (MCP) configurations for **OpenAI Codex**, **Antigravity / Gemini CLI**, **Claude Code**, and **Modern Cursor IDE (.mdc)**.
+> Production-ready, cross-platform configuration framework, system rules (Prime Directives), 33 modular skills (`agentskills.io` standard), repository blueprints (`AGENTS.md`), and Model Context Protocol (MCP) configurations for **OpenAI Codex**, **Antigravity / Gemini CLI**, **Claude Code**, and **Modern Cursor IDE (.mdc)** across **Windows**, **macOS**, and **Linux**.
+
+---
+
+## 🤖 1-Prompt Autonomous AI Installation
+
+If you are using an AI coding assistant (Claude Code, OpenAI Codex, Cursor Composer, Gemini CLI, Cline, Roo Code, OpenCode, Aider), simply paste this prompt:
+
+### English:
+```text
+Clone https://github.com/Gzyms69/agent-setup-bundle.git and install the full AI engineering operating system for me following AGENTS.md in the repo.
+```
+
+### Polski:
+```text
+Sklonuj https://github.com/Gzyms69/agent-setup-bundle.git i zainstaluj całe środowisko inżynieryjne według instrukcji w AGENTS.md.
+```
+
+Your AI assistant will read [AGENTS.md](AGENTS.md), auto-detect your operating system (Windows, macOS, or Linux), run the appropriate native installer, validate suite integrity, and immediately adopt the **Senior AI Pair Programmer** persona.
 
 ---
 
@@ -19,7 +37,7 @@ Traditional approaches to AI pair programming ("Just write this feature") fail c
 │                           MULTI-PLATFORM AGENT OPERATING SYSTEM                          │
 ├───────────────────┬────────────────────────┬─────────────────────┬───────────────────────┤
 │   OpenAI Codex    │ Antigravity / Gemini   │     Claude Code     │    Cursor IDE (.mdc)  │
-│ (~/.codex/inst.)  │    (~/.gemini/GEMINI)  │  (~/.claude/CLAUDE) │  (~/.cursor/rules/)   │
+│ (~/.codex/AGENTS) │    (~/.gemini/GEMINI)  │  (~/.claude/CLAUDE) │  (~/.cursor/rules/)   │
 └─────────┬─────────┴───────────┬────────────┴──────────┬──────────┴───────────┬───────────┘
           │                     │                       │                      │
           └─────────────────────┴───────────┬───────────┴──────────────────────┘
@@ -91,13 +109,12 @@ graph TD
 
 Global rules in `~/.agents/` define **agent behavior**, but individual repositories require **project-level context**.
 
-This bundle provides the standardized [templates/AGENTS.md](file:///home/gzyms/agent_setup_bundle/templates/AGENTS.md) blueprint based on the Agentic AI Foundation (AAIF) specification.
+This bundle provides the standardized [templates/AGENTS.md](templates/AGENTS.md) blueprint based on the Agentic AI Foundation (AAIF) specification.
 
 ### How to use `AGENTS.md` in your projects:
 1. Copy the blueprint to your project root:
-   ```bash
-   cp ~/.agents/templates/AGENTS.md ~/Dev\ Projects/MyProject/AGENTS.md
-   ```
+   - **Linux / macOS:** `cp ~/.agents/templates/AGENTS.md ~/Dev/MyProject/AGENTS.md`
+   - **Windows:** `Copy-Item $env:USERPROFILE\.agents\templates\AGENTS.md C:\Dev\MyProject\AGENTS.md`
 2. Fill in the 4 core sections:
    - **Project Identity & Stack Architecture:** Language, runtime, framework versions, database ORM, styling system.
    - **Mandatory Commands (Executable Truth):** Exact commands with flags for `install`, `dev`, `build`, `test`, `tsc`, and `lint` (agents will NEVER guess CLI flags).
@@ -177,24 +194,34 @@ All skills adhere to the `agentskills.io` standard with YAML frontmatter, progre
 
 ---
 
-## 7. Model Context Protocol (MCP) Master Playbook
+## 7. Cross-Platform Quickstart & Installation
 
-The suite is pre-configured to utilize standard MCP servers with strict execution boundaries:
+Clone and run the installer for your operating system:
 
-```
-┌─────────────────────────┬────────────────────────────────────────────────────────────────────────┐
-│ MCP Server              │ Role & Boundaries                                                      │
-├─────────────────────────┼────────────────────────────────────────────────────────────────────────┤
-│ github                  │ Remote PR/Issue API management (DO NOT use for local git checkout/push)│
-│ chrome-devtools         │ Live browser automation, DOM inspection, network waterfall tracing     │
-│ puppeteer               │ Headless scraping, PDF generation, screenshot capture                  │
-│ lighthouse-mcp          │ Core Web Vitals, accessibility, SEO, and performance score audits      │
-│ postgres / sqlite       │ Direct SQL schema and migration verification                           │
-│ mempalace               │ Hierarchical memory storage, entity knowledge graphs, and diaries      │
-└─────────────────────────┴────────────────────────────────────────────────────────────────────────┘
+```bash
+git clone https://github.com/Gzyms69/agent-setup-bundle.git
+cd agent-setup-bundle
 ```
 
-> **MCP Boundary Rule:** Always use the `github` MCP server for remote API actions (PR reviews, issue creation) and local `git` CLI for workspace version control (staging, committing, pushing).
+### Option A: Windows (PowerShell)
+```powershell
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+.\install.ps1 -All
+```
+*Platform options:* `.\install.ps1 -Codex`, `.\install.ps1 -Gemini`, `.\install.ps1 -Claude`, `.\install.ps1 -Cursor`
+
+### Option B: Linux & macOS (Bash / zsh)
+```bash
+chmod +x install.sh
+./install.sh --all
+```
+*Platform options:* `./install.sh --codex`, `./install.sh --gemini`, `./install.sh --claude`, `./install.sh --cursor`
+
+### Option C: Universal Python Installer (Any OS)
+```bash
+python install.py --all
+```
+*Platform options:* `python install.py --codex`, `python install.py --gemini`, `python install.py --claude`, `python install.py --cursor`
 
 ---
 
@@ -202,62 +229,37 @@ The suite is pre-configured to utilize standard MCP servers with strict executio
 
 | Platform | Manifest / Rule Location | Config Location | Skill Discovery Path |
 |---|---|---|---|
-| **OpenAI Codex** | `~/.codex/instructions.md` / `CODEX.md` | `~/.codex/config.toml` | `~/.codex/skills/custom` -> `~/.agents/skills` |
+| **OpenAI Codex** | `~/.codex/AGENTS.md` & `instructions.md` | `~/.codex/config.toml` | `~/.codex/skills/custom` -> `~/.agents/skills` |
 | **Antigravity / Gemini CLI** | `~/.gemini/GEMINI.md` | `~/.gemini/settings.json` | `~/.agents/skills/` |
-| **Claude Code** | `~/.claude/CLAUDE.md` + `.claude/agents/` | `~/.claude/mcp.json` | `~/.agents/skills/` |
+| **Claude Code** | `~/.claude/CLAUDE.md` + `.claude/agents/` | `~/.claude/mcp.json` | `~/.claude/skills` -> `~/.agents/skills` |
 | **Cursor IDE** | `~/.cursor/rules/*.mdc` | `~/.cursor/mcp.json` | On-demand referencing |
 
 ---
 
-## 9. 1-Click Quickstart & Installation
-
-Clone and run the unified installer in your environment:
-
-```bash
-git clone https://github.com/Gzyms69/agent-setup-bundle.git
-cd agent-setup-bundle
-./install.sh
-```
-
-### Installation Flags:
-```bash
-./install.sh --all       # Configure all platforms: Codex, Gemini, Claude, Cursor (default)
-./install.sh --codex     # Configure OpenAI Codex only (~/.codex/)
-./install.sh --gemini    # Configure Antigravity / Gemini CLI only (~/.gemini/)
-./install.sh --claude    # Configure Claude Code only (~/.claude/)
-./install.sh --cursor    # Configure Cursor IDE only (~/.cursor/)
-```
-
----
-
-## 10. Repository File Structure
+## 9. Repository File Structure
 
 ```
 agent_setup_bundle/
-├── core/
-│   ├── CODEX.md                     # OpenAI Codex Operating System manifest
-│   ├── GEMINI.md                    # Antigravity / Gemini CLI Core Operating System
-│   ├── CLAUDE.md                    # Claude Code Engineering Operating System
-│   ├── claude/agents/               # Subagents: code-reviewer, researcher, system-architect
-│   └── cursor/rules/                # Cursor IDE rules: core-directives, tsc, tdd, etc.
-├── rules/                           # 13 Universal Rules (Zero Speculation, Anti-Workaround, etc.)
-├── skills/                          # 33 Production Skills (agentskills.io standard)
+├── AGENTS.md                        # Master repository blueprint & AI installer instructions
+├── README.md                        # Master technical documentation & cross-platform guide
+├── PROMPT_FOR_AI.md                 # Universal bootstrap prompts
+├── llms.txt                         # Semantic summary for web-enabled LLM agents
+├── install.sh                       # Native Bash installer (Linux / macOS)
+├── install.ps1                      # Native PowerShell installer (Windows)
+├── install.py                       # Universal Python 3 installer (All OSes)
+├── core/                            # Platform manifests (CODEX.md, GEMINI.md, CLAUDE.md, cursor)
+├── rules/                           # 13 Universal Rules (~/.agents/rules/)
+├── skills/                          # 33 Modular Skills (~/.agents/skills/)
 ├── templates/
-│   └── AGENTS.md                    # Standardized per-project repository blueprint
-├── config/
-│   ├── codex_config.toml            # OpenAI Codex configuration & MCP template
-│   ├── settings.json                # Gemini CLI / Antigravity settings & MCP template
-│   ├── mcp_config.json              # Shared MCP configuration
-│   └── cursor_mcp.json              # Cursor IDE MCP configuration
-├── policies/
-│   └── mcp-planning.toml            # MCP tool policy definitions
-├── install.sh                       # Multi-platform 1-click installer
-├── PROMPT_FOR_AI.md                 # Universal bootstrap prompt for web/chat interfaces
-└── README.md                        # Master technical documentation
+│   └── AGENTS.md                    # Project-level starter template
+├── config/                          # Configuration & MCP templates (codex, gemini, cursor)
+├── policies/                        # MCP tool planning policies
+└── scripts/
+    └── validate_suite.py            # Quality assurance test suite
 ```
 
 ---
 
-## 11. License
+## 10. License
 
 This project is licensed under the [MIT License](LICENSE).
