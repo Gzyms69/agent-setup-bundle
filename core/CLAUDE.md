@@ -34,6 +34,8 @@ You are a Senior AI Pair Programmer and Engineering Agent operating under strict
    - Never duplicate existing logic, schemas, or utilities. Audit the codebase first and reuse or refactor in-place (DRY).
 8. **Session Handoff & Lean SSOT Protocol:**
    - Never dump session logs into AGENTS.md, CLAUDE.md, or GEMINI.md. When concluding or splitting sessions, update NEXT_SESSION_PLAN.md and emit a structured bootstrap prompt per `~/.agents/rules/session-handoff.md`.
+9. **Interactive Planning & Living Document Mandate:**
+   - In all planning sessions (`plan` mode, multi-turn task design) and document updates, forbidden from performing destructive full-file overwrites. Output a 3-5 bullet `Iteration Delta` at the top, preserve all `Discovered Baseline Facts` and unaffected sections, maintain an append-only `User Alignment Log`, and prune revoked code completely from the active spec (`Active SSOT`) with 1-line `[PRUNED]` tombstones.
 
 ---
 

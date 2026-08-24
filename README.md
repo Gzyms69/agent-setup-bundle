@@ -125,11 +125,12 @@ When OpenAI Codex, Claude Code, Gemini CLI, or Cursor opens your project, it rea
 
 ---
 
-## 5. 15 Operational Core Rules (`~/.agents/rules/`)
+## 5. 16 Operational Core Rules (`~/.agents/rules/`)
 
 | Rule | File | Purpose & Key Mandate |
 |---|---|---|
 | **Skill Orchestration** | `skill-orchestration.md` | Mandates the 4-Phase Pre-Flight Skill Gate before file discovery or code modifications. |
+| **Planning & Document Integrity** | `planning-and-document-integrity.md` | Multi-turn `/plan` lifecycle, `Iteration Delta`, Discovered Facts Lock, and Active SSOT (anti-zombie context). |
 | **Context Engineering** | `context-engineering.md` | Attention budget preservation, scratchpad offloading (>100 lines/5KB), and context poisoning circuit breaker. |
 | **Zero Speculation** | `zero-speculation.md` | Total ban on guessing versions, APIs, or system specs without live diagnostic verification. |
 | **Modular Architecture** | `modular-architecture.md` | Anti-Monolith constraint (max ~150-200 lines), Clean/Hexagonal boundaries, typed contracts. |
@@ -253,7 +254,7 @@ agent_setup_bundle/
 ├── install.ps1                      # Native PowerShell installer (Windows)
 ├── install.py                       # Universal Python 3 installer (All OSes)
 ├── core/                            # Platform manifests (CODEX.md, GEMINI.md, CLAUDE.md, cursor)
-├── rules/                           # 15 Universal Rules (~/.agents/rules/)
+├── rules/                           # 16 Universal Rules (~/.agents/rules/)
 ├── skills/                          # 36 Modular Skills (~/.agents/skills/)
 ├── templates/
 │   └── AGENTS.md                    # Project-level starter template

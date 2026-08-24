@@ -70,7 +70,7 @@ def main():
     print("=" * 70)
 
     # 0. Shared Base: ~/.agents/ (Rules, Skills, Templates)
-    print("[+] Kopiowanie wspoldzielonych regul (15), skilli (36) i szablonow do ~/.agents/...")
+    print("[+] Kopiowanie wspoldzielonych regul (16), skilli (36) i szablonow do ~/.agents/...")
     rules_target = target_agents_dir / "rules"
     skills_target = target_agents_dir / "skills"
     templates_target = target_agents_dir / "templates"
@@ -83,7 +83,7 @@ def main():
     copy_tree(script_dir / "skills", skills_target)
     if (script_dir / "templates").is_dir():
         copy_tree(script_dir / "templates", templates_target)
-    print("    -> Zainstalowano 15 regul, 36 skilli oraz szablony w ~/.agents/")
+    print("    -> Zainstalowano 16 regul, 36 skilli oraz szablony w ~/.agents/")
 
     # 1. OpenAI Codex
     if install_codex:
@@ -155,7 +155,7 @@ def main():
     print("=" * 70)
     print(">>> SUKCES: Srodowisko agenta zostalo w pelni zainstalowane!")
     print(">>> Zainstalowane komponenty:")
-    print("    - Shared Suite: ~/.agents/ (15 regul, 36 skilli, szablony AGENTS.md)")
+    print("    - Shared Suite: ~/.agents/ (16 regul, 36 skilli, szablony AGENTS.md)")
     if install_codex:
         print("    - OpenAI Codex: ~/.codex/ (AGENTS.md, instructions.md, config.toml, skills link)")
     if install_gemini:

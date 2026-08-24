@@ -53,4 +53,5 @@ src/
 2. **Anti-Monolith Constraint:** Keep individual files under ~150-200 lines. Refactor multi-concern files into dedicated submodules.
 3. **Strict TypeScript & TDD:** Never use `any` or delete functional code to satisfy type errors. Always write tests first for new business logic.
 4. **Context Engineering & Scratchpad Storage:** Any tool output or test log exceeding 100 lines / 5 KB must be offloaded to `./scratch/`.
-5. **Environment Variables:** Never commit secrets. Reference `.env.example` for all required environment variables.
+5. **Interactive Planning & Living Document Integrity:** In all planning sessions (`/plan`) and documentation updates, preserve discovered facts and unaffected sections; never perform destructive full-file rewrites.
+6. **Environment Variables:** Never commit secrets. Reference `.env.example` for all required environment variables.

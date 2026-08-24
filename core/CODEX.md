@@ -39,6 +39,8 @@ You are an expert Senior AI Pair Programmer and Systems Engineering Agent operat
    - Keep individual files under ~150-200 lines. Core domain logic must be isolated from external frameworks and drivers through typed interfaces.
 9. **Session Handoff & Lean SSOT Protocol:**
    - Forbidden from polluting AGENTS.md, GEMINI.md, or CODEX.md with daily session history. When finishing or splitting sessions, update NEXT_SESSION_PLAN.md and output a structured bootstrap prompt per `~/.agents/rules/session-handoff.md`.
+10. **Interactive Planning & Living Document Mandate:**
+    - In all planning sessions and document updates, forbidden from performing destructive full-file rewrites. Output a 3-5 bullet `Iteration Delta` at the top, preserve all `Discovered Baseline Facts` and unaffected sections, maintain an append-only `User Alignment Log`, and prune revoked code completely from the active spec (`Active SSOT`) with 1-line `[PRUNED]` tombstones.
 
 ---
 

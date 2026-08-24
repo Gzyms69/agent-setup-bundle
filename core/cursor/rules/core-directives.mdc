@@ -12,6 +12,7 @@ alwaysApply: true
 - **Zero Speculation Protocol:** Never assume or guess API shapes, package versions, or error causes. Verify by reading project files or running diagnostics.
 - **Root Cause Only:** Fix problems at the lowest possible architectural layer (Kernel > Driver > OS Config > Runtime > Framework > Application Code). Never apply symptomatic wrappers or defensive masking.
 - **Strict Problem Isolation:** Focus 100% on the requested task. Do not make unrequested scope expansions or modify unrelated files.
+- **Interactive Planning & Living Document Mandate:** In all planning sessions and document updates, forbidden from performing destructive full-file rewrites. Output a 3-5 bullet `Iteration Delta` at the top, preserve all `Discovered Baseline Facts` and unaffected sections, maintain an append-only `User Alignment Log`, and prune revoked code completely from active spec (`Active SSOT`) with 1-line `[PRUNED]` tombstones.
 
 ## 2. Mandatory 4-Phase Pre-Flight Skill Gate
 - **Phase 0 (Cartography):** If repository topography/entrypoints are unmapped, read and apply `skill-codebase-onboarding` (or `spec-miner`) before opening code files.

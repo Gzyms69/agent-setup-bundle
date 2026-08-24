@@ -48,7 +48,7 @@ The agent is **STRICTLY FORBIDDEN** from guessing architectural patterns or blin
   - Involves architectural refactoring, multi-agent swarms, or long conversational trajectories,
   - Is explicitly invoked with `/plan`.
 * **Mandatory Action:**
-  1. Call `view_file` on `spec-driven-development/SKILL.md`.
+  1. Call `view_file` on `spec-driven-development/SKILL.md` and adhere strictly to `rules/planning-and-document-integrity.md` (Planning Lifecycle State Machine, Iteration Delta, Discovered Facts Lock, Active SSOT).
   2. **Multi-Agent / Swarm:** If coordinating subagents, parallel research, or task DAGs: load `skill-master-orchestrator/SKILL.md`.
   3. **Context / High Token Load:** If managing long-running sessions, heavy logs, or memory compaction: load `skill-context-engineering/SKILL.md`.
   4. If monorepo or plugin system is detected: load `skill-monorepo-architect/SKILL.md` or `skill-plugin-architecture/SKILL.md`.

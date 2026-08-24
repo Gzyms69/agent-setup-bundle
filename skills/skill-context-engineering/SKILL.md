@@ -5,9 +5,9 @@ description: Production context engineering, attention budget curation, Anchored
 
 # Context Engineering Skill
 
-Context engineering is the science of curating the language model's attention window. As conversational trajectories grow, models exhibit predictable degradation patterns: the **Attention U-Curve** (diminished recall for mid-context tokens), **attention scarcity**, and **context poisoning**.
+Context engineering is the science of curating the language model's attention window. As conversational trajectories grow, models exhibit predictable degradation patterns: the **Attention U-Curve** (diminished recall for mid-context tokens), **attention scarcity**, **context clash (Zombie context)**, and **context poisoning**.
 
-This skill provides deterministic protocols for compressing context, preserving artifact integrity, and maximizing the signal-to-noise ratio in long-horizon coding sessions.
+This skill provides deterministic protocols for compressing context, preserving artifact integrity, actively pruning contradictory context, and maximizing the signal-to-noise ratio in long-horizon coding sessions.
 
 ---
 
@@ -16,6 +16,7 @@ This skill provides deterministic protocols for compressing context, preserving 
 Activate this skill when:
 - Sessions extend beyond 10+ turns or involve massive codebase exploration.
 - Agent begins "forgetting" files it previously modified or decisions made earlier.
+- Managing interactive multi-turn planning sessions (`/plan`).
 - Diagnosing attention failures, hallucinations, or context poisoning.
 - Designing compaction and handoff summaries for multi-phase tasks.
 - Integrating ephemeral scratchpad outputs with persistent semantic memory (MemPalace).
@@ -82,7 +83,19 @@ When compressing long conversation histories, avoid freeform summaries that sile
 
 ---
 
-## 3. Optimizing Tokens-Per-Task (Anti-Re-Fetching)
+## 3. Context Garbage Collection & Active SSOT (Anti-Zombie Context)
+
+A critical failure mode during planning and refactoring is **Context Clash**: leaving old, revoked implementations in the active text while trying to adopt new requirements.
+
+### The Anti-Zombie Context Protocol:
+1. **Single Active Truth:** The active working specification must contain ONLY current, valid code. If a framework or DB choice is revoked, remove its active code blocks entirely.
+2. **1-Line Atomic Tombstones:** Keep historical awareness without attention pollution by recording a single line in the decision log:
+   `- [PRUNED Turn N]: Revoked PostgreSQL in favor of SQLite (User decision).`
+3. **Scratchpad Archiving:** If an abandoned design is large (>50 lines), offload it to `<appDataDir>/brain/<id>/scratch/archived_<feature>.md` rather than keeping dead text in the active context.
+
+---
+
+## 4. Optimizing Tokens-Per-Task (Anti-Re-Fetching)
 
 Measure efficiency by **Tokens-Per-Task** (total tokens needed to complete the overall objective), NOT tokens-per-turn.
 * Overly aggressive compression that strips full file paths or specific function names causes the model to re-read files repeatedly, multiplying token costs.
@@ -90,7 +103,7 @@ Measure efficiency by **Tokens-Per-Task** (total tokens needed to complete the o
 
 ---
 
-## 4. Context Poisoning Circuit Breaker
+## 5. Context Poisoning Circuit Breaker
 
 When an invalid assumption or tool hallucination enters context, it compounds through self-reference.
 1. **Quarantine:** Immediately label the invalid assumption with `[INVALIDATED: Reason]`.
@@ -98,7 +111,7 @@ When an invalid assumption or tool hallucination enters context, it compounds th
 
 ---
 
-## 5. Persistent Memory Sync (MemPalace Protocol)
+## 6. Persistent Memory Sync (MemPalace Protocol)
 
 For knowledge that must survive across separate sessions and project restarts:
 1. Extract architectural decisions, learned conventions, and domain facts.
@@ -107,19 +120,20 @@ For knowledge that must survive across separate sessions and project restarts:
 
 ---
 
-## 6. Anti-Rationalization Table
+## 7. Anti-Rationalization Table
 
 | Agent Excuse | BLOCKED Rebuttal |
 | :--- | :--- |
 | *"I'll just write a vague 2-line summary like 'we worked on auth'."* | **BLOCKED:** Omission of the Artifact Trail causes expensive re-exploration loops. Follow the 5-section schema. |
-| *"I don't need to track which files were read."* | **BLOCKED:** Untracked files cause duplicate reading operations and wasted tool calls. |
+| *"I left deprecated code in the prompt so the user remembers what we changed."* | **BLOCKED:** Violates Anti-Zombie Context. Deprecated code causes context clash. Use 1-line tombstones in Decision Log. |
 | *"The model has a massive context window so compaction is unnecessary."* | **BLOCKED:** Performance degrades smoothly along the Attention U-Curve. Compact context keeps reasoning sharp. |
 
 ---
 
-## 7. Verification Gates
+## 8. Verification Gates
 
 - [ ] Does the context summary include the full Artifact Trail (created, modified, read files)?
 - [ ] Are active acceptance criteria positioned at the bottom of the prompt/reasoning anchor?
-- [ ] Have all discarded hypotheses been marked as `[INVALIDATED]`?
+- [ ] Has deprecated/zombie code been excised from active working specs?
+- [ ] Have all discarded hypotheses been marked as `[INVALIDATED]` or `[PRUNED]`?
 - [ ] Are cross-session learnings synchronized to MemPalace?

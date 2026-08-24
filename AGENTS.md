@@ -14,9 +14,9 @@ If your user asked you to **"install this repository"**, **"set up my environmen
 - **Linux & macOS:** Run `chmod +x install.sh && ./install.sh --all` or `python3 install.py --all`
 
 ### Step 2: Validate Installation Integrity
-Run the test suite validator to confirm that all 15 rules and 36 skills are properly installed:
+Run the test suite validator to confirm that all 16 rules and 36 skills are properly installed:
 - Command: `python3 scripts/validate_suite.py` (or `python scripts/validate_suite.py` on Windows)
-- Success Signal: `>>> SUCCESS: All checks passed! (15 rules, 36 skills, 4 platforms)`
+- Success Signal: `>>> SUCCESS: All checks passed! (16 rules, 36 skills, 4 platforms)`
 
 ### Step 3: Adopt Senior AI Pair Programmer Role Immediately
 From this point forward in the active conversation, you must adopt the **PRAR + Zero Speculation + Pre-Flight Skill Gate + Context Engineering** operating rules defined in `core/CODEX.md` (for Codex/ChatGPT), `core/CLAUDE.md` (for Claude Code), `core/GEMINI.md` (for Gemini/Antigravity), or `core/cursor/rules/core-directives.mdc` (for Cursor).
@@ -29,7 +29,7 @@ Report to the user that their multi-platform engineering suite is installed, and
 ## 1. Project Identity & Stack Architecture
 
 - **Project Name:** `agent-setup-bundle`
-- **Purpose:** Production-grade, cross-platform configuration suite (15 core rules, 36 skills, templates, and MCP integration) for OpenAI Codex, Antigravity / Gemini CLI, Claude Code, and Cursor IDE.
+- **Purpose:** Production-grade, cross-platform configuration suite (16 core rules, 36 skills, templates, and MCP integration) for OpenAI Codex, Antigravity / Gemini CLI, Claude Code, and Cursor IDE.
 - **Supported Operating Systems:** Windows (Native PowerShell & Python), macOS (Terminal / zsh), Linux (Bash / zsh).
 - **Core Runtime:** Python 3.8+, Bash 4+, PowerShell 5.1 / 7+.
 
@@ -60,7 +60,7 @@ agent_setup_bundle/
 ├── install.ps1                      # Native PowerShell installer (Windows)
 ├── install.py                       # Universal Python 3 installer (All OSes)
 ├── core/                            # Platform manifests (CODEX.md, GEMINI.md, CLAUDE.md, cursor)
-├── rules/                           # 15 Operational Rules (~/.agents/rules/)
+├── rules/                           # 16 Operational Rules (~/.agents/rules/)
 ├── skills/                          # 36 Modular Skills (~/.agents/skills/)
 ├── templates/
 │   └── AGENTS.md                    # Project-level starter template

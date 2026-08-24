@@ -3,11 +3,15 @@ name: spec-driven-development
 description: MANDATORY PLANNING GATE for complex features, multi-file refactors, and architectural changes. Creates technical specifications, implementation plans, and verification matrices before coding. MUST ACTIVATE when invoked with /plan, when a task is estimated >15 minutes, touches >3 files, or introduces new APIs/schemas.
 ---
 
-# Spec-Driven Development
+# Spec-Driven Development (SDD) & Interactive Planning Protocol
 
 ## Overview
 
 Write a structured specification before writing any code. The spec is the shared source of truth between you and the human engineer — it defines what we're building, why, and how we'll know it's done. Code without a spec is guessing.
+
+In interactive planning sessions (`/plan`, `/grill-me`, task refinement turns), SDD enforces **strict statefulness**: never perform destructive rewrites that drop discovered facts, and never leave zombie code in active specs.
+
+---
 
 ## When to Use
 
@@ -15,129 +19,98 @@ Write a structured specification before writing any code. The spec is the shared
 - Requirements are ambiguous or incomplete
 - The change touches multiple files or modules
 - You're about to make an architectural decision
-- The task would take more than 15 minutes to implement
+- The task is estimated >15 minutes or explicitly invoked with `/plan`
 
-**When NOT to use:** Single-line fixes, typo corrections, or changes where requirements are unambiguous and self-contained.
+**When NOT to use:** Single-line fixes, typo corrections, or self-contained single-function changes.
+
+---
 
 ## The Gated Workflow
 
-Spec-driven development has four phases. Do not advance to the next phase until the current one is validated by the user.
+```
+SPECIFY ──→ PLAN (Multi-Turn Refinement) ──→ TASKS ──→ IMPLEMENT
+   │                       │                    │          │
+   ▼                       ▼                    ▼          ▼
+ Human                   Human                Human      Human
+reviews                 reviews              reviews    reviews
+```
 
-```
-SPECIFY ──→ PLAN ──→ TASKS ──→ IMPLEMENT
-   │          │        │          │
-   ▼          ▼        ▼          ▼
- Human      Human    Human      Human
- reviews    reviews  reviews    reviews
-```
+---
 
 ### Phase 1: Specify
 
 Start with a high-level vision. Ask the human clarifying questions until requirements are concrete.
 
-**Surface assumptions immediately.** Before writing any spec content, list what you're assuming:
-
+**Surface assumptions immediately.** Before writing spec content, list what you're assuming:
 ```
 ASSUMPTIONS I'M MAKING:
 1. This is a web application (not native mobile)
 2. Authentication uses session-based cookies (not JWT)
 3. The database is PostgreSQL (based on existing schema)
-4. We're targeting modern browsers only (no legacy support)
 → Correct me now or I'll proceed with these.
 ```
 
-Don't silently fill in ambiguous requirements. The spec's entire purpose is to surface misunderstandings *before* code gets written — assumptions are the most dangerous form of misunderstanding.
+---
 
-**Write a spec document covering these six core areas:**
+### Phase 2: Plan & Multi-Turn Interactive Refinement (`/plan`)
 
-1. **Objective** — What are we building and why? Who is the user? What does success look like?
-2. **Commands** — Full executable commands with flags, not just tool names.
-   ```
-   Build: npm run build
-   Test: npm test
-   Lint: npm run lint --fix
-   Dev: npm run dev
-   ```
-3. **Project Structure** — Where source code lives, where tests go, where docs belong.
-4. **Code Style** — A concise code snippet showing naming conventions, imports, and style.
-5. **Testing Strategy** — Testing framework, location of test suites, coverage expectations.
-6. **Boundaries** — Three-tier system:
-   - **Always do:** Run tests/linters before commits, validate external inputs.
-   - **Ask first:** Modify database schemas, add npm/pip dependencies, change CI/CD configuration.
-   - **Never do:** Commit plain secrets, edit vendor directories, remove failing tests without approval.
-7. **SSOT & Architecture Cartography** — Audit existing codebase (`grep_search`, `list_dir`) and document:
-   - Existing endpoints/modules/utilities to REUSE.
-   - Existing modules to EXTEND in-place (no parallel duplicates).
+When generating and updating implementation plans in Antigravity (`<Artifact Directory>/<plan_name>.md`) or workspace roots (`tasks/plan.md`), execute the **Planning Lifecycle State Machine**:
 
-**Spec template:**
+```
+Draft v1 (Discovery & Baseline Facts Lock) ──► Refinement vN (Iteration Delta & Active SSOT) ──► Execution Lock ("GO")
+```
+
+#### Mandatory Plan Artifact Template:
 
 ```markdown
-# Spec: [Project/Feature Name]
+# Implementation Plan: [Feature / Task Name]
 
-## Objective
-[What we're building and why. User stories or acceptance criteria.]
+> [!NOTE]
+> **Plan Version:** v[N] (Updated after Turn [N] User Feedback)
+> **Iteration Delta:**
+> - [ADDED]: [Specific additions in this turn]
+> - [MODIFIED]: [Specific changes to previous sections]
+> - [PRUNED]: [Specific components removed, logged below]
+> - [PRESERVED]: 100% of discovered codebase facts and verification commands from v[N-1].
 
-## Tech Stack
-[Framework, language, key dependencies with versions]
+## 1. User Alignment & Decision Log (Cumulative)
+- **[v1 Init - Timestamp]:** Initial baseline plan.
+- **[v2 User Decision - Timestamp]:** [User decision / choice] (LOCKED).
+- **[v2 Pruned - Timestamp]:** `[PRUNED]`: [Deprecated approach removed per user constraint].
 
-## Commands
-[Build, test, lint, dev — full commands]
+## 2. Discovered Baseline & Codebase Facts (LOCKED)
+- **Target Files:** `[Exact absolute paths verified via tools]`
+- **Environment:** `[Language, runtime, package manager, OS]`
+- **Required Commands:** `[pnpm test, npx tsc --noEmit, etc.]`
 
-## Project Structure
-[Directory layout with descriptions]
+## 3. Active Technical Specification (SSOT - 100% Clean)
+*Contains ONLY current, approved architecture. Deprecated code is completely excised!*
+[Clean architecture diagrams, data models, interfaces, API signatures]
 
-## Code Style
-[Example snippet + key conventions]
+## 4. Proposed Changes (File by File)
+### [MODIFY] path/to/file.ts
+### [NEW] path/to/new_file.ts
 
-## Testing Strategy
-[Framework, test locations, coverage requirements]
+## 5. Verification Plan (Automated & Manual)
+- Automated: Exact commands to run (`pnpm test`, `npx tsc --noEmit`)
+- Manual: Browser/API verification steps
 
-## Boundaries
-- Always: [...]
-- Ask first: [...]
-- Never: [...]
-
-## Success Criteria
-[How we'll know this is done — specific, testable conditions]
-
-## Open Questions
-[Anything unresolved that needs human input]
+## 6. Open Questions / Next Steps
+[Only genuinely unanswered questions]
 ```
 
-**Reframe instructions as success criteria.** When receiving vague requirements, translate them into concrete conditions:
+#### The 4 Invariants of Plan Iteration:
+1. **Discovered Facts Lock:** Never delete discovered file paths, line ranges, or test commands across turns.
+2. **Active SSOT Cleanliness:** Completely remove deprecated code from Section 3. Keep 1-line tombstones in Section 1.
+3. **Top-Level Iteration Delta:** Always summarize what changed in the current version at the very top.
+4. **No Duplicate Questioning:** Never re-ask questions that were resolved in previous turns.
 
-```
-REQUIREMENT: "Make the dashboard faster"
-
-REFRAMED SUCCESS CRITERIA:
-- Dashboard LCP < 2.5s on 4G connection
-- Initial data load completes in < 500ms
-- No layout shift during load (CLS < 0.1)
-→ Are these the right targets?
-```
-
-### Phase 2: Plan
-
-With the validated spec, generate a technical implementation plan:
-
-1. Identify the major components and their dependencies.
-2. Determine the implementation order (what must be built first).
-3. Note risks and mitigation strategies.
-4. Define verification checkpoints between phases.
-
-Save the plan to `tasks/plan.md`. The plan should be reviewable so the user can easily approve the technical path.
+---
 
 ### Phase 3: Tasks
 
-Break the plan into discrete, implementable tasks:
+Break the plan into discrete, implementable tasks in `tasks/todo.md`:
 
-- Each task should be completable in a single focused session.
-- Each task has explicit acceptance criteria.
-- Each task includes a verification step (test command, build, manual check).
-- Tasks are ordered by dependency.
-- Save the task list to `tasks/todo.md`.
-
-**Task template:**
 ```markdown
 - [ ] Task: [Description]
   - Acceptance: [What must be true when done]
@@ -145,50 +118,29 @@ Break the plan into discrete, implementable tasks:
   - Files: [Which files will be touched]
 ```
 
+---
+
 ### Phase 4: Implement
 
-Execute tasks one at a time. Run tests and linters after each task. Update the `tasks/todo.md` progress continuously.
+Execute tasks one at a time. Run tests and linters after each task. Update progress continuously.
 
 ---
 
-## Common Rationalizations
+## Anti-Rationalization Table
 
-| Rationalization | Reality |
-|---|---|
-| \"This is simple, I don't need a spec\" | Simple tasks don't need *long* specs, but they still need acceptance criteria. A two-line spec is fine. |
-| \"I'll write the spec after I code it\" | That's documentation, not specification. The spec's value is in forcing clarity *before* code. |
-| \"The spec will slow us down\" | A 15-minute spec prevents hours of rework. Designing in 15 minutes beats debugging in 15 hours. |
-| \"The error handling can be simplified because this exception rarely happens\" | BLOCKED: Unhandled rare exceptions cause production outages. All error boundaries must be explicitly handled. |
-| \"I tested the happy path and it works\" | BLOCKED: Happy path testing is insufficient. Boundary conditions, null inputs, and network failure modes must be verified. |
-| \"The user didn't explicitly request error handling\" | BLOCKED: Error handling is a default quality requirement, not an optional feature. |
-
----
-
-## Red Flags
-
-- Starting to write code without any written requirements.
-- Asking "should I just start building?" before clarifying what "done" means.
-- Implementing features not mentioned in the spec or task list.
-- Skipping the spec because "it's obvious what to build."
+| Agent Excuse | BLOCKED Rebuttal |
+| :--- | :--- |
+| *"The user gave me 1 feedback sentence so I rewrote the whole plan and forgot the test commands."* | **BLOCKED:** Violates the Discovered Facts Lock. Test commands and file paths must be preserved. |
+| *"I left the old PostgreSQL code and the new SQLite code together in Section 3 so nothing is lost."* | **BLOCKED:** Violates Active SSOT. Competing code causes context clash and hallucinations. Clean active spec, record 1-line tombstone in Section 1. |
+| *"I'll ask the user again about the database choice."* | **BLOCKED:** The user already answered in Turn 2. Re-asking resolved questions wastes tokens and breaks user trust. |
 
 ---
 
 ## Verification Gates
 
-These gates are mandatory checkpoints. No phase may be skipped or reordered.
-
-1. **Spec gate**: A spec document must exist and be approved before any implementation code is written. No exceptions for "simple" tasks — a two-line spec is fine, but it must exist.
-2. **Plan-spec linkage**: The implementation plan must reference specific spec sections. Every plan item must trace back to a spec requirement. Orphaned plan items indicate scope creep.
-3. **Task-plan mapping**: Tasks must map 1:1 to plan items. A task without a corresponding plan item is unauthorized work. A plan item without a corresponding task is unfinished planning.
-4. **Test verification**: Implementation must pass all tests defined in tasks. No task is complete until its verification step (test command, build, manual check) has been executed and passed.
-
----
-
-## Verification
-
-Before proceeding to implementation, confirm:
-- [ ] The spec covers all core areas.
-- [ ] The human has reviewed and approved the spec.
-- [ ] Success criteria are specific and testable.
-- [ ] Boundaries (Always/Ask First/Never) are defined.
-- [ ] The spec and plan are saved in the workspace.
+Before submitting a plan or proceeding to implementation:
+- [ ] Does the plan follow the 6-section template with an `Iteration Delta` box?
+- [ ] Are all `Discovered Baseline Facts` from prior turns preserved?
+- [ ] Is Section 3 (Active Technical Spec) 100% clean and free of deprecated zombie code?
+- [ ] Are all user decisions logged in the cumulative `User Alignment & Decision Log`?
+- [ ] Have all verification commands (`test`, `tsc`, `lint`) been validated against project reality?
