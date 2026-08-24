@@ -1,6 +1,6 @@
 ---
 name: skill-code-review
-description: MANDATORY PHASE 3 AUDIT GATE. Systematic 5-axis code review framework (Correctness, Readability, Architecture, Security, Performance) and AST-Grep pattern auditing. MUST ACTIVATE before committing code, creating PRs, or completing significant code modifications.
+description: MANDATORY PHASE 3 AUDIT GATE. Systematic 5-axis code review framework (Correctness, Readability, Architecture, Security, Performance), OWASP Top 10 auditing, and AST-Grep pattern verification. MUST ACTIVATE before committing code, creating PRs, or completing significant code modifications.
 ---
 
 # Overview
@@ -12,7 +12,7 @@ The 5-Axis Code Review Framework provides a systematic, thorough approach to cod
 - Pull request reviews
 - Code quality audits
 - Architecture reviews
-- Security audits
+- Security & OWASP vulnerability audits
 
 # When NOT to Use
 - Quick typo fixes in documentation
@@ -25,46 +25,51 @@ When reviewing code, systematically evaluate the changes against these five axes
 
 ## 1. Correctness
 - **Logic Validation**: Does the code do what it's supposed to do?
-- **Edge Cases**: Are boundary conditions and unusual inputs handled?
-- **Error Handling**: Are errors caught and handled gracefully? Are error messages helpful?
+- **Edge Cases**: Are boundary conditions, empty inputs, and null/undefined values handled?
+- **Error Handling**: Are errors caught and handled gracefully? Are error messages helpful and actionable?
 - **Business Requirements**: Does the implementation align with the stated requirements?
-- **Null/Undefined Handling**: Are null or undefined values checked before access?
-- **Off-by-one Errors**: Are loops and boundaries strictly correct?
-- **Race Conditions**: Is concurrent state mutation safely managed?
+- **Off-by-one Errors**: Are loop indices and slice boundaries strictly correct?
+- **Race Conditions**: Is concurrent state mutation safely managed (`async`/locks/mutexes)?
 
 ## 2. Readability
 - **Code Organization**: Is the code logically structured and easy to follow?
 - **Naming Conventions**: Are variables, functions, and classes named descriptively and consistently?
 - **Self-Documenting Structure**: Can the code be understood without excessive comments?
-- **Cognitive Complexity**: Is the logic too deeply nested? Can it be simplified?
-- **Dead Code Elimination**: Has unused code been removed?
+- **Cognitive Complexity**: Is the logic too deeply nested? Can it be simplified with early returns?
+- **Dead Code Elimination**: Has unused code, deprecated imports, and commented-out snippets been removed?
 
 ## 3. Architecture & SSOT
 - **Single Source of Truth (SSOT)**: Does this code duplicate logic, schemas, endpoints, or utilities that already exist elsewhere in the repo?
 - **DRY Adherence (Anti-Wheel-Reinvention)**: Are existing shared services, endpoints, and helpers reused rather than re-implemented?
 - **In-Place Refactoring**: If an existing component/endpoint was inadequate, was it refactored in-place rather than bypassed with a parallel duplicate?
-- **AST-Grep Structural Analysis (`ast-grep` MCP)**: Use `ast-grep` to search for anti-patterns across syntax trees (e.g. unhandled promises, missing React hook dependencies, unclosed connections, hardcoded credentials).
-- **Component Boundaries**: Are responsibilities clearly separated?
+- **Component Boundaries**: Are responsibilities clearly separated? (Hexagonal/Clean Architecture: Domain isolated from API/DB).
 - **Coupling & Cohesion**: Are related things grouped together? Are unrelated things decoupled?
-- **Design Pattern Adherence**: Does the code use established patterns correctly?
-- **Dependency Direction**: Do dependencies flow in the right direction (e.g., UI depends on Domain, not vice-versa)?
-- **Single Responsibility**: Does each function/class do only one thing?
+- **Dependency Direction**: Do dependencies flow strictly downward (e.g., UI depends on Domain, not vice-versa)?
+- **Single Responsibility**: Does each function/class do only one thing (max ~150-200 lines per file)?
 
-## 4. Security
-- **OWASP Top 10**: Check for common vulnerabilities.
-- **Input Sanitization**: Is user input validated and sanitized before use?
-- **Secrets Leakage**: Are hardcoded secrets or credentials avoided?
-- **SQL Injection**: Are parameterized queries used?
-- **XSS & CSRF**: Are cross-site scripting and forgery prevented?
-- **Auth/Authz Boundaries**: Are authentication and authorization checks enforced at appropriate boundaries?
+## 4. Security & OWASP Hardening
+- **Injection Attacks (SQLi / Commandi / Path Traversal):**
+  - All database queries MUST use parameterized inputs (e.g. `$1, $2` or ORM bindings), NEVER raw string concatenation (`SELECT ... WHERE id = '${id}'`).
+  - File access MUST validate paths against directory traversal (`../` sanitized with `path.resolve` and root confinement).
+  - System commands MUST avoid shell execution of unsanitized user inputs (`execFile`/`spawn` with explicit argument arrays, not raw `exec`).
+- **Broken Access Control & IDOR:**
+  - Verify that object lookups enforce tenant/user ownership (e.g. `WHERE id = :id AND user_id = :current_user`).
+- **Secrets & Token Leakage:**
+  - Audit for hardcoded API keys, JWT secrets, private tokens, or passwords.
+  - Verify that sensitive credentials are read strictly from environment variables or secret managers.
+- **Cross-Site Scripting (XSS) & Content Security:**
+  - Audit React/HTML outputs for `dangerouslySetInnerHTML` or raw unescaped injections.
+- **AST-Grep Pattern Verification (`ast-grep` MCP):**
+  - Run structural checks for unhandled Promise rejections, missing dependencies in `useEffect`, unsafe evals, and insecure CORS headers (`*` on authenticated endpoints).
 
 ## 5. Performance
-- **Computational Complexity**: Analyze Big-O time and space complexity. Avoid unintentional O(N^2).
-- **Memory Allocation**: Are there memory leaks or excessive object creation?
-- **Unnecessary Re-renders**: (Frontend) Is the UI rendering efficiently?
-- **N+1 Queries**: (Backend) Are database queries batched or optimized?
-- **Async Efficiency**: Are asynchronous operations handled optimally without blocking?
-- **Caching Opportunities**: Can results be cached to improve performance?
+- **Computational Complexity**: Analyze Big-O time and space complexity. Avoid unintentional O(N^2) loops.
+- **Memory Allocation**: Are there memory leaks, unclosed streams/connections, or excessive allocations?
+- **N+1 Database Queries**: Ensure relations are fetched with `JOIN`, `include`, or batched `IN (...)` rather than looping queries.
+- **Unnecessary Re-renders**: (Frontend) Ensure heavy computations use `useMemo`/`useCallback` and state is scoped locally.
+- **Async Efficiency**: Are independent async operations batched with `Promise.all` rather than executed in slow sequential waterfalls?
+
+---
 
 # Severity Labels for Feedback
 
@@ -75,12 +80,16 @@ When providing review feedback, categorize issues using these severity labels:
 - `NIT`: Minor style/preference issue. Fix if convenient.
 - `OPTIONAL`: Suggested improvement. Author's discretion.
 
+---
+
 # Atomic Change Enforcement
 
 Keep reviews focused and manageable:
 - Target ~100 lines per review unit.
 - Large changes must be decomposed into smaller, atomic commits or PRs.
 - Reject monolith PRs that mix unrelated changes.
+
+---
 
 # Review Output Format
 
@@ -106,6 +115,8 @@ Provide your review findings structured by axis, using severity labels:
 - [NIT] ...
 ```
 
+---
+
 # Anti-Rationalization Table
 
 | Agent Excuse | BLOCKED Rebuttal |
@@ -118,11 +129,15 @@ Provide your review findings structured by axis, using severity labels:
 | "Performance optimization is premature here" | **BLOCKED:** Identifying O(n^2) or N+1 queries is not premature optimization, it is basic architectural correctness. |
 | "The existing code already does it this way" | **BLOCKED:** Existing patterns may be wrong, don't propagate bad practices. |
 
+---
+
 # Red Flags
 - Ignoring security warnings or skipping input sanitization.
 - Merging PRs with `BLOCKER` comments unresolved.
 - Reviews that only comment on style (missing correctness/security).
 - Missing test coverage for new functionality.
+
+---
 
 # Verification Gates
 - [ ] Have you evaluated the code against all 5 axes?

@@ -1,18 +1,19 @@
 #!/usr/bin/env python3
 """
-install.py
-Universal Multi-Platform Installer for Agent Engineering Suite
-Works natively on Windows, macOS, and Linux without external dependencies.
+Installer: Multi-Platform Agent Environment & Skill Suite (Universal Python)
 Supported: OpenAI Codex, Antigravity / Gemini CLI, Claude Code, Cursor IDE (.mdc)
 """
 
-import os
 import sys
+import os
 import shutil
 import argparse
 from pathlib import Path
 
 def copy_tree(src: Path, dst: Path):
+    """Recursively copy directory tree, overwriting existing files."""
+    if not src.exists():
+        return
     dst.mkdir(parents=True, exist_ok=True)
     for item in src.iterdir():
         target = dst / item.name
@@ -21,32 +22,39 @@ def copy_tree(src: Path, dst: Path):
         else:
             shutil.copy2(item, target)
 
-def create_symlink_or_copy(src: Path, link_target: Path, label: str):
-    if link_target.exists() or link_target.is_symlink():
-        return
+def create_symlink_or_copy(src: Path, dst: Path, desc: str):
+    """Create symlink if possible, fallback to copy."""
+    if dst.exists() or dst.is_symlink():
+        if dst.is_symlink():
+            dst.unlink()
+        elif dst.is_dir():
+            shutil.rmtree(dst)
+        else:
+            dst.unlink()
+            
     try:
-        link_target.symlink_to(src, target_is_directory=True)
-        print(f"    -> Podpieto link symboliczny dla {label}: {link_target}")
+        dst.symlink_to(src, target_is_directory=True)
+        print(f"    -> Utworzono dowiazanie symboliczne dla {desc}: {dst} -> {src}")
     except (OSError, NotImplementedError):
-        # Fallback to copy on Windows without developer mode
-        copy_tree(src, link_target)
-        print(f"    -> Skopiowano katalog dla {label} (brak uprawnien do symlinkow): {link_target}")
+        copy_tree(src, dst)
+        print(f"    -> Skopiowano {desc} do: {dst} (fallback)")
 
 def main():
-    parser = argparse.ArgumentParser(description="Universal Multi-Platform Agent Suite Installer")
-    parser.add_argument("--all", action="store_true", help="Install configuration for all platforms (default)")
-    parser.add_argument("--codex", action="store_true", help="Install for OpenAI Codex only")
-    parser.add_argument("--gemini", action="store_true", help="Install for Antigravity / Gemini CLI only")
-    parser.add_argument("--claude", action="store_true", help="Install for Claude Code only")
-    parser.add_argument("--cursor", action="store_true", help="Install for Cursor IDE only")
+    parser = argparse.ArgumentParser(description="Instalator srodowiska Agenta AI")
+    parser.add_argument("--all", action="store_true", help="Instaluj dla wszystkich platform (default)")
+    parser.add_argument("--codex", action="store_true", help="Instaluj tylko dla OpenAI Codex")
+    parser.add_argument("--gemini", action="store_true", help="Instaluj tylko dla Antigravity / Gemini CLI")
+    parser.add_argument("--claude", action="store_true", help="Instaluj tylko dla Claude Code")
+    parser.add_argument("--cursor", action="store_true", help="Instaluj tylko dla Cursor IDE")
+
     args = parser.parse_args()
 
-    # Determine platforms
-    specific = any([args.codex, args.gemini, args.claude, args.cursor])
-    install_codex  = args.all or args.codex  or not specific
-    install_gemini = args.all or args.gemini or not specific
-    install_claude = args.all or args.claude or not specific
-    install_cursor = args.all or args.cursor or not specific
+    # Domyslnie instaluj wszystko, jesli nie podano specyficznej platformy
+    install_all = not (args.codex or args.gemini or args.claude or args.cursor)
+    install_codex  = args.all or args.codex or install_all
+    install_gemini = args.all or args.gemini or install_all
+    install_claude = args.all or args.claude or install_all
+    install_cursor = args.all or args.cursor or install_all
 
     script_dir = Path(__file__).resolve().parent
     home_dir = Path.home()
@@ -62,7 +70,7 @@ def main():
     print("=" * 70)
 
     # 0. Shared Base: ~/.agents/ (Rules, Skills, Templates)
-    print("[+] Kopiowanie wspoldzielonych regul (13), skilli (33) i szablonow do ~/.agents/...")
+    print("[+] Kopiowanie wspoldzielonych regul (15), skilli (36) i szablonow do ~/.agents/...")
     rules_target = target_agents_dir / "rules"
     skills_target = target_agents_dir / "skills"
     templates_target = target_agents_dir / "templates"
@@ -75,7 +83,7 @@ def main():
     copy_tree(script_dir / "skills", skills_target)
     if (script_dir / "templates").is_dir():
         copy_tree(script_dir / "templates", templates_target)
-    print("    -> Zainstalowano 13 regul, 33 skille oraz szablony w ~/.agents/")
+    print("    -> Zainstalowano 15 regul, 36 skilli oraz szablony w ~/.agents/")
 
     # 1. OpenAI Codex
     if install_codex:
@@ -147,7 +155,7 @@ def main():
     print("=" * 70)
     print(">>> SUKCES: Srodowisko agenta zostalo w pelni zainstalowane!")
     print(">>> Zainstalowane komponenty:")
-    print("    - Shared Suite: ~/.agents/ (13 regul, 33 skille, szablony AGENTS.md)")
+    print("    - Shared Suite: ~/.agents/ (15 regul, 36 skilli, szablony AGENTS.md)")
     if install_codex:
         print("    - OpenAI Codex: ~/.codex/ (AGENTS.md, instructions.md, config.toml, skills link)")
     if install_gemini:
@@ -158,9 +166,8 @@ def main():
         print("    - Cursor IDE: ~/.cursor/ (rules/*.mdc, mcp.json)")
     print()
     print(">>> Wskazowki konfiguracji:")
-    print("    1. Skopiuj templates/AGENTS.md do korzenia swoich projektow.")
-    print("    2. Uzupelnij klucze API w settings.json / config.toml / mcp.json.")
-    print("    3. W ~/.agents/rules/system-identity.md wpisz bazowe dane swojego sprzetu.")
+    print("    1. Sprawdz plik ~/.gemini/settings.json lub ~/.codex/config.toml")
+    print("    2. Aby dodac kontekst projektu, skopiuj ~/.agents/templates/AGENTS.md do katalogu swojego repozytorium")
     print("=" * 70)
 
 if __name__ == "__main__":

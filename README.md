@@ -32,25 +32,25 @@ Traditional approaches to AI pair programming ("Just write this feature") fail c
 
 **`agent-setup-bundle`** solves this by establishing a deterministic, multi-platform engineering operating system across all major coding assistants.
 
-```
-┌──────────────────────────────────────────────────────────────────────────────────────────┐
-│                           MULTI-PLATFORM AGENT OPERATING SYSTEM                          │
-├───────────────────┬────────────────────────┬─────────────────────┬───────────────────────┤
-│   OpenAI Codex    │ Antigravity / Gemini   │     Claude Code     │    Cursor IDE (.mdc)  │
-│ (~/.codex/AGENTS) │    (~/.gemini/GEMINI)  │  (~/.claude/CLAUDE) │  (~/.cursor/rules/)   │
-└─────────┬─────────┴───────────┬────────────┴──────────┬──────────┴───────────┬───────────┘
-          │                     │                       │                      │
-          └─────────────────────┴───────────┬───────────┴──────────────────────┘
-                                            │
-                                            ▼
-                    ┌───────────────────────────────────────────────┐
-                    │       SHARED SUITE LAYER (~/.agents/)         │
-                    ├───────────────────────────────────────────────┤
-                    │ • 13 Operational Core Rules (Zero Spec, Root) │
-                    │ • 33 Production-Grade Skills (agentskills.io) │
-                    │ • Repository-Level Blueprints (AGENTS.md)     │
-                    │ • Model Context Protocol (MCP Playbook)       │
-                    └───────────────────────────────────────────────┘
+```mermaid
+flowchart TD
+    subgraph Core_Directives["12 Żelaznych Reguł Architektonicznych"]
+        PRAR["Protokół PRAR (Perceive -> Reason -> Act -> Refine)"]
+        ZeroSpec["Zero-Speculation Protocol (Zakaz Zgadywania)"]
+        TSGate["Critical TypeScript Safety Gate (npx tsc --noEmit)"]
+    end
+
+    subgraph Skills_Matrix["Baza 25 Modułowych Umiejętności (~/.agents/skills)"]
+        Dev["Inżynieria (Frontend, Backend, GIS, Low-Level)"]
+        QA["Jakość & Review (Doubt-Driven, Code-Review)"]
+        Design["Art Direction (Swiss, OKLCH, Design Engineering)"]
+    end
+
+    subgraph MCP_Servers["11 Natywnych Serwerów Narzędziowych (MCP)"]
+        Tools["GitHub API, Chrome DevTools, MemPalace, Puppeteer, OCI"]
+    end
+
+    Core_Directives --> Skills_Matrix --> MCP_Servers
 ```
 
 ---
@@ -125,34 +125,38 @@ When OpenAI Codex, Claude Code, Gemini CLI, or Cursor opens your project, it rea
 
 ---
 
-## 5. 13 Operational Core Rules (`~/.agents/rules/`)
+## 5. 15 Operational Core Rules (`~/.agents/rules/`)
 
 | Rule | File | Purpose & Key Mandate |
 |---|---|---|
 | **Skill Orchestration** | `skill-orchestration.md` | Mandates the 4-Phase Pre-Flight Skill Gate before file discovery or code modifications. |
+| **Context Engineering** | `context-engineering.md` | Attention budget preservation, scratchpad offloading (>100 lines/5KB), and context poisoning circuit breaker. |
 | **Zero Speculation** | `zero-speculation.md` | Total ban on guessing versions, APIs, or system specs without live diagnostic verification. |
 | **Modular Architecture** | `modular-architecture.md` | Anti-Monolith constraint (max ~150-200 lines), Clean/Hexagonal boundaries, typed contracts. |
 | **Systemic Excellence** | `systemic-excellence.md` | Anti-workaround protocol, root-cause fixes, DRY, and Single Source of Truth (SSOT). |
 | **System Identity** | `system-identity.md` | Hardware & OS baseline template with auto-discovery commands to prevent hallucinations. |
 | **Command Verification** | `command-verification.md` | Mandatory secondary read-only check after any state-modifying command. |
-| **Subagent Economy** | `subagent-economy.md` | Dynamic LLM model tiering based on task complexity (Light -> Standard -> Pro). |
+| **Subagent Economy** | `subagent-economy.md` | Dynamic LLM model tiering, Zero Context Bleed mandate, workspace isolation, and barrier sync. |
 | **Problem Isolation** | `problem-isolation.md` | Strict scope containment; zero unrequested refactors or global OS alterations. |
 | **Environment Integrity** | `env-integrity.md` | Sanity checks on workspace, lockfiles, and dependencies before modifying files. |
 | **Error Triage** | `error-triage.md` | Deterministic diagnostic priority order: Documentation -> Web Search -> Code Inspection. |
 | **Full Log Reporting** | `full-log-reporting.md` | Ban on truncated, summarized, or paraphrased error reporting. |
 | **MemPalace Discovery** | `mempalace-discovery.md` | Absolute priority of MemPalace memory retrieval before broad filesystem searches. |
 | **MCP Master Playbook** | `mcp-master-playbook.md` | 11-server MCP execution matrix, permission boundaries, and synergy workflows. |
+| **Session Handoff** | `session-handoff.md` | Lossless context transfer, Lean SSOT enforcement, and standardized bootstrap prompts. |
 
 ---
 
-## 6. 33 Production-Grade Skills (`~/.agents/skills/`)
+## 6. 36 Production-Grade Skills (`~/.agents/skills/`)
 
 All skills adhere to the `agentskills.io` standard with YAML frontmatter, progressive disclosure, and anti-rationalization verification gates:
 
-### Domain A: Cartography, Planning & Architecture (5 Skills)
+### Domain A: Cartography, Planning, Context & Orchestration (7 Skills)
 - **`skill-codebase-onboarding`**: Systematic 5-phase repository cartography, entrypoint discovery, and command extraction.
 - **`spec-miner`**: Reverse-engineering engine for extracting specifications and dataflows from legacy/undocumented code.
 - **`spec-driven-development`**: Gated SDLC workflow (Specify -> Plan -> Tasks -> Implement) with verification matrices.
+- **`skill-context-engineering`**: Production context engineering, Attention U-Curve defense, Anchored Iterative Summarization, and Artifact Trail tracking.
+- **`skill-master-orchestrator`**: Master agent orchestration, multi-agent swarm coordination, Task DAG decomposition, and model economy routing.
 - **`skill-monorepo-architect`**: Polyglot monorepo management (`uv` Python workspaces, `pnpm` workspaces, Turborepo).
 - **`skill-plugin-architecture`**: Microkernel architecture, dynamic plugin discovery, lifecycle hooks, and error boundaries.
 
@@ -163,8 +167,9 @@ All skills adhere to the `agentskills.io` standard with YAML frontmatter, progre
 - **`skill-web-performance`**: Core Web Vitals optimization (LCP, INP, CLS), Lighthouse 100/100 audits, and runtime tracing.
 - **`seo-optimization-and-audit`**: Search engine ranking optimization, structured metadata, semantic HTML, and head audits.
 
-### Domain C: Backend & Low-Level Systems (7 Skills)
-- **`skill-backend-architect`**: Contract-first API design, database schemas, migration isolation, and Postgres/SQLite verification.
+### Domain C: Backend, Systems & MCP (8 Skills)
+- **`skill-backend-architect`**: Contract-first API design, database schemas, query optimization (`EXPLAIN ANALYZE`), indexing, and Expand/Contract migrations.
+- **`skill-mcp-builder`**: Architecture, implementation, and debugging of Model Context Protocol (MCP) servers (FastMCP, TypeScript SDK, stdio/SSE).
 - **`skill-web-architecture`**: Full-stack architectural standards, module boundaries, and end-to-end API contracts.
 - **`c-cpp-systems`**: Memory safety, struct packing (`#pragma pack`), manual RAII, bitwise math, and sanitizers (`ASan`/`UBSan`).
 - **`skill-low-level-programming`**: Low-level systems programming, Assembly, byte manipulation, memory layout, and endianness handling.
@@ -183,7 +188,7 @@ All skills adhere to the `agentskills.io` standard with YAML frontmatter, progre
 
 ### Domain E: QA, Systems Diagnostics & Conversion (9 Skills)
 - **`skill-qa-engineer`**: Test-Driven Development (TDD Red-Green), TypeScript compilation safety gates (`npx tsc --noEmit`).
-- **`skill-code-review`**: Systematic 5-axis code review (Correctness, Readability, Architecture, Security, Performance).
+- **`skill-code-review`**: Systematic 5-axis code review (Correctness, Readability, Architecture, Security OWASP Top 10, Performance).
 - **`doubt-driven-development`**: Adversarial verification gate to challenge false confidence and prevent silent failures.
 - **`skill-system-diagnostics`**: Hardware, OS, driver, kernel panic diagnostics, and log analysis.
 - **`skill-devops-cloud`**: Docker containers, Docker MCP inspection, CI/CD pipelines, and cloud deployments.
@@ -248,8 +253,8 @@ agent_setup_bundle/
 ├── install.ps1                      # Native PowerShell installer (Windows)
 ├── install.py                       # Universal Python 3 installer (All OSes)
 ├── core/                            # Platform manifests (CODEX.md, GEMINI.md, CLAUDE.md, cursor)
-├── rules/                           # 13 Universal Rules (~/.agents/rules/)
-├── skills/                          # 33 Modular Skills (~/.agents/skills/)
+├── rules/                           # 15 Universal Rules (~/.agents/rules/)
+├── skills/                          # 36 Modular Skills (~/.agents/skills/)
 ├── templates/
 │   └── AGENTS.md                    # Project-level starter template
 ├── config/                          # Configuration & MCP templates (codex, gemini, cursor)

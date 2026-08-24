@@ -1,6 +1,6 @@
 ---
 name: skill-backend-architect
-description: Expert backend architecture, database schemas, API design, contract definitions, and stack selection (Node.js, Python, Go). Use when designing APIs, defining module boundaries, managing database schemas, or validation boundaries.
+description: Expert backend architecture, database schemas, API design, contract definitions, database indexing, query optimization (EXPLAIN ANALYZE), zero-downtime migrations, and stack selection (Node.js, Python, Go). Use when designing APIs, defining module boundaries, managing database schemas, or validation boundaries.
 ---
 
 # Backend Architect Skill
@@ -13,8 +13,8 @@ This skill provides architectural patterns and best practices for building scala
 
 | Stack | Best For | Recommended Frameworks | ORM / DB Access |
 | :--- | :--- | :--- | :--- |
-| **Node.js** | I/O-heavy, scalable APIs | NestJS, Express.js | **Prisma** (type-safe, schema-first) |
-| **Python** | Rapid dev, AI/ML, Data Science | FastAPI | **SQLAlchemy** (with Pydantic) |
+| **Node.js** | I/O-heavy, scalable APIs | NestJS, Express.js | **Prisma** (type-safe, schema-first) / **Drizzle** |
+| **Python** | Rapid dev, AI/ML, Data Science | FastAPI | **SQLAlchemy** (with Pydantic) / **Alembic** |
 | **Go** | Raw performance, microservices | Standard lib, Gin, Echo | Standard lib / sqlx |
 
 ### Database Strategy (GCP & Local)
@@ -130,7 +130,26 @@ interface APIError {
 
 ---
 
-## 6. Data Querying & Formatting Patterns
+## 6. Database Performance, Indexing & Zero-Downtime Migrations
+
+### Query Execution Plan Analysis (`EXPLAIN ANALYZE`)
+* **Sequential Scan Detection:** Whenever queries take >50ms or scan large tables, run `EXPLAIN (ANALYZE, BUFFERS)` via MCP or CLI. Check for `Seq Scan on large_table` and high `Buffers: shared read`.
+* **Index Types:**
+  - **B-Tree:** Default for high-cardinality equality (`=`) and range (`<`, `>`, `BETWEEN`) queries.
+  - **GIN (Generalized Inverted Index):** Mandatory for PostgreSQL `jsonb` containment (`@>`), full-text search (`tsvector`), and array columns (`&&`).
+  - **Partial Indexes:** Create indexes with a `WHERE` clause for filtered subsets (e.g. `CREATE INDEX idx_active_tasks ON tasks(due_date) WHERE status != 'COMPLETED'`) to minimize index size and write overhead.
+  - **Composite Indexes (Left-to-Right Rule):** Place equality columns first, range columns last (e.g. `(tenant_id, status, created_at)`).
+
+### Zero-Downtime Migration Pattern (Expand / Contract)
+Never perform breaking schema changes (renaming columns, dropping columns, changing types) in a single step on production databases. Use the **Expand/Contract** pattern:
+1. **Expand (Phase 1):** Add the new column/table as nullable or with defaults. Write dual-write application code (write to both old and new, read from old).
+2. **Backfill (Phase 2):** Run an asynchronous batch migration to copy and transform historical data from old to new column.
+3. **Switch (Phase 3):** Update application to read and write exclusively to the new column.
+4. **Contract (Phase 4):** Drop the deprecated old column/table in a subsequent release once stability is proven.
+
+---
+
+## 7. Data Querying & Formatting Patterns
 
 ### List Pagination (REST)
 Always paginate list endpoints. Never return raw arrays without paging guards:
@@ -156,16 +175,9 @@ type TaskStatus =
   | { type: 'completed'; completedAt: Date; completedBy: string };
 ```
 
-### Branded Types for Safety
-Prevent mismatching database IDs (e.g., passing a `UserId` into a `TaskId` parameter):
-```typescript
-type TaskId = string & { readonly __brand: 'TaskId' };
-type UserId = string & { readonly __brand: 'UserId' };
-```
-
 ---
 
-## 7. Operational Guidelines
+## 8. Operational Guidelines
 
 *   **Statelessness:** Keep API containers stateless. Store sessions in Redis or DB tables, and file uploads in Cloud Storage to allow horizontal autoscaling.
 *   **Asynchronous I/O:** Leverage non-blocking async handlers to ensure event loops do not get blocked.
@@ -173,7 +185,7 @@ type UserId = string & { readonly __brand: 'UserId' };
 
 ---
 
-## 8. Single Source of Truth (SSOT) & Anti-Duplication Protocol
+## 9. Single Source of Truth (SSOT) & Anti-Duplication Protocol
 
 *   **Pre-Implementation Audit:** Before creating any new API endpoint, database helper, service class, or diagnostic route, grep the codebase (`grep_search`, `list_dir`) to check for existing endpoints and contracts.
 *   **Reuse Existing Services:** Reuse existing repositories, database clients, and service handlers instead of instantiating parallel clients.
@@ -182,13 +194,14 @@ type UserId = string & { readonly __brand: 'UserId' };
 
 ---
 
-## 9. Verification Checklist
+## 10. Verification Checklist
 
 After designing/updating backend endpoints, verify:
 - [ ] Codebase audited for existing endpoints and utilities (SSOT enforced, zero duplicate routes).
 - [ ] Input schemas are defined using Zod/Pydantic, and validation runs at API boundaries.
 - [ ] Error payloads consistently return the `{ error: { code, message } }` schema.
-- [ ] Database migrations are written, reviewed, and run cleanly without locking tables.
+- [ ] Database queries audited with `EXPLAIN (ANALYZE, BUFFERS)` to verify proper index usage.
+- [ ] Breaking database changes follow the Expand/Contract zero-downtime migration strategy.
 - [ ] JSON logging outputs valid JSON syntax with appropriate severity levels.
 - [ ] Paginated parameters are implemented for list routes.
 - [ ] API contract changes are backward-compatible.

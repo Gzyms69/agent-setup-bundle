@@ -42,15 +42,17 @@ The agent is **STRICTLY FORBIDDEN** from guessing architectural patterns or blin
   3. Execute Phase 1 (Metadata/Rules scan) and Phase 2 (Topography scan) of onboarding BEFORE reading individual source files.
 * **Exemption:** The repository has already been systematically mapped earlier in the active conversation transcript.
 
-### Phase 1: Planning & Architecture Gate
+### Phase 1: Planning, Context & Orchestration Gate
 * **Trigger Condition:** Any task that:
   - Is estimated to take >15 minutes or modify >3 files,
-  - Involves architectural refactoring or multi-module changes,
+  - Involves architectural refactoring, multi-agent swarms, or long conversational trajectories,
   - Is explicitly invoked with `/plan`.
 * **Mandatory Action:**
   1. Call `view_file` on `spec-driven-development/SKILL.md`.
-  2. If monorepo or plugin system is detected: load `skill-monorepo-architect/SKILL.md` or `skill-plugin-architecture/SKILL.md`.
-  3. Formulate an implementation specification artifact before modifying code.
+  2. **Multi-Agent / Swarm:** If coordinating subagents, parallel research, or task DAGs: load `skill-master-orchestrator/SKILL.md`.
+  3. **Context / High Token Load:** If managing long-running sessions, heavy logs, or memory compaction: load `skill-context-engineering/SKILL.md`.
+  4. If monorepo or plugin system is detected: load `skill-monorepo-architect/SKILL.md` or `skill-plugin-architecture/SKILL.md`.
+  5. Formulate an implementation specification artifact before modifying code.
 
 ### Phase 2: Domain Specialist Gate
 * **Trigger Condition:** Specific technical domains or application layers are involved.
@@ -60,7 +62,8 @@ The agent is **STRICTLY FORBIDDEN** from guessing architectural patterns or blin
     - Motion animations / Tailwind / Bento / UI Polish: `skill-design-engineering`
     - Aesthetics / Typography / OKLCH / Art Direction: `skill-creative-design`
   * **Backend & Systems:**
-    - API design / DB Schema / Migration / Contracts: `skill-backend-architect`
+    - API design / DB Schema / Query Optimization / Migrations: `skill-backend-architect`
+    - MCP Server Architecture / FastMCP / TypeScript SDK: `skill-mcp-builder`
     - Low-level C/C++ / Memory / Pointers / ASan: `c-cpp-systems` + `skill-low-level-programming`
     - WebAssembly / Emscripten runtime: `wasm-emscripten`
     - Retro emulation / Hardware coprocessors: `retro-emulation-engineering` + `skill-emulator-wasm`
@@ -81,7 +84,7 @@ The agent is **STRICTLY FORBIDDEN** from guessing architectural patterns or blin
 * **Trigger Condition:** Any code creation, modification, refactoring, or pre-commit finalization.
 * **Mandatory Action:**
   1. Call `view_file` on `skill-qa-engineer/SKILL.md` to enforce TDD (Red-Green) and TypeScript compilation safety gates (`npx tsc --noEmit`).
-  2. Execute 5-axis self-review (`skill-code-review/SKILL.md`) auditing Correctness, Readability, Architecture, Security, and Performance.
+  2. Execute 5-axis self-review (`skill-code-review/SKILL.md`) auditing Correctness, Readability, Architecture, Security (OWASP), and Performance.
   3. If high-stakes or irreversible changes: load `doubt-driven-development/SKILL.md`.
 
 ---
@@ -93,7 +96,7 @@ During the **Perceive & Reason** phase of every user request, the agent MUST exp
 ```
 [Pre-Flight Skill Gate]
 - Phase 0 (Cartography): skill-codebase-onboarding (Loaded)
-- Phase 1 (Planning): spec-driven-development (Loaded)
-- Phase 2 (Domain): skill-frontend-architect, skill-resume-tailor (Loaded)
-- Phase 3 (QA): skill-qa-engineer (Active gate)
+- Phase 1 (Planning): spec-driven-development, skill-master-orchestrator (Loaded)
+- Phase 2 (Domain): skill-backend-architect, skill-mcp-builder (Loaded)
+- Phase 3 (QA): skill-qa-engineer, skill-code-review (Active gate)
 ```

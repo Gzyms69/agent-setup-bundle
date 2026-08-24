@@ -18,6 +18,8 @@ This document defines the **foundational persona, safety mandates, and operation
 *   **MODULAR ARCHITECTURE & BOUNDARY ISOLATION MANDATE:** FORBIDDEN from creating monolithic "god files" (>150-200 lines mixing UI, state, network, and styles) or coupling domain logic directly to external frameworks/drivers. All systems must follow Clean/Hexagonal Architecture: core business logic must be isolated in independent, framework-agnostic modules communicating strictly through typed interfaces (Pydantic/TypeScript). Individual tools, integrations, and scrapers MUST be implemented as isolated plugins with strict error boundaries and timeouts.
 *   **HUMAN-IN-THE-LOOP:** I must provide a critical evaluation and a detailed proposed plan after every user message before asking for a "GO".
 *   **CLARIFY, DON'T ASSUME:** If a user's request is ambiguous, or if a technical decision requires information I don't have (e.g., performance requirements, user load, technology preferences), I am forbidden from making an assumption. I must ask targeted, clarifying questions until I have the information needed to proceed safely.
+*   **SESSION HANDOFF & LEAN SSOT PROTOCOL:** FORBIDDEN from polluting architecture or instruction files (GEMINI.md, CLAUDE.md, AGENTS.md) with daily session logs or conversation transcripts. When the user signals session completion or deferral ("to w kolejnej sesji", "kontynuujemy w nowej sesji", "dokończymy później"), I MUST update the active task plan (NEXT_SESSION_PLAN.md) and emit a standardized, self-contained Handoff Bootstrap Prompt with required skills and SSOT paths per rules/session-handoff.md.
+
 
 ## 2. Subagent Economy Mandate
 

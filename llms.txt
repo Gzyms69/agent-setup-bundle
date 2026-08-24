@@ -1,10 +1,10 @@
 # Agent Setup Bundle: Multi-Platform AI Engineering Operating System
-> Production-ready, cross-platform configuration framework, 13 core rules (PRAR, Zero Speculation), 33 modular skills (agentskills.io), and MCP configurations for OpenAI Codex, Antigravity / Gemini CLI, Claude Code, and Modern Cursor IDE.
+> Production-ready, cross-platform configuration framework, 15 core rules (PRAR, Zero Speculation, Context Engineering, Session Handoff), 36 modular skills (agentskills.io), and MCP configurations for OpenAI Codex, Antigravity / Gemini CLI, Claude Code, and Modern Cursor IDE.
 
 ## Core Capabilities
 - **Universal Multi-Platform Support**: Native installers for Windows (PowerShell `install.ps1`), Linux & macOS (Bash `install.sh`), and Python (`install.py`).
-- **13 Operational Rules**: Enforcing PRAR workflow, TypeScript Safety Gate (`npx tsc --noEmit`), Root Cause debugging, and Anti-Destruction policies.
-- **33 Production Skills**: Covering Architecture & Cartography, Frontend & UI/UX, Backend & Low-Level C/C++, AI/Data Science, and QA/Auditing.
+- **15 Operational Rules**: Enforcing PRAR workflow, Context Engineering, Subagent Zero Context Bleed, TypeScript Safety Gate (`npx tsc --noEmit`), Root Cause debugging, and Anti-Destruction policies.
+- **36 Production Skills**: Covering Architecture, Context Engineering & Orchestration, Frontend & UI/UX, Backend, Systems & MCP Builder, AI/Data Science, and QA/Auditing.
 - **Project-Level Blueprints (`AGENTS.md`)**: AAIF-standard repository context templates providing deterministic execution parameters.
 
 ## Documentation & Key Links

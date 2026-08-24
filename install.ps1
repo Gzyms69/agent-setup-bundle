@@ -48,7 +48,7 @@ Write-Host ">>> Rozpoczynam instalacje srodowiska Agenta AI (Windows PowerShell)
 Write-Host "======================================================================" -ForegroundColor Cyan
 
 # 0. Wspoldzielona baza: Rules, Skills, Templates w ~/.agents/
-Write-Host "[+] Kopiowanie wspoldzielonych regul (13), skilli (33) i szablonow do ~/.agents/..." -ForegroundColor Green
+Write-Host "[+] Kopiowanie wspoldzielonych regul (15), skilli (36) i szablonow do ~/.agents/..." -ForegroundColor Green
 
 $RulesTarget = Join-Path $TargetAgentsDir "rules"
 $SkillsTarget = Join-Path $TargetAgentsDir "skills"
@@ -63,7 +63,7 @@ Copy-Item -Path (Join-Path $ScriptDir "skills\*") -Destination $SkillsTarget -Re
 if (Test-Path (Join-Path $ScriptDir "templates")) {
     Copy-Item -Path (Join-Path $ScriptDir "templates\*") -Destination $TemplatesTarget -Recurse -Force
 }
-Write-Host "    -> Zainstalowano 13 regul, 33 skille oraz szablony w ~/.agents/" -ForegroundColor Gray
+Write-Host "    -> Zainstalowano 15 regul, 36 skilli oraz szablony w ~/.agents/" -ForegroundColor Gray
 
 # 1. Konfiguracja dla OpenAI Codex
 if ($InstallCodex) {
@@ -176,7 +176,7 @@ if ($InstallCursor) {
 Write-Host "======================================================================" -ForegroundColor Cyan
 Write-Host ">>> SUKCES: Srodowisko agenta zostalo w pelni zainstalowane na Windows!" -ForegroundColor Green
 Write-Host ">>> Zainstalowane komponenty:"
-Write-Host "    - Shared Suite: ~/.agents/ (13 regul, 33 skille, szablony AGENTS.md)" -ForegroundColor White
+Write-Host "    - Shared Suite: ~/.agents/ (15 regul, 36 skilli, szablony AGENTS.md)" -ForegroundColor White
 if ($InstallCodex) {
     Write-Host "    - OpenAI Codex: ~/.codex/ (AGENTS.md, instructions.md, config.toml, skills link)" -ForegroundColor White
 }

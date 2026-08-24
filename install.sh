@@ -66,7 +66,7 @@ echo ">>> Rozpoczynam instalacje srodowiska Agenta AI (Multi-Platform)..."
 echo "======================================================================"
 
 # 0. Instalacja bazy wspolnej (Rules, Skills, Templates w ~/.agents/)
-echo "[+] Kopiowanie wspoldzielonych regul (13), skilli (33) i szablonow do ~/.agents/..."
+echo "[+] Kopiowanie wspoldzielonych regul (15), skilli (36) i szablonow do ~/.agents/..."
 mkdir -p "${TARGET_AGENTS_DIR}/rules"
 mkdir -p "${TARGET_AGENTS_DIR}/skills"
 mkdir -p "${TARGET_AGENTS_DIR}/templates"
@@ -76,7 +76,7 @@ cp -r "${SCRIPT_DIR}/skills/"* "${TARGET_AGENTS_DIR}/skills/"
 if [ -d "${SCRIPT_DIR}/templates" ]; then
     cp -r "${SCRIPT_DIR}/templates/"* "${TARGET_AGENTS_DIR}/templates/"
 fi
-echo "    -> Zainstalowano 13 regul, 33 skille oraz szablony w ~/.agents/"
+echo "    -> Zainstalowano 15 regul, 36 skilli oraz szablony w ~/.agents/"
 
 # 1. Konfiguracja dla OpenAI Codex
 if [ "$INSTALL_CODEX" = true ]; then
@@ -156,7 +156,7 @@ fi
 echo "======================================================================"
 echo ">>> SUKCES: Srodowisko agenta zostalo w pelni zainstalowane!"
 echo ">>> Zainstalowane komponenty:"
-echo "    - Shared Suite: ~/.agents/ (13 regul, 33 skille, szablony AGENTS.md)"
+echo "    - Shared Suite: ~/.agents/ (15 regul, 36 skilli, szablony AGENTS.md)"
 if [ "$INSTALL_CODEX" = true ]; then
     echo "    - OpenAI Codex: ~/.codex/ (AGENTS.md, instructions.md, config.toml, skills custom link)"
 fi
