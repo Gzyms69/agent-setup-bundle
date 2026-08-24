@@ -52,4 +52,5 @@ src/
 1. **Modular Boundary Isolation:** Never import database drivers or external API clients directly into UI components or pure domain models.
 2. **Anti-Monolith Constraint:** Keep individual files under ~150-200 lines. Refactor multi-concern files into dedicated submodules.
 3. **Strict TypeScript & TDD:** Never use `any` or delete functional code to satisfy type errors. Always write tests first for new business logic.
-4. **Environment Variables:** Never commit secrets. Reference `.env.example` for all required environment variables.
+4. **Context Engineering & Scratchpad Storage:** Any tool output or test log exceeding 100 lines / 5 KB must be offloaded to `./scratch/`.
+5. **Environment Variables:** Never commit secrets. Reference `.env.example` for all required environment variables.
