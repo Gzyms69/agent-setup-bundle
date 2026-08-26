@@ -1,6 +1,6 @@
 # Multi-Platform Agentic AI Engineering Operating System & Skill Suite
 
-> Production-ready, cross-platform configuration framework, system rules (Prime Directives), 33 modular skills (`agentskills.io` standard), repository blueprints (`AGENTS.md`), and Model Context Protocol (MCP) configurations for **OpenAI Codex**, **Antigravity / Gemini CLI**, **Claude Code**, and **Modern Cursor IDE (.mdc)** across **Windows**, **macOS**, and **Linux**.
+> Production-ready, cross-platform configuration framework, 16 operational system rules (Prime Directives), 36 modular skills (`agentskills.io` standard), repository blueprints (`AGENTS.md`), and Model Context Protocol (MCP) configurations for **OpenAI Codex**, **Antigravity / Gemini CLI**, **Claude Code**, and **Modern Cursor IDE (.mdc)** across **Windows**, **macOS**, and **Linux**.
 
 ---
 
@@ -34,23 +34,38 @@ Traditional approaches to AI pair programming ("Just write this feature") fail c
 
 ```mermaid
 flowchart TD
-    subgraph Core_Directives["12 Żelaznych Reguł Architektonicznych"]
-        PRAR["Protokół PRAR (Perceive -> Reason -> Act -> Refine)"]
-        ZeroSpec["Zero-Speculation Protocol (Zakaz Zgadywania)"]
-        TSGate["Critical TypeScript Safety Gate (npx tsc --noEmit)"]
+    subgraph Core_Directives["16 Żelaznych Reguł Operacyjnych (~/.agents/rules)"]
+        PRAR["Protokół PRAR & Zero-Speculation"]
+        Gate["4-Phase Pre-Flight Skill Gate"]
+        Context["Context Engineering & 100L/5KB Rule"]
+        PlanInt["Living Plan Integrity & State Machine"]
+        SubEco["Subagent Economy & Zero Context Bleed"]
+        Handoff["Lossless Session Handoff"]
     end
 
-    subgraph Skills_Matrix["Baza 25 Modułowych Umiejętności (~/.agents/skills)"]
-        Dev["Inżynieria (Frontend, Backend, GIS, Low-Level)"]
-        QA["Jakość & Review (Doubt-Driven, Code-Review)"]
-        Design["Art Direction (Swiss, OKLCH, Design Engineering)"]
+    subgraph Skills_Matrix["Baza 36 Modułowych Umiejętności (~/.agents/skills)"]
+        DomA["Domain A: Cartography, Planning & Orchestration (7)"]
+        DomB["Domain B: Frontend & UI/UX Craftsmanship (5)"]
+        DomC["Domain C: Backend, Systems & Low-Level MCP (8)"]
+        DomD["Domain D: AI, Data Science & Intelligence (7)"]
+        DomE["Domain E: QA, Diagnostics & Career Conversion (9)"]
     end
 
-    subgraph MCP_Servers["11 Natywnych Serwerów Narzędziowych (MCP)"]
-        Tools["GitHub API, Chrome DevTools, MemPalace, Puppeteer, OCI"]
+    subgraph Deployer_Mesh["Instalatory & Live Symlink Mesh"]
+        Inst["install.sh / install.ps1 / install.py"]
+        Val["Automated QA Validator (validate_suite.py)"]
     end
 
-    Core_Directives --> Skills_Matrix --> MCP_Servers
+    subgraph Target_Environments["4 Środowiska Docelowe"]
+        Codex["OpenAI Codex (~/.codex/)"]
+        Gemini["Antigravity / Gemini CLI (~/.gemini/)"]
+        Claude["Claude Code (~/.claude/)"]
+        Cursor["Cursor IDE (~/.cursor/)"]
+    end
+
+    Core_Directives --> Skills_Matrix
+    Skills_Matrix --> Deployer_Mesh
+    Deployer_Mesh --> Target_Environments
 ```
 
 ---
@@ -75,6 +90,14 @@ Every agent configured with this suite strictly adheres to the following non-neg
    - Duplicate helpers, parallel endpoints, or competing schemas are forbidden. Existing implementations must be reused or refactored in-place.
 8. **Anti-Destruction Protocol:**
    - Strict ban on `git clean`, blind mass search-and-replace, or destructive workspace operations without explicit user confirmation.
+9. **Context Engineering & Attention Preservation:**
+   - Strict 100-line / 5 KB offloading mandate to `./scratch/` for bulky logs/dumps, Attention U-Curve defense (anchoring critical invariants at start and active goals at end), and immediate quarantine of invalid assumptions via `[INVALIDATED: <reason>]`.
+10. **Interactive Planning Mode & Living Document Integrity:**
+    - Stateful planning via 3-state machine (Draft -> Refinement -> Execution), mandatory `Iteration Delta` header, permanent lock on discovered codebase facts, and active SSOT cleansing with 1-line `[PRUNED]` tombstones to prevent zombie code.
+11. **Subagent Economy & Zero Context Bleed:**
+    - Cost-efficient model routing (`flash_lite` for file reads, `flash` for research, `pro` for deep reasoning). Subagents communicate strictly via structured schemas (`Status`, `Findings`, `Artifacts`, `Blockers`) without dumping raw tool logs.
+12. **Lossless Session Handoff & Lean SSOT:**
+    - Zero conversation dumping into persistent architecture files. Seamless multi-session transitions via `NEXT_SESSION_PLAN.md` and self-contained, executable handoff bootstrap prompts.
 
 ---
 
@@ -200,7 +223,45 @@ All skills adhere to the `agentskills.io` standard with YAML frontmatter, progre
 
 ---
 
-## 7. Cross-Platform Quickstart & Installation
+## 7. Cross-Platform Installer Architecture & Resilience
+
+The suite delivers full behavioral and operational parity across Linux, macOS, and Windows through three dedicated, idempotent installers:
+- **`install.sh` (Linux / macOS):** Native Bash script enforcing `set -euo pipefail`. Provisions shared rules and skills, links platform-specific manifests, and establishes symlinks.
+- **`install.ps1` (Windows PowerShell):** Windows-native script with a 3-tier fallback engine:
+  1. *SymbolicLink:* Attempts native symlink via `New-Item -ItemType SymbolicLink` (used when Developer Mode or Admin rights are enabled).
+  2. *Directory Junction:* Automatically falls back to `New-Item -ItemType Junction` if symlink creation is restricted by OS policy (works without elevation on NTFS).
+  3. *Recursive Directory Copy:* Falls back to `Copy-Item -Recurse` if filesystem junctions are unsupported.
+- **`install.py` (Universal Python 3):** Cross-platform standard using `pathlib` and `shutil`, providing graceful symlink-to-copy fallback across any environment.
+
+### Key Architectural Invariants:
+1. **Live Symlink Mesh (Zero-Redundancy SSOT):** Platforms like OpenAI Codex (`~/.codex/skills/custom`) and Claude Code (`~/.claude/skills`) are dynamically symlinked to `~/.agents/skills`. Updating or adding a skill in the shared directory updates all agent runtimes in real time.
+2. **Non-Destructive Idempotency:** Existing user configuration files (`~/.gemini/settings.json`, `~/.codex/config.toml`, `~/.claude/mcp.json`, `~/.cursor/mcp.json`) are **never overwritten**. Only missing templates and system manifests are deployed, preserving personal API keys and local tokens.
+
+---
+
+## 8. Automated Quality Assurance & Suite Validation (`validate_suite.py`)
+
+To ensure zero drift, correct token bounds, and strict compliance with the `agentskills.io` standard, the bundle includes a built-in CI/CD test validator:
+
+```bash
+python3 scripts/validate_suite.py
+```
+
+### Deterministic Quality Gates Enforced:
+1. **YAML Frontmatter Specification Check:**
+   - Validates that every skill folder contains a `SKILL.md` starting with `---`.
+   - Ensures `name:` matches the directory name exactly (case-sensitive).
+   - Enforces a hard character limit on `description:` (`len <= 1024` chars) to protect the model prompt budget.
+2. **Rule Integrity & Non-Triviality:**
+   - Audits all 16 markdown rules in `rules/` to ensure minimum non-empty content lengths and structural integrity.
+3. **Platform Manifest Parity:**
+   - Ensures all 4 platform definitions (`CODEX.md`, `GEMINI.md`, `CLAUDE.md`, `.cursorrules`) are synchronized with the 4-Phase Pre-Flight Skill Gate and core directives.
+4. **Configuration & Template Parsing:**
+   - Validates syntax of all JSON files in `config/` (`mcp_config.json`, `settings.json`, `cursor_mcp.json`) and ensures `codex_config.toml` and `templates/AGENTS.md` are present.
+
+---
+
+## 9. Cross-Platform Quickstart & Installation
 
 Clone and run the installer for your operating system:
 
@@ -231,7 +292,7 @@ python install.py --all
 
 ---
 
-## 8. Supported Environments & Platform Matrix
+## 10. Supported Environments & Platform Matrix
 
 | Platform | Manifest / Rule Location | Config Location | Skill Discovery Path |
 |---|---|---|---|
@@ -242,7 +303,7 @@ python install.py --all
 
 ---
 
-## 9. Repository File Structure
+## 11. Repository File Structure
 
 ```
 agent_setup_bundle/
@@ -266,6 +327,6 @@ agent_setup_bundle/
 
 ---
 
-## 10. License
+## 12. License
 
 This project is licensed under the [MIT License](LICENSE).
