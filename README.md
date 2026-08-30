@@ -34,38 +34,37 @@ Traditional approaches to AI pair programming ("Just write this feature") fail c
 
 ```mermaid
 flowchart TD
-    subgraph Core_Directives["16 Żelaznych Reguł Operacyjnych (~/.agents/rules)"]
-        PRAR["Protokół PRAR & Zero-Speculation"]
-        Gate["4-Phase Pre-Flight Skill Gate"]
-        Context["Context Engineering & 100L/5KB Rule"]
-        PlanInt["Living Plan Integrity & State Machine"]
-        SubEco["Subagent Economy & Zero Context Bleed"]
-        Handoff["Lossless Session Handoff"]
+    subgraph Directives["1. 16 Żelaznych Reguł Operacyjnych (~/.agents/rules)"]
+        PRAR["Protokół PRAR (Perceive -> Reason -> Act -> Refine)"]
+        ZeroSpec["Zero-Speculation Protocol (Weryfikacja Faktów na Żywo)"]
+        ContextEng["Ochrona Budżetu Uwagi (Reguła 100 Linii / 5 KB do ./scratch/)"]
+        CircuitBreaker["Bezpiecznik Zatrucia Kontekstu (Flaga [INVALIDATED])"]
+        StatePlan["Maszyna Stanów Planowania (Iteration Delta & Nagrobki [PRUNED])"]
+        Handoff["Protokół Lossless Session Handoff (NEXT_SESSION_PLAN.md)"]
     end
 
-    subgraph Skills_Matrix["Baza 36 Modułowych Umiejętności (~/.agents/skills)"]
-        DomA["Domain A: Cartography, Planning & Orchestration (7)"]
-        DomB["Domain B: Frontend & UI/UX Craftsmanship (5)"]
-        DomC["Domain C: Backend, Systems & Low-Level MCP (8)"]
-        DomD["Domain D: AI, Data Science & Intelligence (7)"]
-        DomE["Domain E: QA, Diagnostics & Career Conversion (9)"]
+    subgraph Skills_Framework["2. Baza 36 Umiejętności (Standard agentskills.io)"]
+        Cartography["Faza 0: Kartografia & Onboarding Kodu"]
+        Planning["Faza 1: Architektura, Monorepo & Orkiestracja"]
+        Specialists["Faza 2: Domena (Frontend, Backend, GIS, WASM, OSINT, AI/ML)"]
+        QA_Gate["Faza 3: QA & Weryfikacja (TDD, TSC Safety Gate, 5-Axis Review)"]
     end
 
-    subgraph Deployer_Mesh["Instalatory & Live Symlink Mesh"]
-        Inst["install.sh / install.ps1 / install.py"]
-        Val["Automated QA Validator (validate_suite.py)"]
+    subgraph Tooling_MCP["3. Narzędzia i Ekosystem Model Context Protocol (11 Serwerów MCP)"]
+        MCP["MemPalace KG, Lighthouse, Chrome DevTools, Docker, OCI, Firecrawl, ast-grep"]
     end
 
-    subgraph Target_Environments["4 Środowiska Docelowe"]
-        Codex["OpenAI Codex (~/.codex/)"]
-        Gemini["Antigravity / Gemini CLI (~/.gemini/)"]
-        Claude["Claude Code (~/.claude/)"]
-        Cursor["Cursor IDE (~/.cursor/)"]
+    subgraph Deployment["4. Deterministyczny Wdrożeniowiec & Siatka Dowiązań SSOT (<3 s)"]
+        Installer["3 Instalatory (install.sh, install.ps1 z Fallbackiem NTFS, install.py)"]
+        Validator["Automatyczny Walidator Integralności CI/CD (scripts/validate_suite.py)"]
+        Targets["4 Środowiska: OpenAI Codex, Antigravity/Gemini CLI, Claude Code, Cursor IDE"]
     end
 
-    Core_Directives --> Skills_Matrix
-    Skills_Matrix --> Deployer_Mesh
-    Deployer_Mesh --> Target_Environments
+    Directives --> Skills_Framework
+    Skills_Framework --> Tooling_MCP
+    Tooling_MCP --> Deployment
+    Installer --> Targets
+    Validator -.-> Directives & Skills_Framework
 ```
 
 ---
