@@ -160,6 +160,51 @@ def check_core():
     else:
         print("    -> core/.cursorrules present.")
 
+def check_workers():
+    print("[-] Validating Worker Ecosystem (Chinese LLMs / FastMCP / Aider)...")
+    worker_mcp = ROOT_DIR / "scripts" / "worker_mcp.py"
+    worker_cli = ROOT_DIR / "scripts" / "worker_cli.py"
+    worker_prof = CONFIG_DIR / "worker_profiles.json"
+    aider_settings = CONFIG_DIR / ".aider.model.settings.yml"
+    aider_metadata = CONFIG_DIR / ".aider.model.metadata.json"
+    aider_template = TEMPLATES_DIR / ".aider.conf.yml.template"
+
+    if not worker_mcp.is_file():
+        errors.append("scripts/worker_mcp.py missing!")
+    else:
+        print("    -> scripts/worker_mcp.py present.")
+
+    if not worker_cli.is_file():
+        errors.append("scripts/worker_cli.py missing!")
+    else:
+        print("    -> scripts/worker_cli.py present.")
+
+    if not worker_prof.is_file():
+        errors.append("config/worker_profiles.json missing!")
+    else:
+        try:
+            data = json.loads(worker_prof.read_text(encoding="utf-8"))
+            if "profiles" not in data or "glm-4-flash" not in data["profiles"]:
+                errors.append("config/worker_profiles.json missing 'glm-4-flash' profile!")
+            print("    -> config/worker_profiles.json valid.")
+        except Exception as e:
+            errors.append(f"config/worker_profiles.json invalid JSON: {e}")
+
+    if not aider_settings.is_file():
+        errors.append("config/.aider.model.settings.yml missing!")
+    else:
+        print("    -> config/.aider.model.settings.yml present.")
+
+    if not aider_metadata.is_file():
+        errors.append("config/.aider.model.metadata.json missing!")
+    else:
+        print("    -> config/.aider.model.metadata.json present.")
+
+    if not aider_template.is_file():
+        errors.append("templates/.aider.conf.yml.template missing!")
+    else:
+        print("    -> templates/.aider.conf.yml.template present.")
+
 def main():
     print("======================================================================")
     print(">>> Running agent-setup-bundle Quality Assurance Validator...")
@@ -170,6 +215,7 @@ def main():
     check_configs()
     check_templates()
     check_core()
+    check_workers()
 
     print("======================================================================")
     if warnings:

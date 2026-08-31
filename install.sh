@@ -66,17 +66,37 @@ echo ">>> Rozpoczynam instalacje srodowiska Agenta AI (Multi-Platform)..."
 echo "======================================================================"
 
 # 0. Instalacja bazy wspolnej (Rules, Skills, Templates w ~/.agents/)
-echo "[+] Kopiowanie wspoldzielonych regul (16), skilli (36) i szablonow do ~/.agents/..."
+echo "[+] Kopiowanie wspoldzielonych regul (16), skilli (36), skryptow i szablonow do ~/.agents/..."
 mkdir -p "${TARGET_AGENTS_DIR}/rules"
 mkdir -p "${TARGET_AGENTS_DIR}/skills"
 mkdir -p "${TARGET_AGENTS_DIR}/templates"
+mkdir -p "${TARGET_AGENTS_DIR}/scripts"
+mkdir -p "${TARGET_AGENTS_DIR}/config"
+mkdir -p "${HOME}/.local/bin"
 
 cp -r "${SCRIPT_DIR}/rules/"* "${TARGET_AGENTS_DIR}/rules/"
 cp -r "${SCRIPT_DIR}/skills/"* "${TARGET_AGENTS_DIR}/skills/"
+cp -r "${SCRIPT_DIR}/scripts/"* "${TARGET_AGENTS_DIR}/scripts/"
+cp -r "${SCRIPT_DIR}/config/"* "${TARGET_AGENTS_DIR}/config/"
 if [ -d "${SCRIPT_DIR}/templates" ]; then
     cp -r "${SCRIPT_DIR}/templates/"* "${TARGET_AGENTS_DIR}/templates/"
 fi
-echo "    -> Zainstalowano 16 regul, 36 skilli oraz szablony w ~/.agents/"
+
+# Konfiguracja Aidera i modeli chińskich
+if [ ! -f "${HOME}/.aider.conf.yml" ] && [ -f "${SCRIPT_DIR}/templates/.aider.conf.yml.template" ]; then
+    cp "${SCRIPT_DIR}/templates/.aider.conf.yml.template" "${HOME}/.aider.conf.yml"
+    echo "    -> Utworzono ~/.aider.conf.yml"
+fi
+cp "${SCRIPT_DIR}/config/.aider.model.settings.yml" "${HOME}/.aider.model.settings.yml"
+cp "${SCRIPT_DIR}/config/.aider.model.metadata.json" "${HOME}/.aider.model.metadata.json"
+
+# Symlink narzedzia terminalowego CLI (~/.local/bin/worker)
+chmod +x "${TARGET_AGENTS_DIR}/scripts/worker_cli.py"
+chmod +x "${TARGET_AGENTS_DIR}/scripts/worker_mcp.py"
+ln -sf "${TARGET_AGENTS_DIR}/scripts/worker_cli.py" "${HOME}/.local/bin/worker"
+echo "    -> Utworzono narzedzie CLI: ~/.local/bin/worker"
+
+echo "    -> Zainstalowano 16 regul, 36 skilli, skrypty workerow oraz szablony w ~/.agents/"
 
 # 1. Konfiguracja dla OpenAI Codex
 if [ "$INSTALL_CODEX" = true ]; then

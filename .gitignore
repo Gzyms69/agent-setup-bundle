@@ -21,3 +21,8 @@ __pycache__/
 .venv/
 dist/
 build/
+
+# Aider runtime caches & chat logs (exclude local session artifacts)
+.aider.chat.history.md
+.aider.input.history
+.aider.tags.cache.v4/

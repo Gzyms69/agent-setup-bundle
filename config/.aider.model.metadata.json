@@ -1,0 +1,83 @@
+{
+  "openrouter/minimax/minimax-m3:free": {
+    "max_tokens": 65536,
+    "max_input_tokens": 1048576,
+    "max_output_tokens": 65536,
+    "input_cost_per_token": 0.0,
+    "output_cost_per_token": 0.0,
+    "litellm_provider": "openrouter",
+    "mode": "chat"
+  },
+  "openrouter/nvidia/nemotron-3-ultra-550b-a55b:free": {
+    "max_tokens": 65536,
+    "max_input_tokens": 1000000,
+    "max_output_tokens": 65536,
+    "input_cost_per_token": 0.0,
+    "output_cost_per_token": 0.0,
+    "litellm_provider": "openrouter",
+    "mode": "chat"
+  },
+  "openrouter/nvidia/nemotron-3.5-lightning:free": {
+    "max_tokens": 65536,
+    "max_input_tokens": 1000000,
+    "max_output_tokens": 65536,
+    "input_cost_per_token": 0.0,
+    "output_cost_per_token": 0.0,
+    "litellm_provider": "openrouter",
+    "mode": "chat"
+  },
+  "openrouter/z-ai/glm-5.2:free": {
+    "max_tokens": 65536,
+    "max_input_tokens": 256000,
+    "max_output_tokens": 65536,
+    "input_cost_per_token": 0.0,
+    "output_cost_per_token": 0.0,
+    "litellm_provider": "openrouter",
+    "mode": "chat"
+  },
+  "openrouter/nvidia/nemotron-3-super-120b-a12b:free": {
+    "max_tokens": 32768,
+    "max_input_tokens": 262144,
+    "max_output_tokens": 32768,
+    "input_cost_per_token": 0.0,
+    "output_cost_per_token": 0.0,
+    "litellm_provider": "openrouter",
+    "mode": "chat"
+  },
+  "openrouter/cohere/north-mini-code:free": {
+    "max_tokens": 32768,
+    "max_input_tokens": 256000,
+    "max_output_tokens": 32768,
+    "input_cost_per_token": 0.0,
+    "output_cost_per_token": 0.0,
+    "litellm_provider": "openrouter",
+    "mode": "chat"
+  },
+  "openrouter/poolside/laguna-s-2.1:free": {
+    "max_tokens": 32768,
+    "max_input_tokens": 262144,
+    "max_output_tokens": 32768,
+    "input_cost_per_token": 0.0,
+    "output_cost_per_token": 0.0,
+    "litellm_provider": "openrouter",
+    "mode": "chat"
+  },
+  "openai/glm-4-flash": {
+    "max_tokens": 4096,
+    "max_input_tokens": 128000,
+    "max_output_tokens": 4096,
+    "input_cost_per_token": 0.0,
+    "output_cost_per_token": 0.0,
+    "litellm_provider": "openai",
+    "mode": "chat"
+  },
+  "openai/Qwen/Qwen2.5-Coder-32B-Instruct": {
+    "max_tokens": 8192,
+    "max_input_tokens": 32768,
+    "max_output_tokens": 8192,
+    "input_cost_per_token": 0.0,
+    "output_cost_per_token": 0.0,
+    "litellm_provider": "openai",
+    "mode": "chat"
+  }
+}

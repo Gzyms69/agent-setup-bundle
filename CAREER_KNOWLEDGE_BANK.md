@@ -5,7 +5,7 @@
 
 ## 1. System Overview
 
-`agent-setup-bundle` to deterministyczny, wieloplatformowy system operacyjny inżynierii AI, ujednolicający środowiska wykonawcze czterech wiodących asystentów kodowania (OpenAI Codex, Antigravity / Gemini CLI, Claude Code, Cursor IDE) na systemach Linux, macOS i Windows. Architektura projektu opiera się na 16 żelaznych regułach operacyjnych (w tym protokole PRAR, bezwzględnym zakazie spekulacji, inżynierii uwagi i maszynie stanów planowania), 36 modułowych pakietach umiejętności w standardzie `agentskills.io` oraz siatce dowiązań symbolicznych eliminującej duplikację konfiguracji. Całość zarządzana jest przez trzy natywne, idempotentne instalatory z trójstopniowym silnikiem kaskadowego fallbacku dla Windows oraz zautomatyzowany walidator jakości kodu zapobiegający degradacji promptów i dryfowi reguł.
+`agent-setup-bundle` to deterministyczny, wieloplatformowy system operacyjny inżynierii AI, ujednolicający środowiska wykonawcze wiodących asystentów kodowania (OpenAI Codex, Antigravity / Gemini CLI, Claude Code, Cursor IDE) oraz integrujący dwupoziomową architekturę orkiestracji podwykonawczej (**Two-Tier Cognitive Architecture**) na systemach Linux, macOS i Windows. Architektura projektu opiera się na 16 żelaznych regułach operacyjnych (w tym protokole PRAR, bezwzględnym zakazie spekulacji, inżynierii uwagi i maszynie stanów planowania), 36 modułowych pakietach umiejętności w standardzie `agentskills.io`, serwerze FastMCP z inteligentnym routerem darmowych modeli LLM (MiniMax M3 z 1M kontekstu, NVIDIA Nemotron 550B MoE, Zhipu GLM-5.2) oraz siatce dowiązań symbolicznych eliminującej duplikację konfiguracji. Całość zarządzana jest przez trzy natywne, idempotentne instalatory z trójstopniowym silnikiem kaskadowego fallbacku dla Windows oraz zautomatyzowany walidator jakości kodu zapobiegający degradacji promptów i dryfowi reguł.
 
 ---
 
@@ -42,6 +42,13 @@
 - **Rygor diagnostyczny:** Zastąpienie domysłów twardymi danymi telemetrycznymi – zakaz zgadywania specyfikacji sprzętowej i wersji bibliotek, wymuszenie uruchamiania poleceń inspekcyjnych (`uname -r`, `lspci`, `free -h`, `lsblk`).
 - **Niezmiennik ochrony środowiska produkcyjnego:** Całkowity zakaz destrukcyjnych poleceń (`git clean`, masowe wyszukiwanie i zamiana) bez uprzedniej symulacji i zgody operatora.
 
+### 2.6. Kąt AI Cost Optimization & Multi-Tier Sub-Agent Orchestration
+- **Architektura dwupoziomowa (Two-Tier Cognitive Systems):** Separacja procesów planowania i nadzoru (modele flagowe Reasoning: Gemini 3.7 Pro / Flash) od masowego wykonawstwa kodu (darmowe wyspecjalizowane modele: MiniMax M3, NVIDIA Nemotron 550B, GLM-5.2).
+- **Redukcja kosztów API do 0.00 USD:** Zbudowanie mostka Aider Headless + FastMCP, który przejmuje 100% pracochłonnych, tokenożernych zadań (generowanie 2000+ LOC rusztowań, masowe testy jednostkowe TDD, JSDoc, migracje typów) przy zerowym zużyciu płatnych tokenów agenta głównego.
+- **Inteligentny Router Zadaniowy (Task-to-Model Router):** Dynamiczne dopasowywanie modelu do specyfiki promptu (MiniMax M3 dla rusztowań full-stack 1M kontekstu, Nemotron 550B MoE dla operacji binarnych/C/Rust, GLM-5.2 dla naprawy bugów SWE-bench i precyzyjnych diffów).
+- **Piaskownica i automatyczna samonaprawa (Self-Healing Sandboxing):** Izolacja każdego zadania podwykonawcy w dedykowanym Git Worktree oraz sprzężenie wykonania z automatycznym linterem/testerem (`npx tsc --noEmit`, `pytest`, `cargo test`), eliminujące halucynacje składniowe przed scaleniem kodu do repozytorium.
+- **Dynamiczne wstrzykiwanie wiedzy domenowej (Dynamic Skill Injection):** Mostkowanie 36 pakietów `agentskills.io` bezpośrednio do bezstanowych wywołań Aidera jako kontekst read-only (`--read`).
+
 ---
 
 ## 3. Pula Twardych Punktów Google XYZ
@@ -51,7 +58,7 @@
 2. **Skonstruowano** wieloplatformowy system instalacyjny w Bash, PowerShell i Pythonie, **skracając** czas wdrożenia kompletnego środowiska AI na nowej maszynie do poniżej 3 sekund, **poprzez** deterministyczną dystrybucję 16 reguł i 36 skilli do ujednoliconego katalogu `~/.agents/`.
 3. **Wyeliminowano** redundancję danych i ryzyko dryfu konfiguracji w 4 środowiskach AI, **utrzymując** rozmiar instalacji na poziomie pojedynczego zestawu plików źródłowych, **poprzez** spięcie katalogów `~/.codex/skills/custom` oraz `~/.claude/skills` dynamicznymi dowiązaniami symbolicznymi do wspólnego zasobu.
 4. **Zabezpieczono** klucze API i tokeny użytkowników przed przypadkowym zresetowaniem podczas aktualizacji, **gwarantując** zerowe nadpisania plików konfiguracyjnych, **poprzez** implementację warunków sprawdzających obecność istniejących plików `settings.json`, `config.toml` oraz `mcp.json` przed kopiowaniem szablonów.
-5. **Zunifikowano** konfigurację narzędziową dla 11 serwerów Model Context Protocol (MCP), **eliminując** manualne konfigurowanie narzędzi w różnych IDE, **poprzez** centralne szablony JSON/TOML mapujące uprawnienia dla baz danych, kontenerów Docker, profili Lighthouse i automatyzacji przeglądarek.
+5. **Zunifikowano** konfigurację narzędziową dla 12 serwerów Model Context Protocol (MCP), **eliminując** manualne konfigurowanie narzędzi w różnych IDE, **poprzez** centralne szablony JSON/TOML mapujące uprawnienia dla baz danych, kontenerów Docker, profili Lighthouse, sub-workerów i automatyzacji przeglądarek.
 
 ### Kategoria B: AI Systems Engineering & Architektura Agentowa
 6. **Zredukowano** degradację uwagi modelu (zjawisko Attention U-Curve) w długich sesjach roboczych, **obniżając** objętość kontekstu o 60-80% przy intensywnych operacjach wejścia-wyjścia, **poprzez** wymuszenie reguły automatycznego zrzutu logów przekraczających 100 linii lub 5 KB do plików `./scratch/` z pozostawieniem w oknie kontekstowym 3-5 punktowego abstraktu.
@@ -63,23 +70,30 @@
 12. **Zlikwidowano** problem powstawania kodu-zombie i hybrydowych implementacji w modelach LLM, **utrzymując** czystość aktywnej specyfikacji technicznej, **poprzez** procedurę bezwzględnego usuwania wycofanych fragmentów architektury z sekcji aktywnej i zastępowania ich atomowymi wpisami `[PRUNED]` w logu decyzji.
 13. **Zapewniono** bezstratny transfer wiedzy między kolejnymi sesjami programowania w parach (*Zero Context Loss*), **eliminując** zjawisko zaśmiecania głównych plików reguł historią czatu, **poprzez** protokół *Session Handoff* generujący samowystarczalne prompty startowe sprzężone z plikiem `NEXT_SESSION_PLAN.md`.
 
-### Kategoria C: Software Architecture & Systems Design
-14. **Zunifikowano** implementację reguł inżynieryjnych dla 4 odmiennych środowisk AI (Codex, Antigravity, Claude, Cursor), **zapewniając** 100% spójność zachowania modeli bez względu na używany edytor, **poprzez** transpilację wspólnych dyrektyw do formatów `CODEX.md`, `GEMINI.md`, `CLAUDE.md` oraz reguł `.cursor/rules/*.mdc`.
-15. **Wyeliminowano** powstawanie monolitycznych plików i trudnego w utrzymaniu kodu, **ograniczając** rozmiar pojedynczych jednostek kodu do maksymalnie 150-200 linii, **poprzez** egzekwowanie Clean/Hexagonal Architecture i separację logiki domenowej od frameworków i sterowników.
-16. **Zapewniono** integralność granic architektonicznych w tworzonych projektach, **eliminując** błędy typu runtime TypeError i niejawne mutacje, **poprzez** rygorystyczny zakaz używania typów `any` oraz arbitralnych struktur `dict[str, Any]` na rzecz ścisłych kontraktów Pydantic i interfejsów TypeScript.
-17. **Zminimalizowano** duplikację logiki biznesowej i powstawanie konkurujących funkcji pomocniczych, **utrzymując** spójność architektury kodu (DRY / Single Source of Truth), **poprzez** procedurę obowiązkowego audytu repozytorium przed napisaniem jakiejkolwiek nowej funkcji i refaktoryzację istniejących modułów in-place.
-18. **Wdrożono** standard Agentic AI Foundation (AAIF) dla konfiguracji repozytoriów, **eliminując** zgadywanie parametrów kompilacji i uruchomienia przez asystentów AI, **poprzez** szablon `templates/AGENTS.md` definiujący jawną Prawdę Wykonywalną, mapę granic katalogowych oraz niezmienniki systemowe.
+### Kategoria C: AI Cost Optimization & Sub-Worker Delegation
+14. **Zredukowano** koszty operacyjne API do 0.00 USD dla 100% masowych zadań programistycznych (scaffolding 2500+ LOC, pakiety testów TDD, dokumentacja JSDoc), **odciążając** płatne okna kontekstowe modeli nadrzędnych, **poprzez** architekturę dwupoziomowej orkiestracji FastMCP (`worker_mcp.py`) sprzężoną z silnikiem Aider Headless i darmowymi modelami z puli OpenRouter/Zhipu.
+15. **Zaprojektowano i wdrożono** Task-Specialized Intelligent Router dla modeli open-source, **uzyskując** 92-95% skuteczności wykonania zadań w benchmarkach syntetycznych, **poprzez** dynamiczną kategoryzację promptów i kierowanie ich do wyspecjalizowanych modeli (MiniMax M3 z 1M kontekstu dla rusztowań, Nemotron 550B MoE dla kodu binarnego/niskopoziomowego, GLM-5.2 dla naprawy bugów).
+16. **Wyeliminowano** problem obcinania generowanego kodu w wieloplikowych zadaniach sub-agentów, **zwiększając** maksymalny rozmiar pojedynczego zrzutu kodu z 4k do 65k tokenów wyjściowych, **poprzez** rekonfigurację metadanych `.aider.model.metadata.json` i synchronizację limitów z faktycznymi specyfikacjami API OpenRouter.
+17. **Zautomatyzowano** pętlę samonaprawczą (Self-Healing Loop) w zadaniach generowania kodu przez modele chińskie, **zapobiegając** wprowadzaniu błędów składniowych i regresji typów, **poprzez** automatyczną detekcję stosu technologicznego (`npx tsc --noEmit`, `pytest`, `cargo test`) i przekazywanie flagi `--auto-test` do kontenera Git Worktree.
+18. **Wdrożono** mechanizm Dynamic Skill Injection dla bezstanowych procesów roboczych, **podnosząc** zgodność generowanego kodu ze standardami architektonicznymi projektu, **poprzez** dynamiczne mapowanie i wstrzykiwanie 36 pakietów `agentskills.io` do kontekstu wykonawczego Aidera w trybie read-only (`--read`).
 
-### Kategoria D: Quality Assurance & Test Automation
-19. **Zbudowano** zautomatyzowane narzędzie walidacji integralności środowiska w Pythonie (`scripts/validate_suite.py`), **wykrywając** 100% błędów składniowych i niespójności konfiguracyjnych przed commitem, **poprzez** wieloaspektowy audyt 36 skilli, 16 reguł, 4 manifestów i plików konfiguracyjnych.
-20. **Zabezpieczono** modele LLM przed obcinaniem krytycznych instrukcji systemowych, **gwarantując** pełną czytelność metadanych skilli, **poprzez** automatyczną kontrolę długości opisu w blokach YAML frontmatter z twardym limitem 1024 znaków.
-21. **Wprowadzono** mechanizm weryfikacji zgodności nazewnictwa w standardzie `agentskills.io`, **zapobiegając** błędom dynamicznego ładowania umiejętności, **poprzez** regexowy audyt dopasowania pola `name:` w pliku `SKILL.md` do fizycznej nazwy katalogu.
-22. **Zabezpieczono** spójność semantyczną promptów bazowych dla 4 platform, **gwarantując** obecność procedury 4-fazowej bramki Pre-Flight Skill Gate we wszystkich manifestach, **poprzez** zautomatyzowaną inspekcję zawartości plików `CODEX.md`, `GEMINI.md`, `CLAUDE.md` i `.cursorrules`.
-23. **Wymuszono** bezwzględne bezpieczeństwo typów w projektach TypeScript, **eliminując** regresje funkcjonalne wywołane próbami omijania kompilatora, **poprzez** twardą bramkę TypeScript Safety Gate (`npx tsc --noEmit`) zakazującą usuwania logiki biznesowej w celu naprawy błędów typowania.
+### Kategoria D: Software Architecture & Systems Design
+19. **Zunifikowano** implementację reguł inżynieryjnych dla 4 odmiennych środowisk AI (Codex, Antigravity, Claude, Cursor), **zapewniając** 100% spójność zachowania modeli bez względu na używany edytor, **poprzez** transpilację wspólnych dyrektyw do formatów `CODEX.md`, `GEMINI.md`, `CLAUDE.md` oraz reguł `.cursor/rules/*.mdc`.
+20. **Wyeliminowano** powstawanie monolitycznych plików i trudnego w utrzymaniu kodu, **ograniczając** rozmiar pojedynczych jednostek kodu do maksymalnie 150-200 linii, **poprzez** egzekwowanie Clean/Hexagonal Architecture i separację logiki domenowej od frameworków i sterowników.
+21. **Zapewniono** integralność granic architektonicznych w tworzonych projektach, **eliminując** błędy typu runtime TypeError i niejawne mutacje, **poprzez** rygorystyczny zakaz używania typów `any` oraz arbitralnych struktur `dict[str, Any]` na rzecz ścisłych kontraktów Pydantic i interfejsów TypeScript.
+22. **Zminimalizowano** duplikację logiki biznesowej i powstawanie konkurujących funkcji pomocniczych, **utrzymując** spójność architektury kodu (DRY / Single Source of Truth), **poprzez** procedurę obowiązkowego audytu repozytorium przed napisaniem jakiejkolwiek nowej funkcji i refaktoryzację istniejących modułów in-place.
+23. **Wdrożono** standard Agentic AI Foundation (AAIF) dla konfiguracji repozytoriów, **eliminując** zgadywanie parametrów kompilacji i uruchomienia przez asystentów AI, **poprzez** szablon `templates/AGENTS.md` definiujący jawną Prawdę Wykonywalną, mapę granic katalogowych oraz niezmienniki systemowe.
 
-### Kategoria E: Technical Support L2 & Incident Response
-24. **Wyeliminowano** ryzyko wprowadzania pozornych poprawek maskujących awarie systemowe, **zapewniając** usuwanie problemów u źródła, **poprzez** protokół *Root Cause Only* wymuszający analizę w kolejności warstw: `Kernel > Driver > OS Config > Runtime > Framework > Application Code`.
-25. **Zabezpieczono** systemy produkcyjne przed cichymi awariami poleceń ze skutkami ubocznymi, **eliminując** fałszywe potwierdzenia wykonania operacji, **poprzez** protokół Command Outcome Verification nakazujący wykonanie wtórnego sprawdzenia stanu (np. odczyt pliku, status usługi, stan procesu) po każdym poleceniu mutującym stan.
+### Kategoria E: Quality Assurance & Test Automation
+24. **Zbudowano** zautomatyzowane narzędzie walidacji integralności środowiska w Pythonie (`scripts/validate_suite.py`), **wykrywając** 100% błędów składniowych i niespójności konfiguracyjnych przed commitem, **poprzez** wieloaspektowy audyt 36 skilli, 16 reguł, 4 manifestów, serwera sub-workerów i plików konfiguracyjnych.
+25. **Zabezpieczono** modele LLM przed obcinaniem krytycznych instrukcji systemowych, **gwarantując** pełną czytelność metadanych skilli, **poprzez** automatyczną kontrolę długości opisu w blokach YAML frontmatter z twardym limitem 1024 znaków.
+26. **Wprowadzono** mechanizm weryfikacji zgodności nazewnictwa w standardzie `agentskills.io`, **zapobiegając** błędom dynamicznego ładowania umiejętności, **poprzez** regexowy audyt dopasowania pola `name:` w pliku `SKILL.md` do fizycznej nazwy katalogu.
+27. **Zabezpieczono** spójność semantyczną promptów bazowych dla 4 platform, **gwarantując** obecność procedury 4-fazowej bramki Pre-Flight Skill Gate we wszystkich manifestach, **poprzez** zautomatyzowaną inspekcję zawartości plików `CODEX.md`, `GEMINI.md`, `CLAUDE.md` i `.cursorrules`.
+28. **Wymuszono** bezwzględne bezpieczeństwo typów w projektach TypeScript, **eliminując** regresje funkcjonalne wywołane próbami omijania kompilatora, **poprzez** twardą bramkę TypeScript Safety Gate (`npx tsc --noEmit`) zakazującą usuwania logiki biznesowej w celu naprawy błędów typowania.
+
+### Kategoria F: Technical Support L2 & Incident Response
+29. **Wyeliminowano** ryzyko wprowadzania pozornych poprawek maskujących awarie systemowe, **zapewniając** usuwanie problemów u źródła, **poprzez** protokół *Root Cause Only* wymuszający analizę w kolejności warstw: `Kernel > Driver > OS Config > Runtime > Framework > Application Code`.
+30. **Zabezpieczono** systemy produkcyjne przed cichymi awariami poleceń ze skutkami ubocznymi, **eliminując** fałszywe potwierdzenia wykonania operacji, **poprzez** protokół Command Outcome Verification nakazujący wykonanie wtórnego sprawdzenia stanu (np. odczyt pliku, status usługi, stan procesu) po każdym poleceniu mutującym stan.
 
 ---
 
@@ -103,7 +117,20 @@
 
 ---
 
-### Historia 3: Maszyna Stanów Planowania i Eliminacja Kodu-Zombie w Sesjach Interaktywnych
+### Historia 3: Dwupoziomowa Orkiestracja Agentów i Inteligentny Router Darmowych Modeli (Zero Cost Grunt Work)
+- **Kontekst (Situation):** Wykonywanie masowych, powtarzalnych zadań programistycznych (tworzenie 2000+ linii kodu rusztowań modułów, pisanie setek asercji testów jednostkowych, wklepywanie JSDoc i refaktoryzacje typów) przez flagowe modele reasoningowe (Claude 3.7 Sonnet / Gemini 3.7 Pro) generowało wysokie koszty tokenowe i szybko zapychało okno kontekstowe szumem boilerplate'u. Z kolei wczesne próby delegowania zadań do darmowych modeli open-source kończyły się ucinaniem kodu w połowie pliku i błędami kompilacji.
+- **Zadanie (Task):** Zaprojektować i wdrożyć architekturę dwupoziomowej orkiestracji (**Two-Tier Cognitive Architecture**), w której drogi agent główny pełni rolę architekta/planisty, a darmowe podwykonawcze modele LLM realizują masowe zadania w izolowanej piaskownicy z automatyczną kontrolą jakości i zerowym kosztem tokenów.
+- **Działanie (Action):** 
+  1. *Root Cause Fix Limitów:* Zdiagnozowano, że obcinanie plików wynikało ze sztucznego ograniczenia `max_tokens: 4096` w konfiguracji Aidera – odblokowano limity do 65k tokenów wyjściowych i 1M kontekstu zgodnie z rzeczywistą specyfikacją API OpenRouter.
+  2. *FastMCP Worker Bridge & Task Router:* Zbudowano serwer FastMCP (`scripts/worker_mcp.py`) wyposażony w inteligentny router zadaniowy dopasowujący model do specyfiki kodu: `minimax-m3` (1M kontekstu) do scaffoldingów full-stack, `nemotron-550b` (550B MoE) do algorytmów binarnych/C/Rust, `glm-5.2` do naprawy bugów SWE-bench oraz `nemotron-lightning` do testów TDD.
+  3. *Worktree Sandboxing & Self-Healing Loop:* Każde zadanie uruchamiane jest w odizolowanym Git Worktree (`.git/worktrees_active/<id>`) z automatycznym przekazaniem wykrytego polecenia testowego (`npx tsc --noEmit` / `pytest`) do pętli samonaprawczej Aidera (`--auto-test --test-cmd`).
+  4. *Dynamic Skill Injection:* Zaimplementowano mostek przekazujący pakiety `agentskills.io` do bezstanowych subagentów w trybie read-only (`--read`).
+- **Wynik (Result):** Osiągnięto **100% redukcję kosztów tokenowych** (0.00 USD) dla masowych zadań inżynieryjnych przy **92-95% skuteczności wykonania** w benchmarkach syntetycznych. Agent nadrzędny otrzymuje jedynie 3-linijkowe ustrukturyzowane podsumowanie (*Zero Context Bleed*), a kod trafia do repozytorium dopiero po pomyślnej weryfikacji bramki jakościowej.
+- **Refleksja (Reflection):** Skalowalne systemy agentowe nie wymagają używania najdroższych modeli do każdego podzadania. Kluczem inżynieryjnym jest rozdzielenie odpowiedzialności poznawczej: model o najwyższym reasoning projektuje interfejsy i weryfikuje diffy, podczas gdy darmowe, wyspecjalizowane modele wykonawcze pracują w izolowanych piaskownicach z twardymi, automatycznymi testami kompilacji.
+
+---
+
+### Historia 4: Maszyna Stanów Planowania i Eliminacja Kodu-Zombie w Sesjach Interaktywnych
 - **Kontekst (Situation):** Tradycyjne planowanie wieloetapowych zadań przez agentów AI cierpiało na tzw. "amnezję rewizyjną" – gdy użytkownik zgłaszał poprawkę w trzeciej turze dyskusji, model potrafił przepisać cały plan od nowa, tracąc wcześniej zweryfikowane ścieżki do plików, wersje bibliotek czy polecenia testowe, lub zostawiał w planie przestarzały kod, tworząc hybrydowe potworki implementacyjne.
 - **Zadanie (Task):** Opracować i sformalizować protokół integralności dokumentów żyjących (`planning-and-document-integrity.md`), który zagwarantuje ciągłość wiedzy i uniemożliwi powstawanie kodu-zombie.
 - **Działanie (Action):** Zdefiniowano jawną maszynę stanów planowania:
@@ -115,7 +142,7 @@
 
 ---
 
-### Historia 4: Zautomatyzowany Walidator Jakości Środowiska CI/CD (`validate_suite.py`)
+### Historia 5: Zautomatyzowany Walidator Jakości Środowiska CI/CD (`validate_suite.py`)
 - **Kontekst (Situation):** Wraz z rozrostem ekosystemu do 36 umiejętności i 16 reguł systemowych, ręczne sprawdzanie czy każdy skill spełnia standardy `agentskills.io`, czy nazwa katalogu zgadza się ze znacznikiem YAML i czy opisy nie przekraczają limitów tokenowych stało się podatne na błędy ludzkie. Przekroczenie limitu opisu w pliku `SKILL.md` powodowało ciche ucinanie promptów systemowych przez asystentów AI.
 - **Zadanie (Task):** Zbudować zautomatyzowane narzędzie kontroli jakości (Quality Gate), które w sposób deterministyczny zweryfikuje integralność wszystkich komponentów pakietu przed każdym commitem.
 - **Działanie (Action):** Opracowano skrypt `scripts/validate_suite.py` w czystym Pythonie 3 bez zewnętrznych zależności. Skrypt implementuje:
@@ -124,6 +151,7 @@
   3. Weryfikację tożsamości nazwy katalogu z wartością pola `name:`.
   4. Walidator składni JSON dla plików konfiguracyjnych MCP za pomocą modułu `json`.
   5. Semantyczny audyt obecności krytycznych dyrektyw (m.in. Pre-Flight Skill Gate) w 4 manifestach bazowych (`CODEX.md`, `GEMINI.md`, `CLAUDE.md`, `.cursorrules`).
+  6. Weryfikację integralności podsystemu Sub-Workerów (`worker_mcp.py`, `worker_cli.py`, `worker_profiles.json`, szablony Aidera).
 - **Wynik (Result):** Utworzono niezawodny test harness zwracający kod wyjścia 0 w przypadku sukcesu lub kod 1 z listą precyzyjnych błędów. Czas wykonania pełnej walidacji 36 skilli i 16 reguł wynosi poniżej 50 ms.
 - **Refleksja (Reflection):** Dokumentacja i prompty systemowe dla agentów AI to taki sam kod jak każdy inny. Wymagają automatycznych testów jednostkowych, linterów i bramek jakościowych. Jeśli reguła nie jest testowana automatycznie, prędzej czy później ulegnie cichej degradacji.
 
@@ -133,10 +161,12 @@
 
 | Kategoria | Technologie, Narzędzia i Protokoły |
 |---|---|
-| **Języki i Powłoki** | Python 3.8+ (`pathlib`, `shutil`, `re`, `json`, `argparse`), POSIX Bash 4+ (`set -euo pipefail`), Windows PowerShell 5.1 / 7+ (`CmdletBinding`, `New-Item`, `Copy-Item`) |
+| **Języki i Powłoki** | Python 3.8+ (`pathlib`, `shutil`, `re`, `json`, `argparse`, `subprocess`), POSIX Bash 4+ (`set -euo pipefail`), Windows PowerShell 5.1 / 7+ (`CmdletBinding`, `New-Item`, `Copy-Item`) |
+| **Architektura Orkiestracji Sub-Agentów** | FastMCP (`fastmcp` Python SDK), Aider Headless Engine (`aider`), Git Worktrees (`git worktree add/remove`), Two-Tier Cognitive Architecture, Task-Specialized Intelligent Routing |
+| **Pula Modeli i API** | OpenRouter Free Tier (`minimax/minimax-m3:free` 1M Context, `nvidia/nemotron-3-ultra-550b-a55b:free` 550B MoE, `z-ai/glm-5.2:free` 256k Context, `nvidia/nemotron-3.5-lightning:free`), Zhipu BigModel PAAS Direct API (`glm-4-flash`), SiliconFlow |
 | **Standardy AI i Schematy** | `agentskills.io` standard (YAML frontmatter), Agentic AI Foundation (AAIF) `AGENTS.md` standard, Model Context Protocol (MCP) v1.0, Markdown, Mermaid.js |
 | **Wspierane Platformy AI** | OpenAI Codex CLI / Codex API (`~/.codex/`), Antigravity / Gemini CLI (`~/.gemini/`), Anthropic Claude Code (`~/.claude/`), Cursor IDE (.mdc rules format & `.cursorrules`) |
 | **Systemy Operacyjne** | Linux (Ubuntu / Debian / RHEL - ext4), macOS (Darwin - APFS / zsh), Windows 10/11 (NTFS - PowerShell Core) |
-| **Serwery MCP i Narzędzia** | `mempalace` (Long-Term Knowledge Graph), `@danielsogl/lighthouse-mcp` (Web Audits), `chrome-devtools-mcp` (Chromium Performance Timelines), `@modelcontextprotocol/server-postgres`, `@modelcontextprotocol/server-docker`, `firecrawl-mcp` (Stealth Web Scraper), `@ast-grep/mcp` (AST Tree Search & Linting), `@modelcontextprotocol/server-puppeteer`, `@modelcontextprotocol/server-github`, `oracle.oci-api-mcp-server`, Google StitchMCP |
-| **Jakość i Weryfikacja** | Deterministic Quality Harness (`scripts/validate_suite.py`), TypeScript Safety Gate (`npx tsc --noEmit`), TDD Red-Green-Refactor, 5-Axis Code Review (Correctness, Readability, Architecture, Security OWASP Top 10, Performance) |
+| **Serwery MCP i Narzędzia** | `chinese-worker` (Autonomous Sub-Worker Bridge), `mempalace` (Long-Term Knowledge Graph), `@danielsogl/lighthouse-mcp` (Web Audits), `chrome-devtools-mcp` (Chromium Performance Timelines), `@modelcontextprotocol/server-postgres`, `@modelcontextprotocol/server-docker`, `firecrawl-mcp` (Stealth Web Scraper), `@ast-grep/mcp` (AST Tree Search & Linting), `@modelcontextprotocol/server-puppeteer`, `@modelcontextprotocol/server-github`, `oracle.oci-api-mcp-server`, Google StitchMCP |
+| **Jakość i Weryfikacja** | Deterministic Quality Harness (`scripts/validate_suite.py`), TypeScript Safety Gate (`npx tsc --noEmit`), TDD Red-Green-Refactor, Self-Healing Quality Gate, 5-Axis Code Review (Correctness, Readability, Architecture, Security OWASP Top 10, Performance) |
 | **System Kontroli Wersji** | Git CLI, GitHub API (przez dedykowany GitHub MCP Server) |

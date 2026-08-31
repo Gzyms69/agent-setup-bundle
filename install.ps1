@@ -48,22 +48,39 @@ Write-Host ">>> Rozpoczynam instalacje srodowiska Agenta AI (Windows PowerShell)
 Write-Host "======================================================================" -ForegroundColor Cyan
 
 # 0. Wspoldzielona baza: Rules, Skills, Templates w ~/.agents/
-Write-Host "[+] Kopiowanie wspoldzielonych regul (16), skilli (36) i szablonow do ~/.agents/..." -ForegroundColor Green
+Write-Host "[+] Kopiowanie wspoldzielonych regul (16), skilli (36), skryptow i szablonow do ~/.agents/..." -ForegroundColor Green
 
 $RulesTarget = Join-Path $TargetAgentsDir "rules"
 $SkillsTarget = Join-Path $TargetAgentsDir "skills"
 $TemplatesTarget = Join-Path $TargetAgentsDir "templates"
+$ScriptsTarget = Join-Path $TargetAgentsDir "scripts"
+$ConfigTarget = Join-Path $TargetAgentsDir "config"
 
 New-Item -ItemType Directory -Force -Path $RulesTarget | Out-Null
 New-Item -ItemType Directory -Force -Path $SkillsTarget | Out-Null
 New-Item -ItemType Directory -Force -Path $TemplatesTarget | Out-Null
+New-Item -ItemType Directory -Force -Path $ScriptsTarget | Out-Null
+New-Item -ItemType Directory -Force -Path $ConfigTarget | Out-Null
 
 Copy-Item -Path (Join-Path $ScriptDir "rules\*") -Destination $RulesTarget -Recurse -Force
 Copy-Item -Path (Join-Path $ScriptDir "skills\*") -Destination $SkillsTarget -Recurse -Force
+Copy-Item -Path (Join-Path $ScriptDir "scripts\*") -Destination $ScriptsTarget -Recurse -Force
+Copy-Item -Path (Join-Path $ScriptDir "config\*") -Destination $ConfigTarget -Recurse -Force
 if (Test-Path (Join-Path $ScriptDir "templates")) {
     Copy-Item -Path (Join-Path $ScriptDir "templates\*") -Destination $TemplatesTarget -Recurse -Force
 }
-Write-Host "    -> Zainstalowano 16 regul, 36 skilli oraz szablony w ~/.agents/" -ForegroundColor Gray
+
+# Aider i modele chinskie
+$AiderConfDst = Join-Path $UserProfile ".aider.conf.yml"
+$AiderConfTemplate = Join-Path $ScriptDir "templates\.aider.conf.yml.template"
+if (-not (Test-Path $AiderConfDst) -and (Test-Path $AiderConfTemplate)) {
+    Copy-Item -Path $AiderConfTemplate -Destination $AiderConfDst -Force
+    Write-Host "    -> Utworzono ~/.aider.conf.yml" -ForegroundColor Gray
+}
+Copy-Item -Path (Join-Path $ScriptDir "config\.aider.model.settings.yml") -Destination (Join-Path $UserProfile ".aider.model.settings.yml") -Force
+Copy-Item -Path (Join-Path $ScriptDir "config\.aider.model.metadata.json") -Destination (Join-Path $UserProfile ".aider.model.metadata.json") -Force
+
+Write-Host "    -> Zainstalowano 16 regul, 36 skilli, skrypty workerow oraz szablony w ~/.agents/" -ForegroundColor Gray
 
 # 1. Konfiguracja dla OpenAI Codex
 if ($InstallCodex) {

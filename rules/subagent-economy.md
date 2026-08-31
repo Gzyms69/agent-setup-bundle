@@ -46,3 +46,22 @@ Token budget is finite. Every subagent costs tokens and introduces coordination 
 
 ### 10. Prevention of the "Telephone Game"
 * When a subagent produces a final, user-facing artifact or report that is complete, the Master Agent should directly present or link the artifact rather than lossily paraphrasing and distorting critical technical details.
+
+---
+
+## 4. Chinese Sub-Worker Delegation Mandate (Aider / FastMCP)
+
+For heavy, repetitive, or mass code transformations, do not burn Google/Claude token limits. Delegate to Chinese Sub-Workers via MCP `chinese-worker` (or terminal CLI `worker`):
+
+| Workload Type | Assigned Model / Tool | Rationale |
+| :--- | :--- | :--- |
+| **Unit Test Generation** | `glm-4-flash` via `worker_generate_tests` | 100% Free tier, 128k context, high SWE-bench rate |
+| **Documentation / JSDoc** | `glm-4-flash` via `worker_generate_docs` | Zero-cost bulk markdown and code comment generation |
+| **Mass Refactoring / Typings** | `Qwen/Qwen2.5-Coder-32B` via `worker_batch_refactor` | Ultra-accurate AST code generation |
+| **Emergency / Offline CLI** | `worker chat` / `worker run` | Direct terminal execution when API rate limits hit 0 |
+
+### Sub-Worker Execution Rules:
+1. **Worktree Sandboxing:** Always execute multi-file edits in dedicated Git Worktrees (`use_worktree: true`) to prevent dirty tree state.
+2. **Context Separation:** Pass schemas and system rules via `readonly_files` (`--read`) to prevent accidental tampering.
+3. **Automated Quality Gate:** Always ensure Aider's `--auto-test` or post-execution Quality Gate passes before merging branches.
+

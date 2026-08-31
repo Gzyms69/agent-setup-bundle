@@ -1,12 +1,20 @@
-# Multi-Platform Agentic AI Engineering Operating System & Skill Suite
+# Multi-Platform Agentic AI Engineering Operating System & Sub-Worker Delegation Engine
 
-> Production-ready, cross-platform configuration framework, 16 operational system rules (Prime Directives), 36 modular skills (`agentskills.io` standard), repository blueprints (`AGENTS.md`), and Model Context Protocol (MCP) configurations for **OpenAI Codex**, **Antigravity / Gemini CLI**, **Claude Code**, and **Modern Cursor IDE (.mdc)** across **Windows**, **macOS**, and **Linux**.
+[![Architecture: Two-Tier Multi-Agent](https://img.shields.io/badge/Architecture-Two--Tier_Cognitive_System-blue.svg)](https://github.com/Gzyms69/agent-setup-bundle)
+[![Standard: agentskills.io](https://img.shields.io/badge/Standard-agentskills.io-green.svg)](https://agentskills.io)
+[![MCP: FastMCP v1.0](https://img.shields.io/badge/MCP-FastMCP_v1.0-orange.svg)](https://modelcontextprotocol.io)
+[![License: MIT](https://img.shields.io/badge/License-MIT-purple.svg)](LICENSE)
+[![Platforms: Linux | macOS | Windows](https://img.shields.io/badge/Platforms-Linux_%7C_macOS_%7C_Windows-lightgrey.svg)](https://github.com/Gzyms69/agent-setup-bundle)
+
+A deterministic, cross-platform engineering suite and operating framework for leading AI coding assistants (**OpenAI Codex**, **Antigravity / Gemini CLI**, **Claude Code**, and **Modern Cursor IDE (.mdc)**) across **Linux**, **macOS**, and **Windows**.
+
+The bundle unifies **16 ironclad operational rules (Prime Directives)**, **36 modular skills (`agentskills.io` standard)**, and an autonomous **Two-Tier Cognitive Architecture** powered by a custom **FastMCP Sub-Worker Delegation Bridge (`chinese-worker`)** and **Aider Headless Engine**. Expensive frontier models (Gemini 3.7 Pro, Claude 3.7 Sonnet) act as high-level architects and orchestrators, delegating repetitive bulk coding tasks (scaffolding 2500+ LOC, TDD unit test generation, JSDoc/docstrings, strict type migrations) to **100% free, mega-context models** (MiniMax M3 1M Context, NVIDIA Nemotron 550B MoE, Zhipu GLM-5.2) in sandboxed Git Worktrees with **Zero Context Bleed** and **Zero Token Cost ($0.00)**.
 
 ---
 
-##  1-Prompt Autonomous AI Installation
+## ⚡ 1-Prompt Autonomous AI Installation
 
-If you are using an AI coding assistant (Claude Code, OpenAI Codex, Cursor Composer, Gemini CLI, Cline, Roo Code, OpenCode, Aider), simply paste this prompt:
+If you are using an AI coding assistant (Claude Code, OpenAI Codex, Cursor Composer, Gemini CLI / Antigravity, Cline, Roo Code, OpenCode, Aider), simply paste this prompt:
 
 ### English:
 ```text
@@ -18,314 +26,308 @@ Clone https://github.com/Gzyms69/agent-setup-bundle.git and install the full AI 
 Sklonuj https://github.com/Gzyms69/agent-setup-bundle.git i zainstaluj całe środowisko inżynieryjne według instrukcji w AGENTS.md.
 ```
 
-Your AI assistant will read [AGENTS.md](AGENTS.md), auto-detect your operating system (Windows, macOS, or Linux), run the appropriate native installer, validate suite integrity, and immediately adopt the **Senior AI Pair Programmer** persona.
+Your AI assistant will read [AGENTS.md](AGENTS.md), auto-detect your operating system (Windows, macOS, or Linux), execute the native installer, validate suite integrity, and immediately adopt the **Senior AI Pair Programmer** persona.
 
 ---
 
-## 1. Executive Summary & Philosophy
+## 1. Executive Summary & Two-Tier Cognitive Architecture
 
-Traditional approaches to AI pair programming ("Just write this feature") fail consistently on non-trivial codebases due to four core traps:
-1. **Simulation & Mocking Traps:** Writing fake stubs or untested boilerplate without running verification suites.
-2. **Context Window Flooding:** Inefficiently dumping thousands of prompt lines instead of on-demand skill discovery.
-3. **Monolithic Spaghetti Code:** Creating giant "god files" (>150 lines) that mix state, presentation, networking, and styles.
-4. **Hardware & Version Hallucinations:** Speculating about hardware capabilities, compiler flags, or package versions without live verification.
+Traditional single-model AI pair programming ("Just write this feature") fails on complex production codebases due to four fundamental problems:
+1. **Economic Inefficiency:** Burning expensive reasoning tokens on repetitive boilerplate, large mock suites, or syntax formatting.
+2. **Context Window Degradation:** Dumping thousands of lines of raw logs and intermediate diffs into the primary reasoning context.
+3. **Simulation & Mocking Traps:** Writing fake stubs or untested boilerplate without running verification suites.
+4. **Monolithic Spaghetti Code:** Coupling business logic to UI frameworks and creating unmaintainable "god files".
 
-**`agent-setup-bundle`** solves this by establishing a deterministic, multi-platform engineering operating system across all major coding assistants.
+`agent-setup-bundle` solves this through a **Two-Tier Cognitive Architecture**:
 
 ```mermaid
 flowchart TD
-    subgraph Directives["1. 16 Żelaznych Reguł Operacyjnych (~/.agents/rules)"]
-        PRAR["Protokół PRAR (Perceive -> Reason -> Act -> Refine)"]
-        ZeroSpec["Zero-Speculation Protocol (Weryfikacja Faktów na Żywo)"]
-        ContextEng["Ochrona Budżetu Uwagi (Reguła 100 Linii / 5 KB do ./scratch/)"]
-        CircuitBreaker["Bezpiecznik Zatrucia Kontekstu (Flaga [INVALIDATED])"]
-        StatePlan["Maszyna Stanów Planowania (Iteration Delta & Nagrobki [PRUNED])"]
-        Handoff["Protokół Lossless Session Handoff (NEXT_SESSION_PLAN.md)"]
+    subgraph Tier1_Brain ["Tier 1: High-Reasoning Brain & Orchestrator ($$)"]
+        Gemini["Gemini 3.7 Pro / Antigravity CLI"]
+        Claude["Claude 3.7 Sonnet / Claude Code"]
+        Cursor["Cursor IDE / Composer"]
+        Codex["OpenAI Codex CLI"]
+        SpecGate["Spec-Driven Development & 5-Axis Code Review Gate"]
+        Gemini & Claude & Cursor & Codex --> SpecGate
     end
 
-    subgraph Skills_Framework["2. Baza 36 Umiejętności (Standard agentskills.io)"]
-        Cartography["Faza 0: Kartografia & Onboarding Kodu"]
-        Planning["Faza 1: Architektura, Monorepo & Orkiestracja"]
-        Specialists["Faza 2: Domena (Frontend, Backend, GIS, WASM, OSINT, AI/ML)"]
-        QA_Gate["Faza 3: QA & Weryfikacja (TDD, TSC Safety Gate, 5-Axis Review)"]
+    subgraph Tier2_FastMCP ["Tier 2: FastMCP Sub-Worker Bridge (chinese-worker) ($0.00)"]
+        Router["Intelligent Task Router (Keyword & Task Affinity)"]
+        SkillsInj["Dynamic Skill Injector (--read ~/.agents/skills/*/SKILL.md)"]
+        WorktreeMgr["Git Worktree Sandbox (.git/worktrees_active/<task-id>)"]
+        AiderEngine["Aider Headless Engine (Diff Mode)"]
+        SelfHealing["Self-Healing Quality Loop (--auto-test)"]
+        
+        SpecGate -->|MCP Tool: worker_run_task / worker_generate_tests| Router
+        Router --> WorktreeMgr --> AiderEngine
+        Router --> SkillsInj --> AiderEngine
+        AiderEngine --> SelfHealing
     end
 
-    subgraph Tooling_MCP["3. Narzędzia i Ekosystem Model Context Protocol (11 Serwerów MCP)"]
-        MCP["MemPalace KG, Lighthouse, Chrome DevTools, Docker, OCI, Firecrawl, ast-grep"]
+    subgraph Model_Pool ["Free Tier & High-Throughput Model Pool"]
+        M3["MiniMax M3 (1M Ctx, 65k Out) -> Mega Scaffolding & Fullstack"]
+        N550["NVIDIA Nemotron 550B MoE -> Low-Level, C++, ASM & Math"]
+        GLM5["Zhipu GLM-5.2 (LiveCodeBench 74-85%) -> Bugfix & Refactor"]
+        NLight["Nemotron 3.5 Lightning -> Rapid TDD Unit Tests"]
+        GLM4["Zhipu GLM-4-Flash PAAS -> 100% Guaranteed Direct Fallback"]
+        
+        Router --> Model_Pool
+        Model_Pool --> AiderEngine
     end
 
-    subgraph Deployment["4. Deterministyczny Wdrożeniowiec & Siatka Dowiązań SSOT (<3 s)"]
-        Installer["3 Instalatory (install.sh, install.ps1 z Fallbackiem NTFS, install.py)"]
-        Validator["Automatyczny Walidator Integralności CI/CD (scripts/validate_suite.py)"]
-        Targets["4 Środowiska: OpenAI Codex, Antigravity/Gemini CLI, Claude Code, Cursor IDE"]
-    end
-
-    Directives --> Skills_Framework
-    Skills_Framework --> Tooling_MCP
-    Tooling_MCP --> Deployment
-    Installer --> Targets
-    Validator -.-> Directives & Skills_Framework
+    SelfHealing -->|Zero Context Bleed: 3-line Structured Report| SpecGate
+    SpecGate -->|Inspection & Approval| Merge["worker_merge_branch"]
 ```
+
+1. **Tier 1 (Brain & Orchestrator):** Frontier models (Gemini 3.7, Claude 3.7) plan architecture, conduct Spec-Driven Development, and enforce the 5-Axis Code Review Gate.
+2. **Tier 2 (Grunt Worker & Token Factory):** FastMCP (`chinese-worker`) delegates bulk implementation tasks to free, specialized models operating inside sandboxed Git Worktrees with an automated **Self-Healing Quality Loop** (`--auto-test`).
 
 ---
 
-## 2. Core Engineering Mandates (The Laws of Robotics)
+## 2. Universal 4-Phase Pre-Flight Skill Gate
 
-Every agent configured with this suite strictly adheres to the following non-negotiable protocols:
-
-1. **PRAR Workflow (Perceive, Reason, Act, Refine):**
-   - Agents never write code blindly. Every task begins with environmental analysis (Perceive), architectural design (Reason), surgical modifications (Act), and verification (Refine).
-2. **Mandatory 4-Phase Pre-Flight Skill Gate:**
-   - Before executing file discovery (`grep`, `find`, `cat`) or modifying code, agents must evaluate and load domain skills in a strict 4-phase sequence.
-3. **The Wait-For-GO Mandate:**
-   - On tasks requiring architectural decisions, touching >3 files, or introducing new dependencies, agents must present a detailed implementation plan and wait for an explicit user approval ("GO") before mutating files.
-4. **Zero Speculation Protocol:**
-   - Total ban on guessing hardware specs, software versions, API endpoints, error causes, or compiler flags. Technical facts must be verified using live terminal commands or documentation lookup.
-5. **Root Cause Only & Anti-Workaround:**
-   - Ban on temporary workarounds, path symlinks, or defensive `try/catch` wrappers that mask failures. Bugs must be resolved at the lowest architectural layer (`Kernel > Driver > OS Config > Runtime > Framework > Application Code`).
-6. **Critical TypeScript Safety Gate:**
-   - After modifying any `.ts`/`.tsx` file, agents must run `npx tsc --noEmit`. Deleting business logic to bypass type errors is strictly forbidden.
-7. **Single Source of Truth (SSOT) & Anti-Duplication:**
-   - Duplicate helpers, parallel endpoints, or competing schemas are forbidden. Existing implementations must be reused or refactored in-place.
-8. **Anti-Destruction Protocol:**
-   - Strict ban on `git clean`, blind mass search-and-replace, or destructive workspace operations without explicit user confirmation.
-9. **Context Engineering & Attention Preservation:**
-   - Strict 100-line / 5 KB offloading mandate to `./scratch/` for bulky logs/dumps, Attention U-Curve defense (anchoring critical invariants at start and active goals at end), and immediate quarantine of invalid assumptions via `[INVALIDATED: <reason>]`.
-10. **Interactive Planning Mode & Living Document Integrity:**
-    - Stateful planning via 3-state machine (Draft -> Refinement -> Execution), mandatory `Iteration Delta` header, permanent lock on discovered codebase facts, and active SSOT cleansing with 1-line `[PRUNED]` tombstones to prevent zombie code.
-11. **Subagent Economy & Zero Context Bleed:**
-    - Cost-efficient model routing (`flash_lite` for file reads, `flash` for research, `pro` for deep reasoning). Subagents communicate strictly via structured schemas (`Status`, `Findings`, `Artifacts`, `Blockers`) without dumping raw tool logs.
-12. **Lossless Session Handoff & Lean SSOT:**
-    - Zero conversation dumping into persistent architecture files. Seamless multi-session transitions via `NEXT_SESSION_PLAN.md` and self-contained, executable handoff bootstrap prompts.
-
----
-
-## 3. The 4-Phase Pre-Flight Skill Gate
-
-To prevent context window bloat and eliminate architectural guessing, skills are activated through a gated hierarchy:
-
-```
-[Level 0: Metadata & Cartography] ──→ [Level 1: Planning & Spec] ──→ [Level 2: Domain Specialists]
-                                                                                │
-                                      [Level 3: QA & Verification Gate] ◀───────┘
-```
+Before executing file discovery (`grep_search`, `find_by_name`, `view_file`) or making any code changes, agents operating under this system MUST evaluate and activate skills through the **4-Phase Pre-Flight Skill Gate**:
 
 ```mermaid
-graph TD
-    A[User Request] --> B{Phase 0: Workspace Cartography}
-    B -->|Unmapped Repo| B1[skill-codebase-onboarding / spec-miner / AGENTS.md]
-    B --> C{Phase 1: Planning & Architecture}
-    C -->|>15 min / >3 files / /plan| C1[spec-driven-development / monorepo / plugin]
-    C --> D{Phase 2: Domain Specialists}
-    D -->|Frontend| D1[skill-frontend-architect / design-engineering / creative-design]
-    D -->|Backend/Systems| D2[skill-backend-architect / c-cpp-systems / wasm-emscripten]
-    D -->|AI / Data| D3[skill-ai-ml / skill-data-science / skill-graph-analytics]
-    D -->|Specialized| D4[skill-stealth-scraping / skill-system-diagnostics / research]
-    D --> E{Phase 3: QA & Verification}
-    E -->|On Code Execution| E1[skill-qa-engineer: TDD & TSC / skill-code-review: 5-Axis]
+flowchart LR
+    P0["Phase 0: Cartography Gate"] --> P1["Phase 1: Planning & Orchestration"]
+    P1 --> P2["Phase 2: Domain Specialists"]
+    P2 --> P3["Phase 3: QA & Review Gate"]
 ```
 
----
+### Complete 36-Skill Matrix (`~/.agents/skills/`):
 
-## 4. Project-Level Configuration Standard (`AGENTS.md`)
-
-Global rules in `~/.agents/` define **agent behavior**, but individual repositories require **project-level context**.
-
-This bundle provides the standardized [templates/AGENTS.md](templates/AGENTS.md) blueprint based on the Agentic AI Foundation (AAIF) specification.
-
-### How to use `AGENTS.md` in your projects:
-1. Copy the blueprint to your project root:
-   - **Linux / macOS:** `cp ~/.agents/templates/AGENTS.md ~/Dev/MyProject/AGENTS.md`
-   - **Windows:** `Copy-Item $env:USERPROFILE\.agents\templates\AGENTS.md C:\Dev\MyProject\AGENTS.md`
-2. Fill in the 4 core sections:
-   - **Project Identity & Stack Architecture:** Language, runtime, framework versions, database ORM, styling system.
-   - **Mandatory Commands (Executable Truth):** Exact commands with flags for `install`, `dev`, `build`, `test`, `tsc`, and `lint` (agents will NEVER guess CLI flags).
-   - **Directory Topography & Module Boundaries:** Explicit directory layout and boundaries (e.g. `src/domain/`, `src/adapters/`, `src/components/`).
-   - **Invariants & Guardrails (Never-Do Rules):** Strict project invariants (e.g. "Never import DB models in client components", "Files must remain under 150 lines").
-
-When OpenAI Codex, Claude Code, Gemini CLI, or Cursor opens your project, it reads `AGENTS.md` as the primary Source of Truth.
-
----
-
-## 5. 16 Operational Core Rules (`~/.agents/rules/`)
-
-| Rule | File | Purpose & Key Mandate |
+| Phase | Skill Name | Trigger & Responsibility |
 |---|---|---|
-| **Skill Orchestration** | `skill-orchestration.md` | Mandates the 4-Phase Pre-Flight Skill Gate before file discovery or code modifications. |
-| **Planning & Document Integrity** | `planning-and-document-integrity.md` | Multi-turn `/plan` lifecycle, `Iteration Delta`, Discovered Facts Lock, and Active SSOT (anti-zombie context). |
-| **Context Engineering** | `context-engineering.md` | Attention budget preservation, scratchpad offloading (>100 lines/5KB), and context poisoning circuit breaker. |
-| **Zero Speculation** | `zero-speculation.md` | Total ban on guessing versions, APIs, or system specs without live diagnostic verification. |
-| **Modular Architecture** | `modular-architecture.md` | Anti-Monolith constraint (max ~150-200 lines), Clean/Hexagonal boundaries, typed contracts. |
-| **Systemic Excellence** | `systemic-excellence.md` | Anti-workaround protocol, root-cause fixes, DRY, and Single Source of Truth (SSOT). |
-| **System Identity** | `system-identity.md` | Hardware & OS baseline template with auto-discovery commands to prevent hallucinations. |
-| **Command Verification** | `command-verification.md` | Mandatory secondary read-only check after any state-modifying command. |
-| **Subagent Economy** | `subagent-economy.md` | Dynamic LLM model tiering, Zero Context Bleed mandate, workspace isolation, and barrier sync. |
-| **Problem Isolation** | `problem-isolation.md` | Strict scope containment; zero unrequested refactors or global OS alterations. |
-| **Environment Integrity** | `env-integrity.md` | Sanity checks on workspace, lockfiles, and dependencies before modifying files. |
-| **Error Triage** | `error-triage.md` | Deterministic diagnostic priority order: Documentation -> Web Search -> Code Inspection. |
-| **Full Log Reporting** | `full-log-reporting.md` | Ban on truncated, summarized, or paraphrased error reporting. |
-| **MemPalace Discovery** | `mempalace-discovery.md` | Absolute priority of MemPalace memory retrieval before broad filesystem searches. |
-| **MCP Master Playbook** | `mcp-master-playbook.md` | 11-server MCP execution matrix, permission boundaries, and synergy workflows. |
-| **Session Handoff** | `session-handoff.md` | Lossless context transfer, Lean SSOT enforcement, and standardized bootstrap prompts. |
+| **Phase 0** | `skill-codebase-onboarding` | Mandatory first step for exploring or onboarding any unmapped repository. |
+| **Phase 0** | `spec-miner` | Reverse-engineering legacy, undocumented, or poorly structured codebases. |
+| **Phase 1** | `spec-driven-development` | Tasks >15 min, >3 files, architectural decisions, or `/plan` invocation. |
+| **Phase 1** | `skill-context-engineering` | Attention budget curation, log offloading to `./scratch/`, context compaction. |
+| **Phase 1** | `skill-master-orchestrator` | Multi-agent swarm coordination, Task DAG decomposition, barrier synchronization. |
+| **Phase 1** | `skill-monorepo-architect` | Monorepo structure management (PNPM, Turborepo, UV workspaces). |
+| **Phase 1** | `skill-plugin-architecture` | Extensible microkernel systems, dynamic toolkits, plugin discovery. |
+| **Phase 1** | `skill-web-architecture` | Full-stack web architectural standards, module boundaries, API contracts. |
+| **Phase 2** | `skill-frontend-architect` | Next.js 15+ App Router, RSC, Client Island boundaries, WCAG 2.1/2.2 AA. |
+| **Phase 2** | `skill-design-engineering` | Motion animations (`motion.dev`), CSS Subgrid, Container Queries, 21st.dev UI. |
+| **Phase 2** | `skill-creative-design` | Art direction, aesthetics, Fontjoy typography math, OKLCH color physics. |
+| **Phase 2** | `skill-backend-architect` | Backend architecture, database schemas, API contracts, zero-downtime migrations. |
+| **Phase 2** | `skill-mcp-builder` | Model Context Protocol server development (FastMCP, TypeScript SDK, stdio/SSE). |
+| **Phase 2** | `skill-low-level-programming` | C/C++, Rust, Assembly, byte manipulation, memory layout, bitwise arithmetic. |
+| **Phase 2** | `c-cpp-systems` | Low-level C/C++ memory safety, pointers, manual RAII, ASan/UBSan sanitizers. |
+| **Phase 2** | `wasm-emscripten` | C/C++ to WebAssembly compilation, Emscripten runtime bridging, HEAP views. |
+| **Phase 2** | `retro-emulation-engineering`| Retro emulator architecture, hardware coprocessor simulation (CPU/RSP/RDP). |
+| **Phase 2** | `skill-emulator-wasm` | WebAssembly retro emulators, WebGL rendering, Web Audio sync, save states. |
+| **Phase 2** | `skill-ai-ml` | LLM integrations (Gemini, OpenAI, Anthropic), RAG pipelines, vector DBs. |
+| **Phase 2** | `skill-data-science` | Data science workflows, exploratory data analysis (EDA), ingestion pipelines. |
+| **Phase 2** | `skill-data-analysis` | Statistical methodology, hypothesis testing, anomaly detection, claim validation. |
+| **Phase 2** | `skill-graph-analytics` | Graph databases (Neo4j), Cypher queries, topology analysis, Graph Data Science. |
+| **Phase 2** | `skill-graphics-webgl` | 2D/3D graphics, Three.js, WebGL shader optimization, Canvas rendering. |
+| **Phase 2** | `skill-stealth-scraping` | Anti-bot evasion, stealth automation, TLS/JA3 fingerprints, reverse API engineering. |
+| **Phase 2** | `skill-osint-engineering` | OSINT intelligence pipelines, standardized entity graphs, pivoting engines. |
+| **Phase 2** | `skill-system-diagnostics` | Hardware/OS/kernel diagnostics, log analysis, SRE root-cause debugging. |
+| **Phase 2** | `skill-devops-cloud` | Docker containerization, CI/CD pipelines, Cloud Run checklists, Kubernetes. |
+| **Phase 2** | `skill-research` | Academic and technical literature research with multi-source verification. |
+| **Phase 2** | `skill-resume-tailor` | AI developer resume/CV architect (Google XYZ formula, Harvard Tech standard). |
+| **Phase 2** | `marketing-copywriting` | Conversion-focused copywriting, value propositions, CTA engineering. |
+| **Phase 2** | `avoid-ai-writing` | Strict audit and rewriting protocol eliminating AI writing clichés and fluff. |
+| **Phase 2** | `seo-optimization-and-audit` | SEO audit, metadata, head tags, Core Web Vitals optimization. |
+| **Phase 2** | `skill-web-performance` | Universal web performance engineering, Lighthouse 100/100, runtime tracing. |
+| **Phase 3** | `skill-qa-engineer` | Mandatory Phase 3 QA Gate, TDD Red-Green discipline, TypeScript Safety Gate. |
+| **Phase 3** | `skill-code-review` | Mandatory 5-axis review (Correctness, Readability, Architecture, Security, Perf). |
+| **Phase 3** | `doubt-driven-development` | Adversarial verification gate challenging false confidence before assertions. |
 
 ---
 
-## 6. 36 Production-Grade Skills (`~/.agents/skills/`)
+## 3. 16 Operational Rules (The Laws of Robotics)
 
-All skills adhere to the `agentskills.io` standard with YAML frontmatter, progressive disclosure, and anti-rationalization verification gates:
+All operational rules reside in `~/.agents/rules/` and are enforced across all platform manifests:
 
-### Domain A: Cartography, Planning, Context & Orchestration (7 Skills)
-- **`skill-codebase-onboarding`**: Systematic 5-phase repository cartography, entrypoint discovery, and command extraction.
-- **`spec-miner`**: Reverse-engineering engine for extracting specifications and dataflows from legacy/undocumented code.
-- **`spec-driven-development`**: Gated SDLC workflow (Specify -> Plan -> Tasks -> Implement) with verification matrices.
-- **`skill-context-engineering`**: Production context engineering, Attention U-Curve defense, Anchored Iterative Summarization, and Artifact Trail tracking.
-- **`skill-master-orchestrator`**: Master agent orchestration, multi-agent swarm coordination, Task DAG decomposition, and model economy routing.
-- **`skill-monorepo-architect`**: Polyglot monorepo management (`uv` Python workspaces, `pnpm` workspaces, Turborepo).
-- **`skill-plugin-architecture`**: Microkernel architecture, dynamic plugin discovery, lifecycle hooks, and error boundaries.
-
-### Domain B: Frontend & UI/UX Craftsmanship (5 Skills)
-- **`skill-frontend-architect`**: Next.js 15+ App Router, React Server Components (RSC), Client Island boundaries, WCAG 2.2 AA.
-- **`skill-design-engineering`**: Creative frontend engineering, Motion.dev spring animations, CSS Subgrid, Container Queries, 21st.dev UI components.
-- **`skill-creative-design`**: Art direction, Swiss/Bauhaus aesthetics, Fontjoy typography math, and OKLCH color physics.
-- **`skill-web-performance`**: Core Web Vitals optimization (LCP, INP, CLS), Lighthouse 100/100 audits, and runtime tracing.
-- **`seo-optimization-and-audit`**: Search engine ranking optimization, structured metadata, semantic HTML, and head audits.
-
-### Domain C: Backend, Systems & MCP (8 Skills)
-- **`skill-backend-architect`**: Contract-first API design, database schemas, query optimization (`EXPLAIN ANALYZE`), indexing, and Expand/Contract migrations.
-- **`skill-mcp-builder`**: Architecture, implementation, and debugging of Model Context Protocol (MCP) servers (FastMCP, TypeScript SDK, stdio/SSE).
-- **`skill-web-architecture`**: Full-stack architectural standards, module boundaries, and end-to-end API contracts.
-- **`c-cpp-systems`**: Memory safety, struct packing (`#pragma pack`), manual RAII, bitwise math, and sanitizers (`ASan`/`UBSan`).
-- **`skill-low-level-programming`**: Low-level systems programming, Assembly, byte manipulation, memory layout, and endianness handling.
-- **`wasm-emscripten`**: WebAssembly compilation via Emscripten, `ccall`/`cwrap` FFI bindings, virtual FS, and HEAP views.
-- **`retro-emulation-engineering`**: Retro hardware simulation (CPU/RSP/RDP), frame timing, dynamic audio resampling, and ROM validation.
-- **`skill-emulator-wasm`**: WebAssembly retro emulation engineering, Emscripten bridge lifecycle, WebGL rendering, and cartridge saves.
-
-### Domain D: AI, Data Science & Intelligence (7 Skills)
-- **`skill-ai-ml`**: LLM model integrations, embeddings, vector databases (Redis, ChromaDB), and agentic workflows.
-- **`skill-data-science`**: Data ingestion pipelines, exploratory data analysis (EDA), dataframes (Polars/Pandas), and validation.
-- **`skill-data-analysis`**: Statistical analysis, hypothesis testing, anomaly detection, and scientific claim verification.
-- **`skill-graph-analytics`**: Graph databases (Neo4j), Cypher queries, topology analysis, and Graph Data Science (GDS).
-- **`skill-stealth-scraping`**: Anti-bot evasion (Cloudflare/DataDome), TLS fingerprint spoofing, and browser automation.
-- **`skill-osint-engineering`**: Open Source Intelligence gathering, Pydantic entity graphs, pivoting engines, and OPSEC.
-- **`skill-research`**: Academic and technical literature research, arXiv paper analysis, and multi-source fact checking.
-
-### Domain E: QA, Systems Diagnostics & Conversion (9 Skills)
-- **`skill-qa-engineer`**: Test-Driven Development (TDD Red-Green), TypeScript compilation safety gates (`npx tsc --noEmit`).
-- **`skill-code-review`**: Systematic 5-axis code review (Correctness, Readability, Architecture, Security OWASP Top 10, Performance).
-- **`doubt-driven-development`**: Adversarial verification gate to challenge false confidence and prevent silent failures.
-- **`skill-system-diagnostics`**: Hardware, OS, driver, kernel panic diagnostics, and log analysis.
-- **`skill-devops-cloud`**: Docker containers, Docker MCP inspection, CI/CD pipelines, and cloud deployments.
-- **`skill-resume-tailor`**: ATS-optimized resume, CV, and cover letter tailoring following the Google XYZ formula.
-- **`marketing-copywriting`**: Conversion-focused technical copywriting and value proposition design.
-- **`avoid-ai-writing`**: Detection and elimination of AI writing clichés, robotic cadence, and filler words.
-- **`mempalace` / `mempalace-recall`**: Long-term memory palace management and historical knowledge retrieval.
+1. `zero-speculation.md`: Total ban on guessing hardware specs, package versions, API endpoints, or error causes. Verify via live commands or web search.
+2. `command-verification.md`: Mandatory verification of CLI tool outcomes before proceeding.
+3. `env-integrity.md`: Pre-flight environment audit before modifying codebase configuration.
+4. `error-triage.md`: Strict diagnostic triage sequence: Docs -> Web -> Source Code.
+5. `full-log-reporting.md`: Zero truncated logs when diagnosing failures.
+6. `problem-isolation.md`: Surgical problem isolation without collateral workspace mutation.
+7. `subagent-economy.md`: Subagent model routing economy (`flash_lite` -> `flash` -> `pro`) and Chinese worker delegation.
+8. `system-identity.md`: Real-time hardware identity and OS verification template.
+9. `systemic-excellence.md`: Prohibition of symptomatic patches, workarounds, or defensive masking.
+10. `context-engineering.md`: Strict 100-line / 5 KB offloading to `./scratch/` and Attention U-Curve protection.
+11. `modular-architecture.md`: Clean/Hexagonal architecture boundaries and anti-god-file constraints.
+12. `planning-and-document-integrity.md`: Stateful 3-state planning machine, `Iteration Delta`, and Discovered Facts Lock.
+13. `session-handoff.md`: Lossless session transition via `NEXT_SESSION_PLAN.md` and clean SSOT handoff prompts.
+14. `skill-orchestration.md`: Universal 4-Phase Pre-Flight Skill Gate activation protocol.
+15. `mcp-master-playbook.md`: Standardized Model Context Protocol tool invocation guidelines.
+16. `mempalace-discovery.md`: Knowledge graph querying and memory retrieval protocol.
 
 ---
 
-## 7. Cross-Platform Installer Architecture & Resilience
+## 4. Autonomous FastMCP Sub-Worker Bridge (`chinese-worker`)
 
-The suite delivers full behavioral and operational parity across Linux, macOS, and Windows through three dedicated, idempotent installers:
-- **`install.sh` (Linux / macOS):** Native Bash script enforcing `set -euo pipefail`. Provisions shared rules and skills, links platform-specific manifests, and establishes symlinks.
-- **`install.ps1` (Windows PowerShell):** Windows-native script with a 3-tier fallback engine:
-  1. *SymbolicLink:* Attempts native symlink via `New-Item -ItemType SymbolicLink` (used when Developer Mode or Admin rights are enabled).
-  2. *Directory Junction:* Automatically falls back to `New-Item -ItemType Junction` if symlink creation is restricted by OS policy (works without elevation on NTFS).
-  3. *Recursive Directory Copy:* Falls back to `Copy-Item -Recurse` if filesystem junctions are unsupported.
-- **`install.py` (Universal Python 3):** Cross-platform standard using `pathlib` and `shutil`, providing graceful symlink-to-copy fallback across any environment.
+The bundle includes a native, high-throughput Model Context Protocol server implemented in Python using **FastMCP** (`scripts/worker_mcp.py`).
 
-### Key Architectural Invariants:
-1. **Live Symlink Mesh (Zero-Redundancy SSOT):** Platforms like OpenAI Codex (`~/.codex/skills/custom`) and Claude Code (`~/.claude/skills`) are dynamically symlinked to `~/.agents/skills`. Updating or adding a skill in the shared directory updates all agent runtimes in real time.
-2. **Non-Destructive Idempotency:** Existing user configuration files (`~/.gemini/settings.json`, `~/.codex/config.toml`, `~/.claude/mcp.json`, `~/.cursor/mcp.json`) are **never overwritten**. Only missing templates and system manifests are deployed, preserving personal API keys and local tokens.
+### Native FastMCP Tools:
 
----
+| Tool Name | Parameters | Description |
+|---|---|---|
+| `worker_run_task` | `instruction`, `editable_files`, `readonly_files`, `skills`, `task_type`, `profile`, `auto_test`, `test_cmd`, `use_worktree` | Executes an autonomous coding task in a dedicated Git Worktree with dynamic skill injection and self-healing test loop. |
+| `worker_generate_tests` | `target_file`, `test_file`, `test_framework`, `skills`, `profile` | Generates comprehensive TDD unit tests (pytest, vitest, jest, cargo) with edge case mocking. |
+| `worker_generate_docs` | `target_files`, `doc_type`, `profile` | Generates JSDoc, docstrings, or markdown guides preserving exact code functionality. |
+| `worker_batch_refactor` | `target_files`, `instruction`, `readonly_files`, `skills`, `profile` | Executes mass refactoring or strict type safety upgrades across multiple files. |
+| `worker_continue_task` | `task_id`, `feedback` | Continues refining changes within an existing active worktree sandbox. |
+| `worker_get_diff` | `task_id` | Returns the clean unified `git diff` generated by the worker for inspection. |
+| `worker_merge_branch` | `task_id`, `target_branch` | Merges the verified task worktree into the main working tree and cleans up. |
+| `worker_discard_branch` | `task_id` | Deletes and cleans up a rejected task worktree sandbox. |
+| `worker_status` | *(none)* | Lists all active worker worktrees and recent task logs. |
 
-## 8. Automated Quality Assurance & Suite Validation (`validate_suite.py`)
+### Intelligent Model Affinity & Task Routing:
 
-To ensure zero drift, correct token bounds, and strict compliance with the `agentskills.io` standard, the bundle includes a built-in CI/CD test validator:
-
-```bash
-python3 scripts/validate_suite.py
+```json
+{
+  "task_affinity": {
+    "scaffold": "minimax-m3",
+    "fullstack": "minimax-m3",
+    "low_level": "nemotron-550b",
+    "binary": "nemotron-550b",
+    "algorithms": "nemotron-550b",
+    "bugfix": "glm-5.2",
+    "refactor": "glm-5.2",
+    "tests": "nemotron-lightning",
+    "unit_tests": "nemotron-lightning",
+    "docs": "glm-5.2",
+    "fast": "cohere-code"
+  }
+}
 ```
 
-### Deterministic Quality Gates Enforced:
-1. **YAML Frontmatter Specification Check:**
-   - Validates that every skill folder contains a `SKILL.md` starting with `---`.
-   - Ensures `name:` matches the directory name exactly (case-sensitive).
-   - Enforces a hard character limit on `description:` (`len <= 1024` chars) to protect the model prompt budget.
-2. **Rule Integrity & Non-Triviality:**
-   - Audits all 16 markdown rules in `rules/` to ensure minimum non-empty content lengths and structural integrity.
-3. **Platform Manifest Parity:**
-   - Ensures all 4 platform definitions (`CODEX.md`, `GEMINI.md`, `CLAUDE.md`, `.cursorrules`) are synchronized with the 4-Phase Pre-Flight Skill Gate and core directives.
-4. **Configuration & Template Parsing:**
-   - Validates syntax of all JSON files in `config/` (`mcp_config.json`, `settings.json`, `cursor_mcp.json`) and ensures `codex_config.toml` and `templates/AGENTS.md` are present.
+1. **MiniMax M3 Free** (`openrouter/minimax/minimax-m3:free`): Tier 0 Chinese Flagship with **1,048,576 Context** and **65,536 Max Output Tokens**. Best for fullstack scaffolding and large multi-file codebases.
+2. **NVIDIA Nemotron 3 Ultra 550B MoE** (`openrouter/nvidia/nemotron-3-ultra-550b-a55b:free`): 550 Billion parameter MoE with 1M context. Specialized in low-level systems (C/C++, Rust, Assembly, byte manipulation, and mathematical algorithms).
+3. **Zhipu GLM-5.2 Free** (`openrouter/z-ai/glm-5.2:free`): Frontier coding model with LiveCodeBench 74-85% and SWE-bench 68.2%. Specialized in bugfixes, refactoring, and diff generation.
+4. **NVIDIA Nemotron 3.5 Lightning** (`openrouter/nvidia/nemotron-3.5-lightning:free`): Ultra-fast MoE for rapid TDD unit test creation.
+5. **Zhipu GLM-4-Flash PAAS** (`openai/glm-4-flash`): Direct BigModel PAAS integration serving as 100% guaranteed fallback if OpenRouter free endpoints hit temporary rate limits.
+
+### Developer CLI Companion (`worker`):
+
+The installer provisions a terminal CLI symlink at `~/.local/bin/worker`:
+```bash
+# Diagnostic health check (validates packages, profiles, API keys)
+worker check
+
+# Interactive coding session with MiniMax M3
+worker chat minimax-m3 --skills skill-frontend-architect src/App.tsx
+
+# Batch instruction execution with automatic model routing
+worker run "Refactor database queries to use parameterized prepared statements" --skills skill-backend-architect -f src/db.ts
+```
 
 ---
 
-## 9. Cross-Platform Quickstart & Installation
+## 5. Model Context Protocol (MCP) Multi-Server Matrix
 
-Clone and run the installer for your operating system:
+The bundle provisions unified MCP server configurations across Gemini CLI (`config/mcp_config.json`), Cursor (`config/cursor_mcp.json`), and Claude Code:
 
+| MCP Server | Provider / Package | Purpose |
+|---|---|---|
+| `chinese-worker` | `scripts/worker_mcp.py` (FastMCP) | High-throughput autonomous sub-worker delegation engine ($0.00). |
+| `github` | `@modelcontextprotocol/server-github` | Remote GitHub API operations (PRs, issues, code search, reviews). |
+| `chrome-devtools` | `chrome-devtools-mcp@latest` | Headless Chrome browser automation and DOM inspection. |
+| `puppeteer` | `@modelcontextprotocol/server-puppeteer` | End-to-end web testing and screenshot capture. |
+| `lighthouse-mcp` | `@danielsogl/lighthouse-mcp` | Web performance, Core Web Vitals, and accessibility audits. |
+| `postgres` | `@modelcontextprotocol/server-postgres` | PostgreSQL schema introspection and query analysis. |
+| `sqlite` | `@modelcontextprotocol/server-sqlite` | Local SQLite database inspection. |
+| `docker` | `@modelcontextprotocol/server-docker` | Container lifecycle management and log inspection. |
+| `firecrawl` | `firecrawl-mcp` | Web scraping, crawling, and clean Markdown extraction. |
+| `ast-grep` | `@ast-grep/mcp` | Structural AST search and code pattern matching. |
+| `mempalace` | `mempalace` | Long-term memory palace, AAAK knowledge graph and diary storage. |
+
+---
+
+## 6. Multi-Platform Installation Guide
+
+### Option 1: Native Shell Installers
+
+#### Linux & macOS (Bash):
 ```bash
 git clone https://github.com/Gzyms69/agent-setup-bundle.git
 cd agent-setup-bundle
-```
-
-### Option A: Windows (PowerShell)
-```powershell
-Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
-.\install.ps1 -All
-```
-*Platform options:* `.\install.ps1 -Codex`, `.\install.ps1 -Gemini`, `.\install.ps1 -Claude`, `.\install.ps1 -Cursor`
-
-### Option B: Linux & macOS (Bash / zsh)
-```bash
 chmod +x install.sh
 ./install.sh --all
 ```
-*Platform options:* `./install.sh --codex`, `./install.sh --gemini`, `./install.sh --claude`, `./install.sh --cursor`
 
-### Option C: Universal Python Installer (Any OS)
+#### Windows (PowerShell 5.1 / 7+):
+```powershell
+git clone https://github.com/Gzyms69/agent-setup-bundle.git
+cd agent-setup-bundle
+powershell -ExecutionPolicy Bypass -File .\install.ps1 -All
+```
+
+#### Universal Python 3 Installer (All OSes):
 ```bash
-python install.py --all
+python3 install.py --all
 ```
-*Platform options:* `python install.py --codex`, `python install.py --gemini`, `python install.py --claude`, `python install.py --cursor`
+
+### Option 2: Selective Installation Flags
+- `--codex` / `-Codex`: Install only OpenAI Codex environment (`~/.codex/`).
+- `--gemini` / `-Gemini`: Install only Antigravity / Gemini CLI environment (`~/.gemini/`).
+- `--claude` / `-Claude`: Install only Claude Code environment (`~/.claude/`).
+- `--cursor` / `-Cursor`: Install only Cursor IDE rules (`~/.cursor/rules/`).
 
 ---
 
-## 10. Supported Environments & Platform Matrix
+## 7. Quality Assurance & Automated Testing
 
-| Platform | Manifest / Rule Location | Config Location | Skill Discovery Path |
-|---|---|---|---|
-| **OpenAI Codex** | `~/.codex/AGENTS.md` & `instructions.md` | `~/.codex/config.toml` | `~/.codex/skills/custom` -> `~/.agents/skills` |
-| **Antigravity / Gemini CLI** | `~/.gemini/GEMINI.md` | `~/.gemini/settings.json` | `~/.agents/skills/` |
-| **Claude Code** | `~/.claude/CLAUDE.md` + `.claude/agents/` | `~/.claude/mcp.json` | `~/.claude/skills` -> `~/.agents/skills` |
-| **Cursor IDE** | `~/.cursor/rules/*.mdc` | `~/.cursor/mcp.json` | On-demand referencing |
+Every component in this repository is strictly validated by automated test suites before deployment:
+
+```bash
+# 1. Run the master suite integrity validator (16 rules, 36 skills, 4 platforms, worker configs)
+python3 scripts/validate_suite.py
+
+# 2. Run the Worker MCP & CLI unit test suite
+python3 scripts/tests/test_worker.py
+
+# 3. Run the Sub-Worker environment diagnostics
+python3 scripts/worker_cli.py check
+```
 
 ---
 
-## 11. Repository File Structure
+## 8. Directory Topography
 
 ```
-agent_setup_bundle/
+agent-setup-bundle/
 ├── AGENTS.md                        # Master repository blueprint & AI installer instructions
 ├── README.md                        # Master technical documentation & cross-platform guide
+├── CAREER_KNOWLEDGE_BANK.md         # Master SSOT for career portfolios, metrics & STAR+R cases
 ├── PROMPT_FOR_AI.md                 # Universal bootstrap prompts
 ├── llms.txt                         # Semantic summary for web-enabled LLM agents
 ├── install.sh                       # Native Bash installer (Linux / macOS)
 ├── install.ps1                      # Native PowerShell installer (Windows)
 ├── install.py                       # Universal Python 3 installer (All OSes)
 ├── core/                            # Platform manifests (CODEX.md, GEMINI.md, CLAUDE.md, cursor)
-├── rules/                           # 16 Universal Rules (~/.agents/rules/)
+├── rules/                           # 16 Universal Operational Rules (~/.agents/rules/)
 ├── skills/                          # 36 Modular Skills (~/.agents/skills/)
 ├── templates/
-│   └── AGENTS.md                    # Project-level starter template
-├── config/                          # Configuration & MCP templates (codex, gemini, cursor)
+│   ├── AGENTS.md                    # Project-level starter template
+│   ├── CONVENTIONS.md               # Universal coding conventions for sub-workers
+│   └── .aider.conf.yml.template     # Universal Aider configuration template
+├── config/
+│   ├── worker_profiles.json         # Sub-worker model routing profiles & context bounds
+│   ├── .aider.model.settings.yml    # Aider model behavioral settings & diff formats
+│   ├── .aider.model.metadata.json   # Aider token limit overrides (1M context / 65k output)
+│   ├── mcp_config.json              # Gemini CLI MCP configuration template
+│   ├── settings.json                # Gemini CLI general settings
+│   ├── codex_config.toml            # OpenAI Codex configuration template
+│   └── cursor_mcp.json              # Cursor IDE MCP configuration template
 ├── policies/                        # MCP tool planning policies
 └── scripts/
+    ├── worker_mcp.py                # FastMCP server for autonomous sub-worker delegation
+    ├── worker_cli.py                # Developer CLI companion (worker)
+    ├── tests/
+    │   └── test_worker.py           # Unit test suite for worker ecosystem
     └── validate_suite.py            # Quality assurance test suite
 ```
 
 ---
 
-## 12. License
+## 9. License
 
-This project is licensed under the [MIT License](LICENSE).
+MIT License. Designed and maintained by **Gzymson** for autonomous, deterministic AI pair programming.

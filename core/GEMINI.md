@@ -47,6 +47,7 @@ Token budget is finite. Every subagent costs tokens and introduces coordination 
 *   **Workspace Isolation:** Subagents modifying files MUST work in isolated worktrees or subdirectories (`Workspace: share` / `Workspace: branch`).
 *   **Barrier Synchronization:** Dependent tasks must be gated by a synchronization barrier before launching downstream agents.
 *   **Prevention of the Telephone Game:** Present complete subagent artifacts directly rather than lossily paraphrasing technical parameters.
+*   **Chinese Worker Delegation Mandate (Zero Cost Grunt Work):** For repetitive bulk coding tasks (unit test generation, JSDoc/docstrings, boilerplate, mass refactoring), DO NOT consume primary token quota. Delegate execution to MCP `chinese-worker` (GLM-4-Flash / Qwen 2.5 Coder 32B) in an isolated Git Worktree with automated Quality Gates.
 
 ---
 

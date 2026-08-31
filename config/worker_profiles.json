@@ -1,0 +1,125 @@
+{
+  "default_profile": "minimax-m3",
+  "task_affinity": {
+    "scaffold": "minimax-m3",
+    "fullstack": "minimax-m3",
+    "low_level": "nemotron-550b",
+    "binary": "nemotron-550b",
+    "algorithms": "nemotron-550b",
+    "bugfix": "glm-5.2",
+    "refactor": "glm-5.2",
+    "tests": "nemotron-lightning",
+    "unit_tests": "nemotron-lightning",
+    "docs": "glm-5.2",
+    "fast": "cohere-code"
+  },
+  "fallback_chain": [
+    "minimax-m3",
+    "nemotron-550b",
+    "glm-5.2",
+    "nemotron-lightning",
+    "nemotron-120b",
+    "cohere-code",
+    "poolside-code",
+    "glm-4-flash"
+  ],
+  "profiles": {
+    "minimax-m3": {
+      "provider": "openrouter",
+      "model_name": "openrouter/minimax/minimax-m3:free",
+      "api_base": "https://openrouter.ai/api/v1",
+      "env_key": "OPENROUTER_API_KEY",
+      "edit_format": "diff",
+      "context_window": 1048576,
+      "max_output_tokens": 65536,
+      "cost_per_m_input": 0.0,
+      "cost_per_m_output": 0.0,
+      "description": "MiniMax M3 Free (Tier 0 Chinese Mega-Context Flagship - 1M Context, 92% pass rate for large scaffolding)"
+    },
+    "nemotron-550b": {
+      "provider": "openrouter",
+      "model_name": "openrouter/nvidia/nemotron-3-ultra-550b-a55b:free",
+      "api_base": "https://openrouter.ai/api/v1",
+      "env_key": "OPENROUTER_API_KEY",
+      "edit_format": "diff",
+      "context_window": 1000000,
+      "max_output_tokens": 65536,
+      "cost_per_m_input": 0.0,
+      "cost_per_m_output": 0.0,
+      "description": "NVIDIA Nemotron 3 Ultra 550B MoE (Tier 0 Free Flagship - 95% precision for low-level, binary parsing & math)"
+    },
+    "nemotron-lightning": {
+      "provider": "openrouter",
+      "model_name": "openrouter/nvidia/nemotron-3.5-lightning:free",
+      "api_base": "https://openrouter.ai/api/v1",
+      "env_key": "OPENROUTER_API_KEY",
+      "edit_format": "diff",
+      "context_window": 1000000,
+      "max_output_tokens": 65536,
+      "cost_per_m_input": 0.0,
+      "cost_per_m_output": 0.0,
+      "description": "NVIDIA Nemotron 3.5 Lightning (Tier 1 Ultra-Fast MoE for TDD unit tests and rapid code generation)"
+    },
+    "glm-5.2": {
+      "provider": "openrouter",
+      "model_name": "openrouter/z-ai/glm-5.2:free",
+      "api_base": "https://openrouter.ai/api/v1",
+      "env_key": "OPENROUTER_API_KEY",
+      "edit_format": "diff",
+      "context_window": 256000,
+      "max_output_tokens": 65536,
+      "cost_per_m_input": 0.0,
+      "cost_per_m_output": 0.0,
+      "description": "Zhipu GLM-5.2 Free (Tier 1 Chinese Frontier Code Model - LiveCodeBench 74-85%, SWE-bench 68.2%)"
+    },
+    "nemotron-120b": {
+      "provider": "openrouter",
+      "model_name": "openrouter/nvidia/nemotron-3-super-120b-a12b:free",
+      "api_base": "https://openrouter.ai/api/v1",
+      "env_key": "OPENROUTER_API_KEY",
+      "edit_format": "diff",
+      "context_window": 262144,
+      "max_output_tokens": 32768,
+      "cost_per_m_input": 0.0,
+      "cost_per_m_output": 0.0,
+      "description": "NVIDIA Nemotron 3 Super 120B MoE (Tier 1 Flagship, 100% Free)"
+    },
+    "cohere-code": {
+      "provider": "openrouter",
+      "model_name": "openrouter/cohere/north-mini-code:free",
+      "api_base": "https://openrouter.ai/api/v1",
+      "env_key": "OPENROUTER_API_KEY",
+      "edit_format": "diff",
+      "context_window": 256000,
+      "max_output_tokens": 32768,
+      "cost_per_m_input": 0.0,
+      "cost_per_m_output": 0.0,
+      "description": "Cohere North Mini Code (Tier 2 Ultra-Fast Coding Model, 100% Free)"
+    },
+    "poolside-code": {
+      "provider": "openrouter",
+      "model_name": "openrouter/poolside/laguna-s-2.1:free",
+      "api_base": "https://openrouter.ai/api/v1",
+      "env_key": "OPENROUTER_API_KEY",
+      "edit_format": "diff",
+      "context_window": 262144,
+      "max_output_tokens": 32768,
+      "cost_per_m_input": 0.0,
+      "cost_per_m_output": 0.0,
+      "description": "Poolside Laguna-S 2.1 Code Model (Tier 2 Free)"
+    },
+    "glm-4-flash": {
+      "provider": "zhipu",
+      "model_name": "openai/glm-4-flash",
+      "api_base": "https://open.bigmodel.cn/api/paas/v4/",
+      "env_key": "ZHIPU_API_KEY",
+      "alt_env_key": "BIGMODEL_API_KEY",
+      "edit_format": "diff",
+      "context_window": 128000,
+      "max_output_tokens": 4096,
+      "cost_per_m_input": 0.0,
+      "cost_per_m_output": 0.0,
+      "description": "Zhipu Direct BigModel PAAS (100% Guaranteed Fallback API when OpenRouter Free is rate-limited)"
+    }
+  }
+}

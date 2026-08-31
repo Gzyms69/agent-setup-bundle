@@ -1,0 +1,65 @@
+# .aider.model.settings.yml
+# Model behavioral overrides and settings for Worker Models in Aider
+
+- name: openrouter/minimax/minimax-m3:free
+  edit_format: diff
+  use_repo_map: true
+  extra_params:
+    temperature: 0.1
+    max_tokens: 65536
+
+- name: openrouter/nvidia/nemotron-3-ultra-550b-a55b:free
+  edit_format: diff
+  use_repo_map: true
+  extra_params:
+    temperature: 0.1
+    max_tokens: 65536
+
+- name: openrouter/nvidia/nemotron-3.5-lightning:free
+  edit_format: diff
+  use_repo_map: true
+  extra_params:
+    temperature: 0.1
+    max_tokens: 65536
+
+- name: openrouter/z-ai/glm-5.2:free
+  edit_format: diff
+  use_repo_map: true
+  extra_params:
+    temperature: 0.1
+    max_tokens: 65536
+
+- name: openrouter/nvidia/nemotron-3-super-120b-a12b:free
+  edit_format: diff
+  use_repo_map: true
+  extra_params:
+    temperature: 0.1
+    max_tokens: 32768
+
+- name: openrouter/cohere/north-mini-code:free
+  edit_format: diff
+  use_repo_map: true
+  extra_params:
+    temperature: 0.1
+    max_tokens: 32768
+
+- name: openrouter/poolside/laguna-s-2.1:free
+  edit_format: diff
+  use_repo_map: true
+  extra_params:
+    temperature: 0.1
+    max_tokens: 32768
+
+- name: openai/glm-4-flash
+  edit_format: diff
+  use_repo_map: true
+  extra_params:
+    temperature: 0.1
+    max_tokens: 4096
+
+- name: openai/Qwen/Qwen2.5-Coder-32B-Instruct
+  edit_format: diff
+  use_repo_map: true
+  extra_params:
+    temperature: 0.1
+    max_tokens: 8192

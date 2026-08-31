@@ -74,16 +74,47 @@ def main():
     rules_target = target_agents_dir / "rules"
     skills_target = target_agents_dir / "skills"
     templates_target = target_agents_dir / "templates"
+    scripts_target = target_agents_dir / "scripts"
+    config_target = target_agents_dir / "config"
 
     rules_target.mkdir(parents=True, exist_ok=True)
     skills_target.mkdir(parents=True, exist_ok=True)
     templates_target.mkdir(parents=True, exist_ok=True)
+    scripts_target.mkdir(parents=True, exist_ok=True)
+    config_target.mkdir(parents=True, exist_ok=True)
 
     copy_tree(script_dir / "rules", rules_target)
     copy_tree(script_dir / "skills", skills_target)
+    copy_tree(script_dir / "scripts", scripts_target)
+    copy_tree(script_dir / "config", config_target)
     if (script_dir / "templates").is_dir():
         copy_tree(script_dir / "templates", templates_target)
-    print("    -> Zainstalowano 16 regul, 36 skilli oraz szablony w ~/.agents/")
+
+    # Aider configuration files in ~/.
+    aider_conf_dst = home_dir / ".aider.conf.yml"
+    if not aider_conf_dst.exists() and (script_dir / "templates" / ".aider.conf.yml.template").is_file():
+        shutil.copy2(script_dir / "templates" / ".aider.conf.yml.template", aider_conf_dst)
+        print("    -> Utworzono ~/.aider.conf.yml")
+
+    shutil.copy2(script_dir / "config" / ".aider.model.settings.yml", home_dir / ".aider.model.settings.yml")
+    shutil.copy2(script_dir / "config" / ".aider.model.metadata.json", home_dir / ".aider.model.metadata.json")
+
+    # CLI Companion Symlink (~/.local/bin/worker)
+    local_bin = home_dir / ".local" / "bin"
+    local_bin.mkdir(parents=True, exist_ok=True)
+    worker_cli_src = scripts_target / "worker_cli.py"
+    if worker_cli_src.is_file():
+        os.chmod(worker_cli_src, 0o755)
+        worker_bin_symlink = local_bin / "worker"
+        if worker_bin_symlink.exists() or worker_bin_symlink.is_symlink():
+            worker_bin_symlink.unlink()
+        try:
+            worker_bin_symlink.symlink_to(worker_cli_src)
+            print(f"    -> Utworzono narzedzie CLI: {worker_bin_symlink} -> {worker_cli_src}")
+        except Exception:
+            shutil.copy2(worker_cli_src, worker_bin_symlink)
+
+    print("    -> Zainstalowano 16 regul, 36 skilli, skrypty workerow i szablony w ~/.agents/")
 
     # 1. OpenAI Codex
     if install_codex:

@@ -1,0 +1,19 @@
+# .aider.conf.yml
+# Universal Aider Configuration for Agent Setup Bundle
+
+auto-commits: false
+dirty-commits: false
+check-update: false
+show-model-warnings: false
+map-tokens: 2048
+stream: true
+pretty: true
+dark-mode: true
+
+# Universal Engineering Conventions & Rules Injection (Read-Only Context)
+read:
+  - ~/.agents/templates/CONVENTIONS.md
+  - ~/.agents/rules/systemic-excellence.md
+  - ~/.agents/rules/zero-speculation.md
+  - ~/.agents/rules/command-verification.md
+  - ~/.agents/rules/env-integrity.md

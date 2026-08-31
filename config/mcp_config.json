@@ -69,6 +69,17 @@
         "-y",
         "@ast-grep/mcp"
       ]
+    },
+    "chinese-worker": {
+      "command": "python3",
+      "args": [
+        "/home/gzyms/.agents/scripts/worker_mcp.py"
+      ],
+      "env": {
+        "ZHIPU_API_KEY": "YOUR_ZHIPU_API_KEY_HERE",
+        "SILICONFLOW_API_KEY": "YOUR_SILICONFLOW_API_KEY_OPTIONAL",
+        "OPENROUTER_API_KEY": "YOUR_OPENROUTER_API_KEY_OPTIONAL"
+      }
     }
   }
 }
