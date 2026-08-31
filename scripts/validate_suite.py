@@ -119,46 +119,56 @@ def check_templates():
         print("    -> templates/AGENTS.md present.")
 
 def check_core():
-    print("[-] Validating core prompts across 4 platforms in", CORE_DIR)
-    gemini_md = CORE_DIR / "GEMINI.md"
-    claude_md = CORE_DIR / "CLAUDE.md"
-    codex_md = CORE_DIR / "CODEX.md"
-    cursor_rules = CORE_DIR / ".cursorrules"
+    print("[-] Validating core prompts across 4 platforms...")
+    
+    # Check in repo core dir or deployed paths
+    is_deployed = not CORE_DIR.is_dir()
+    
+    gemini_md = (Path.home() / ".gemini" / "GEMINI.md") if is_deployed else (CORE_DIR / "GEMINI.md")
+    claude_md = (Path.home() / ".claude" / "CLAUDE.md") if is_deployed else (CORE_DIR / "CLAUDE.md")
+    codex_md = (Path.home() / ".codex" / "AGENTS.md") if is_deployed else (CORE_DIR / "CODEX.md")
+    cursor_rules = (Path.home() / ".cursor" / "rules") if is_deployed else (CORE_DIR / ".cursorrules")
     
     # 1. Codex
     if not codex_md.is_file():
-        errors.append("core/CODEX.md missing!")
+        errors.append(f"Codex prompt missing ({codex_md})!")
     else:
         content = codex_md.read_text(encoding="utf-8")
         if "Pre-Flight Skill Gate" not in content:
-            errors.append("core/CODEX.md missing Pre-Flight Skill Gate definition!")
-        print("    -> core/CODEX.md valid.")
+            errors.append(f"Codex prompt missing Pre-Flight Skill Gate definition!")
+        print("    -> Codex manifest valid.")
 
     # 2. Gemini
     if not gemini_md.is_file():
-        errors.append("core/GEMINI.md missing!")
+        errors.append(f"Gemini prompt missing ({gemini_md})!")
     else:
         content = gemini_md.read_text(encoding="utf-8")
         if "Pre-Flight Skill Gate" not in content:
-            errors.append("core/GEMINI.md missing Pre-Flight Skill Gate definition!")
+            errors.append(f"Gemini manifest missing Pre-Flight Skill Gate definition!")
         if "Gzymson" not in content:
-            errors.append("core/GEMINI.md missing Gzymson mandate!")
-        print("    -> core/GEMINI.md valid.")
+            errors.append(f"Gemini manifest missing Gzymson mandate!")
+        print("    -> Gemini manifest valid.")
 
     # 3. Claude
     if not claude_md.is_file():
-        errors.append("core/CLAUDE.md missing!")
+        errors.append(f"Claude prompt missing ({claude_md})!")
     else:
         content = claude_md.read_text(encoding="utf-8")
         if "Pre-Flight Skill Gate" not in content:
-            errors.append("core/CLAUDE.md missing Pre-Flight Skill Gate definition!")
-        print("    -> core/CLAUDE.md valid.")
+            errors.append(f"Claude manifest missing Pre-Flight Skill Gate definition!")
+        print("    -> Claude manifest valid.")
 
     # 4. Cursor
-    if not cursor_rules.is_file():
-        errors.append("core/.cursorrules missing!")
+    if is_deployed:
+        if not cursor_rules.is_dir():
+            errors.append(f"Cursor rules missing ({cursor_rules})!")
+        else:
+            print("    -> Cursor rules directory present.")
     else:
-        print("    -> core/.cursorrules present.")
+        if not cursor_rules.is_file():
+            errors.append("core/.cursorrules missing!")
+        else:
+            print("    -> core/.cursorrules present.")
 
 def check_workers():
     print("[-] Validating Worker Ecosystem (Chinese LLMs / FastMCP / Aider)...")
